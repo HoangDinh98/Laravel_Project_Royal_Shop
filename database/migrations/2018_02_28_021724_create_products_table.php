@@ -4,21 +4,19 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductsTable extends Migration
-{
+class CreateProductsTable extends Migration {
+
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id')->unsigned();
             $table->integer('provider_id')->unsigned();
             $table->integer('promotion_id')->unsigned();
-            $table->string('name');
             $table->integer('quantity');
             $table->float('weight', 11, 2);
             $table->integer('price');
@@ -26,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->timestamps();
         });
-        
+
         Schema::table('products', function($table) {
             $table->foreign('category_id')
                     ->references('id')->on('categories')
@@ -38,7 +36,7 @@ class CreateProductsTable extends Migration
                     ->references('id')->on('promotions')
                     ->onDelete('cascade');
         });
-        
+
         DB::statement('ALTER TABLE products ADD FULLTEXT fulltext_index (name, description)');
     }
 
@@ -47,8 +45,8 @@ class CreateProductsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('products');
     }
+
 }
