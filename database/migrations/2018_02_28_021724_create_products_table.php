@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration {
             $table->integer('category_id')->unsigned();
             $table->integer('provider_id')->unsigned();
             $table->integer('promotion_id')->unsigned();
+            $table->string('name', 255);
             $table->integer('quantity');
             $table->float('weight', 11, 2);
             $table->integer('price');
