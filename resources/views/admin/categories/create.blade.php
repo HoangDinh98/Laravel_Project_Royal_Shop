@@ -15,9 +15,9 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 <div class="box-body">
                     <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                        <label for="exampleInputEmail1">Tên Danh mục</label>
+                        <label for="name">Tên Danh mục</label>
                         <input type="text" id="name" name="name" class="form-control" placeholder="Nhập tên danh mục">
-                        <span class="text-danger">{{$errors->first('name') }}</span>
+                        <span class="text-danger">{!! $errors->first('name') !!}</span>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Danh mục này thuôc về</label>
