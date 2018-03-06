@@ -15,7 +15,7 @@ class AdminPromotionsController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.promotions.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class AdminPromotionsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.promotions.create');
     }
 
     /**
