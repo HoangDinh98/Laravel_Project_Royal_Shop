@@ -27,29 +27,14 @@
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
                             <td>
-                                @if($category->parent_id==0)
-                                    {{'Goc'}}
-                                @else
-                                    {{ var_dump($category->parentname($category->parent_id))}}
-                                @endif
+                                {{ $category->parent_id!=0 ? $category->parent->name:'Thư mục gốc' }}
                             </td>
-                            <td>{{ $category->parent_id==0?'Thư mục gốc':$category->parentname($category->parent_id)->name }}</td>
                             <td>{{ $category->created_at }}</td>
                             <td>{{ $category->updated_at }}</td>
-                            <td></td>
+                            <td><i class="fa fa-tasks green"></i><i class="fa fa-tasks green"></i></td>
                         </tr>
                         @endforeach
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Rendering engine</th>
-                            <th>Browser</th>
-                            <th>Platform(s)</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
             <!-- /.box-body -->

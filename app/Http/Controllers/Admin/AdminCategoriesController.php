@@ -30,7 +30,8 @@ class AdminCategoriesController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::where('parent_id', '=', 0)->orderBy('name', 'asc')->get();
+        return view('admin.categories.create', compact('categories'));
     }
 
     /**

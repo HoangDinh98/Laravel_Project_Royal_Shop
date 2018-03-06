@@ -4,7 +4,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="{{ asset('admin/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>Fire Dragon</p>
@@ -32,7 +32,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-files-o"></i>
+                    <i class="fa fa-cubes blue"></i>
                     <span>Sản phẩm</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -45,7 +45,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-th"></i>
+                    <i class="fa fa-tasks green"></i>
                     <span>Danh mục Sản phẩm</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -58,7 +58,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-pie-chart"></i>
+                    <i class="fa fa-percent red"></i>
                     <span>Khuyến mãi</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -71,7 +71,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-laptop"></i>
+                    <i class="fa fa-gg-circle cyan"></i>
                     <span>Nhà cung cấp</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -84,7 +84,7 @@
             </li>
             <li class="">
                 <a href="{{ route('admin.orders.index') }}">
-                    <i class="fa fa-edit"></i> <span>Đơn hàng</span>
+                    <i class="fa fa-shopping-cart yellow"></i> <span>Đơn hàng</span>
                 </a>
                 <!-- <ul class="treeview-menu">
                         <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> </a></li>
@@ -94,7 +94,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-table"></i> <span>Tài khoản người dùng</span>
+                    <i class="fa fa-user-circle purple"></i> <span>Tài khoản người dùng</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -106,7 +106,7 @@
             </li>
             <li class="treeview">
                 <a href="{{ route('admin.media.index') }}">
-                    <i class="fa fa-edit"></i> <span>Media</span>
+                    <i class="fa fa-picture-o maroon"></i> <span>Media</span>
                 </a>
             </li>
 

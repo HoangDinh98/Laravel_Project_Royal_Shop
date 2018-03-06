@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 06-Mar-2018, 10:28:31
+    Author     : hoang.dinh
+*/
+
+.skin-blue .sidebar-menu>li:hover>a>i, .skin-blue .sidebar-menu>li.active>a>i, .skin-blue .sidebar-menu>li.menu-open>a>i {
+    color: #FFFFFF;
+}
+
+.red {
+    color: #FF0000;
+}
+
+.blue {
+    color: #3c8dbc;
+}
+
+.green {
+    color: #398439;
+}
+
+.cyan {
+    color: #269abc;
+}
+
+.orange {
+    color: #e08e0b;
+}
+
+.yellow {
+    color: #EFDF12;
+}
+
+.purple {
+    color: #605ca8;
+}
+
+.maroon {
+    color: #d81b60;
+}
+
