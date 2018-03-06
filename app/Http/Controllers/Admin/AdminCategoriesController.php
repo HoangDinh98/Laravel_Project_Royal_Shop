@@ -1,8 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Session;
+use App\Category;
+
+date_default_timezone_set("Asia/Ho_Chi_Minh");
 
 class AdminCategoriesController extends Controller
 {
@@ -13,7 +19,8 @@ class AdminCategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**

@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+date_default_timezone_set("Asia/Ho_Chi_Minh");
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
