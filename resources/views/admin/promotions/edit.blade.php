@@ -4,85 +4,41 @@
 
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Quick Example</h3>
+        <h3 class="box-title">Chỉnh sửa khuyến mãi</h3>
     </div>
-
-
-
     <div class="row">
+        <div class="col-md-8">
+            <form role="form" action="{{ route('admin.promotions.update',$promotion->id) }}" method="POST" enctype='multipart/form-data'>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                <input type="hidden" name="_method" value="PUT">
+                <div class="box-body">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                    
+                    <div class=" form-group {{ $errors->has('value') ? 'has-error' : '' }}" >
+                        <label for="value">Giá trị khuyến mãi:</label>
+                        <input type="number" id="value" name="value" class="form-control"  value="{{ $promotion->value  }}">
+                        <span class="text-danger">{!! $errors->first('value') !!}</span>
+                    </div>  
 
-        <form action="{{ route('admin.promotions.update',$promotion->id) }}" method="POST">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-            <input type="hidden" name="_method" value="PUT">
+                    <div class=" form-group {{ $errors->has('description') ? 'has-error' : '' }}">
+                        <label for="description">Mô tả khuyến mãi:</label>
+                        <input type="text" class="form-control" id="description" name="description" value="{{ $promotion->description  }}">
+                        <span class="text-danger">{{ $errors->first('description') }}</span>
+                    </div> 
 
-            <form role="form">
-              <div class="box-body">
-                <div class="form-group {{ $errors->has('value') ? 'has-error' : '' }}"">
-                  <label for="value">Giá trị khuyến mãi:</label>
-                  <input type="text" class="form-control" id="value" name="value" value="{{ $promotion->value}}">
-                   <span class="text-danger">{{ $errors->first('value') }}</span>
+                    <div class="  form-group {{ $errors->has('is_active') ? 'has-error' : '' }}">
+                        <label for="is_active">Hoạt động:</label>
+                        <input type="checkbox" id="is_active" name="is_active" value="1" {{ $promotion->is_active == 1 ? 'checked' : '' }} >
+
+                        <span class="text-danger">{{ $errors->first('is_active') }}</span>
+                    </div> 
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Chỉnh sửa" />
+                    </div>
                 </div>
-                
-                  <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}"" >
-                     <label for="description">Mô tả khuyến mãi:</label>
-                     
-                  </div>
-               
-                
-          
-            <div class=" form-group {{ $errors->has('description') ? 'has-error' : '' }}">
-                <label for="description">Mô tả sản phẩm khuyến  mãi:</label>
-                <select class="form-control" id="description" name="description" >
-                    @foreach ($categories as $id => $name  )
-                    <option value="{{$id}}"   {{ $id == $post->category->id ? 'selected="selected"' : '' }}
-                        >
-                        {{$name}}
-                    </option>
-                    @endforeach   
-                </select>                
-                <span class="text-danger">{{ $errors->first('category_id') }}</span>
-            </div>  
-            <div class="form-group " style="width:  200px">
-
-
-                <img src="{{$post->photo ? asset( $post->photo->file ): 'http://placehold.it/400x400'}}" height="300" alt="" class="img-responsive img-rounded">
-
-
-            </div> <br>
-
-            <div class="  form-group {{ $errors->has('photo_id') ? 'has-error' : '' }}">
-                <label for="photo_id">Thumnail:</label>
-                <input type="file" id="photo_id" name="photo_id" class="form-control" value="{{ old('photo_id') }}">
-                <span class="text-danger">{{ $errors->first('photo_id') }}</span>
-            </div> 
-
-
-            <div class=" form-group {{ $errors->has('body') ? 'has-error' : '' }}">
-                <label for="body">Title:</label>
-                <textarea class="form-control" rows="5" id="body" name="body">{{ $post->body }}</textarea>
-                <span class="text-danger">{{ $errors->first('body') }}</span>
-            </div> 
-
-            <div class="form-group">
-                <input type="submit" class="btn btn-success" value="Edit Post" />
-            </div>
-        </form>
-
-
-
+            </form>
+        </div>
     </div>
-
-
-    <div class="row">
-
-
-        @include('includes.form_error')
-
-
-
-    </div>
-
-
-
-
-    @stop
+</div>
+@stop

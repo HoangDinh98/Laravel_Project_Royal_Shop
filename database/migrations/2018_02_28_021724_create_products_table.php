@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration {
             $table->integer('quantity');
             $table->float('weight', 11, 2);
             $table->integer('price');
-            $table->tinyInteger('is_delete');
+            $table->tinyInteger('is_delete')->default(0);
             $table->text('description');
             $table->timestamps();
         });

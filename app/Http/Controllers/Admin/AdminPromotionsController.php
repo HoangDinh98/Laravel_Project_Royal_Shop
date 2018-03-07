@@ -66,7 +66,8 @@ class AdminPromotionsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        $promotion = Promotion::findOrFail($id);
+        return view('admin.promotions.edit', compact('promotion'));
     }
 
     /**
@@ -77,7 +78,15 @@ class AdminPromotionsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        $promotions = Promotion::findOrFail($id);
+        
+        $input = $request->all();
+        if(empty($input['is_active'])){
+            $input['is_active'] = 0;
+        }
+        $promotions->update($input);
+
+        return redirect('/admin/promotions');
     }
 
     /**
@@ -87,7 +96,10 @@ class AdminPromotionsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        //
+    $promotions = Promotion::findOrFail($id);
+        $promotions->delete();
+        
+        return redirect('admin/promotions');
     }
 
 }
