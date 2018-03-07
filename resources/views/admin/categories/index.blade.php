@@ -31,7 +31,10 @@
                             </td>
                             <td>{{ $category->created_at }}</td>
                             <td>{{ $category->updated_at }}</td>
-                            <td><i class="fa fa-tasks green"></i><i class="fa fa-tasks green"></i></td>
+                            <td>
+                                <a class="button-a edit-button" href="" title="Chỉnh sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;
+                                <a class="button-a delete-button" href="" title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

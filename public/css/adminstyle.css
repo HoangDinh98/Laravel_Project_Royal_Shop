@@ -44,3 +44,112 @@ and open the template in the editor.
     color: #d81b60;
 }
 
+
+/*Style for Action buttons in index pages*/
+
+.button-a {
+    /*padding: 2px 5px;*/
+    padding: 5px 7px;
+    color: #93a1a1;
+    font-size: 20px;
+    border: 1px solid;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+.button-space {
+    border: none;
+    padding: 0;
+    background: none;
+}
+
+.edit-button {
+    color: #009688;
+    /*font-size: 28px;*/
+}
+
+.view-button {
+    color: #ff9800;
+}
+
+.view-cmt-button {
+    color: #00bcd4;
+    /*color: #3f51b5;*/
+    /*color: #1f51C5;*/
+
+}
+
+.edit-button:hover {
+    background-color: #DDDDDD;
+    border-radius: 5px;
+    color: #37A68E;
+    transition: 0.5s;
+}
+
+.delete-button {
+    padding: 3px 8px;
+    color: #bb2417;
+    font-size: 22px;
+}
+
+.delete-button:hover {
+    background-color: #DDDDDD;
+    border-radius: 5px;
+    color: #Fb4437;
+    transition: 0.5s;
+}
+
+
+.button-a:hover, .button-a:active, .button-a:focus {
+    background-color: #DDDDDD;
+    border-radius: 5px;
+    cursor: pointer !important;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.form-delete{
+    display: inline-block; 
+}
+
+
+.select-box{
+    width: 100%;
+}
+
+.img-display{
+    display: inline-block;
+    padding: 20px 20px;
+    margin: 0px 0px -16px -20px;
+    border-radius: 30px;
+}
+
+.img-round {
+    border-radius: 15px;
+}
+
+.media-box {
+    display: inline-block;
+    text-align: center;
+    padding: 20px 20px;
+    margin: 0px 0px 0px -20px;
+}
+
+.post-box {
+    margin: 10px 0;
+}
+
+.category-style{
+    column-count: 2;
+}
+
+.child-cmt-box {
+    padding-bottom: 15px;
+}
+
+.child-cmt-content {
+    background-color: #FFFFAF;
+    border-radius: 10px;
+    padding: 5px 15px;
+}
+
