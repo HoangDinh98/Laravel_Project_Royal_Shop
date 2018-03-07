@@ -2,32 +2,48 @@
 
 @section('content')
 
-<div class="row-fluid">
-    <div class="span12">
-        <ul class="breadcrumb">
-            <li><a href="#"><i class="icon-home" style="font-size: 18px; width: 30px;"></i></a><span class="divider">&nbsp;</span></li>
-            <li><a href="#">Khuyến mãi</a><span class="divider-last">&nbsp;</span></li>
-        </ul>
+<h1>Khuyến mãi</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Giá trị khuyến mãi</th>
+            <th>Mô tả</th>
+            <th>Hành động</th>
+            <th>Created at</th>
+            <th>Update</th>
+    </thead>
+    <tbody>
+        @if($promotions)
+        @foreach($promotions as $promotion)
+        <tr>
+            <td>{{$promotion->id}}</td>
+            <td>{{$promotion->value}}</td>
+            <td>{{$promotion->description}}</td>
+            <td>{{$promotion->is_active}}</td>
+            <td>{{$promotion->created_at->diffForhumans()}}</td>
+            <td>{{$promotion->updated_at->diffForhumans()}}</td>
+
+        </tr>
+
+        @endforeach
+
+        @endif
+
+    </tbody>
+</table>
+
+
+<div class="row">
+    <div class="col-lg-6 col-sm-offset-5">
+        {{ $promotions->render() }}
     </div>
+
 </div>
 
-<div>
-    <a class="create-button" href="./create.blade.php">Thêm mới khuyến mãi</a>
-</div>
 
-<div class="widget-body">
-    <table class="table table-condensed table-striped table-hover no-margin">
-        <thead>
-            <tr>
-                <!--<th style="display: none"></th>-->
-                <th>STT</th>
-                <th>Giá trị khuyến mãi</th>
-                <th>Mô tả</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-    </table>
-</div>
 
 @endsection
 

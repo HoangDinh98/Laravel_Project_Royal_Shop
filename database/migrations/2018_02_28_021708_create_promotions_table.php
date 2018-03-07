@@ -16,9 +16,10 @@ class CreatePromotionsTable extends Migration
         Schema::create('promotions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('value');
-            $table->tinyInteger('is_active');
-            $table->text('description');
+            $table->tinyInteger('is_active')->default(1);
+            $table->text('description')->nullable();
             $table->timestamps();
+            
         });
     }
 

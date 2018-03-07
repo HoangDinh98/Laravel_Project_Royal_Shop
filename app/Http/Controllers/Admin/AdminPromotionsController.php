@@ -1,21 +1,25 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-date_default_timezone_set("Asia/Ho_Chi_Minh");
+
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use App\Promotion;
 
-class AdminPromotionsController extends Controller
-{
+date_default_timezone_set("Asia/Ho_Chi_Minh");
+
+class AdminPromotionsController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('admin.promotions.index');
+    public function index() {
+        $promotions = Promotion::orderBy('created_at', 'desc')->paginate(3);
+
+        return view('admin.promotions.index', compact('promotions'));
     }
 
     /**
@@ -23,9 +27,8 @@ class AdminPromotionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('admin.promotions.create');
+    public function create() {
+        return view('admin.promotions.create', compact('promotions'));
     }
 
     /**
@@ -34,9 +37,16 @@ class AdminPromotionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        $erroricon = '<i class="fa fa-times"></i>';
+        $this->validate($request, [
+            'value' => 'required',
+                ], [
+            'value.required' => $erroricon . ' Không thể để trống trường này'
+        ]);
+        Promotion::create($request->all());
+        Session::flash('notification', 'Thêm khuyến mãi <b>' . $request['name'] . '</b> Thành công');
+        return redirect('/admin/promotions');
     }
 
     /**
@@ -45,8 +55,7 @@ class AdminPromotionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -56,8 +65,7 @@ class AdminPromotionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -68,8 +76,7 @@ class AdminPromotionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -79,8 +86,8 @@ class AdminPromotionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }

@@ -16,11 +16,11 @@ class CreateProvidersTable extends Migration
         Schema::create('providers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255);
-            $table->string('address', 255);
-            $table->string('email', 100);
-            $table->string('website', 100);
-            $table->string('phone', 11);
-            $table->tinyInteger('is_delete');
+            $table->string('address', 255)->nullable();
+            $table->string('email', 100)->nullable();
+            $table->string('website', 100)->nullable();
+            $table->string('phone', 11)->nullable();
+            $table->tinyInteger('is_delete')->default(0);
             $table->timestamps();
         });
     }
