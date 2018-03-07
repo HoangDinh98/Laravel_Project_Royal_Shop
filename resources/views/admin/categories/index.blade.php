@@ -32,8 +32,14 @@
                             <td>{{ $category->created_at }}</td>
                             <td>{{ $category->updated_at }}</td>
                             <td>
-                                <a class="button-a edit-button" href="" title="Chỉnh sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;
-                                <a class="button-a delete-button" href="" title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;
+                                <a class="button-a edit-button" href="{{ route('admin.categories.edit', $category->id) }}" 
+                                   title="Chỉnh sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;
+                                <a class="button-a delete-button" href="javascript:deleteA('category_{{$category->id}}')" 
+                                   title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;
+                                <form id="category_{{$category->id}}" action="{{ route('admin.categories.destroy', $category->id) }}" method="POST">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                                    <input type="hidden" name="_method" value="DELETE">
+                                </form>
                             </td>
                         </tr>
                         @endforeach

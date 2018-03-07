@@ -154,5 +154,7 @@
         <script src="{{asset('Admin/dist/js/pages/dashboard.js')}}"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="{{asset('Admin/dist/js/demo.js')}}"></script>
+        
+        <script src="{{asset('js/adminjs.js')}}"></script>
     </body>
 </html>

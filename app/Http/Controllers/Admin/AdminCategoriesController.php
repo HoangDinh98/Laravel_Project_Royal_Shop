@@ -17,12 +17,10 @@ class AdminCategoriesController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    
     public function index() {
         $categories = Category::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.categories.index', compact('categories'));
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -45,9 +43,9 @@ class AdminCategoriesController extends Controller {
         $this->validate($request, [
             'name' => 'required',
                 ], [
-            'name.required' => $erroricon.' Không thể để trống trường này'
+            'name.required' => $erroricon . ' Không thể để trống trường này'
         ]);
-        
+
         $input = $request->all();
         $categoryname = Standard::standardize_data($request->input('name'), 1);
         $input['name'] = $categoryname;
@@ -75,7 +73,9 @@ class AdminCategoriesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        $categories = Category::where('parent_id', '=', 0)->orderBy('name', 'asc')->get();
+        $category = Category::findOrFail($id);
+        return view('admin.categories.edit', compact('categories', 'category'));
     }
 
     /**
@@ -86,7 +86,23 @@ class AdminCategoriesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        $category = Category::findOrFail($id);
+        
+        $erroricon = '<i class="fa fa-times"></i>';
+        $this->validate($request, [
+            'name' => 'required',
+                ], [
+            'name.required' => $erroricon . ' Không thể để trống trường này'
+        ]);
+
+        $input = $request->all();
+        $categoryname = Standard::standardize_data($request->input('name'), 1);
+        $input['name'] = $categoryname;
+
+        $category->update($input);
+        Session::flash('notification', 'Add Category <b>' . $input['name'] . '</b> Successful');
+        
+        return redirect('/admin/categories');
     }
 
     /**
@@ -96,7 +112,9 @@ class AdminCategoriesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+        Session::flash('notification', 'Delete Category <b>' . $category->name . '</b> Successful');
+        return redirect()->route('admin.categories.index');
     }
-
 }
