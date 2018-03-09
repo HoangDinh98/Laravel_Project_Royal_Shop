@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-date_default_timezone_set("Asia/Ho_Chi_Minh");
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Provider;
+
+date_default_timezone_set("Asia/Ho_Chi_Minh");
 
 class AdminProvidersController extends Controller
 {
@@ -15,7 +17,9 @@ class AdminProvidersController extends Controller
      */
     public function index()
     {
-        //
+        $providers = Provider::orderBy('created_at', 'desc')->paginate(10);
+
+        return view('admin.providers.index', compact('providers'));
     }
 
     /**

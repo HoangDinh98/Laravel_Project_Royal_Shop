@@ -25,21 +25,17 @@
         @foreach($promotions as $promotion)
         <tr>
             <td>{{$promotion->id}}</td>
-            <td>{{$promotion->value}}</td>
+            <td id="name_{{$promotion->id}}">{{$promotion->value.' %'}}</td>
             <td>{{$promotion->description}}</td>
             <td>{{$promotion->is_active?'1':'0'}}</td>
-            <td><a href="{{ url('admin/promotions/'. $promotion->id.'/edit') }}">
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-success" value="Chỉnh sửa" />
-                    </div></a>
-            </td>
-            <td> <form action="{{ route('admin.promotions.destroy', $promotion->id) }}" method="POST" >
+            <td><a class="button-a edit-button" href="{{ route('admin.promotions.edit', $promotion->id) }}" 
+                   title="Chỉnh sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;
+                <a class="button-a delete-button delete-fnt" data-type="2" data-id="{{$promotion->id }}"
+                   title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;
+                   
+                <form action="{{ route('admin.promotions.destroy', $promotion->id) }}" method="POST" >
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-danger" value="Delete" />
-
-                    </div>
                 </form>
             </td>
         </tr>
