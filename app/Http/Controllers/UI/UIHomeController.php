@@ -1,8 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\UI;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+use App\Product;
+use App\Http\Controllers\Standard;
+
+date_default_timezone_set("Asia/Ho_Chi_Minh");
 
 class UIHomeController extends Controller
 {
@@ -13,7 +19,7 @@ class UIHomeController extends Controller
      */
     public function index()
     {
-        //
+        return view('ui.index');
     }
 
     /**

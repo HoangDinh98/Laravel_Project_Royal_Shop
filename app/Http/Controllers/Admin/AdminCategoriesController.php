@@ -18,7 +18,7 @@ class AdminCategoriesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $categories = Category::orderBy('created_at', 'desc')->paginate(10);
+        $categories = Category::where('is_active', 1)->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -100,7 +100,7 @@ class AdminCategoriesController extends Controller {
         $input['name'] = $categoryname;
 
         $category->update($input);
-        Session::flash('notification', 'Add Category <b>' . $input['name'] . '</b> Successful');
+        Session::flash('notification', 'Thêm Danh mục <b>' . $input['name'] . '</b> Thành công');
         
         return redirect('/admin/categories');
     }
@@ -113,8 +113,10 @@ class AdminCategoriesController extends Controller {
      */
     public function destroy($id) {
         $category = Category::findOrFail($id);
-        $category->delete();
-        Session::flash('notification', 'Delete Category <b>' . $category->name . '</b> Successful');
+        $category->children()->update(['is_active' => '0']);
+        
+        $category->update(['is_active' => '0']);
+        Session::flash('notification', 'Xóa Danh mục <b>' . $category->name . '</b> Thành công');
         return redirect()->route('admin.categories.index');
     }
 }

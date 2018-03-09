@@ -2,6 +2,13 @@
 
 @section('content')
 
+@if (Session::has('notification'))
+<div class="alert alert-success" id="notify">
+    <button data-dismiss="alert" class="close">×</button>
+    {!! Session::get('notification') !!}
+</div>
+@endif
+
 <div class="row">
     <div class="col-sm-12">
         <div class="box">
@@ -25,7 +32,7 @@
                         @foreach($categories AS $category)
                         <tr>
                             <td>{{ $category->id }}</td>
-                            <td>{{ $category->name }}</td>
+                            <td id="name_{{$category->id}}">{{ $category->name }}</td>
                             <td>
                                 {{ $category->parent_id!=0 ? $category->parent->name:'Thư mục gốc' }}
                             </td>
@@ -34,9 +41,11 @@
                             <td>
                                 <a class="button-a edit-button" href="{{ route('admin.categories.edit', $category->id) }}" 
                                    title="Chỉnh sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;
-                                <a class="button-a delete-button" href="javascript:deleteA('category_{{$category->id}}')" 
+                                <!--                                <a class="button-a delete-button" href="javascript:deleteA('category_{{$category->id}}')" 
+                                                                   title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;-->
+                                <a class="button-a delete-button delete-fnt" data-type="1" data-id="{{$category->id }}"
                                    title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;
-                                <form id="category_{{$category->id}}" action="{{ route('admin.categories.destroy', $category->id) }}" method="POST">
+                                <form id="fnt_{{$category->id}}" action="{{ route('admin.categories.destroy', $category->id) }}" method="POST">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                                     <input type="hidden" name="_method" value="DELETE">
                                 </form>

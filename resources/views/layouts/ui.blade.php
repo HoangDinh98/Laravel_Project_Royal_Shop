@@ -30,14 +30,14 @@
         @include('layouts.iucomponents.header')
         <!-- ======================================================================================================================== -->
         <div class="container">
-            
+
             <!--Put content in here-->
             <!--**************************************-->
             @yield('content')
             <!--**************************************-->
             <!--**************************************-->
-            
-            
+
+
             <section id="scn">
                 <h3 class="title"><span>WELCOME !</span></h3>
                 <div class="row">
@@ -137,5 +137,8 @@
         <script src="{{ asset('UI/themes/js/jquery-1.8.3.min.js') }}"></script>
         <script src="{{ asset('UI/bootstrap/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('UI/themes/js/smart.js') }}"></script>
+
+        <link href="{{asset('confirm-form/notifier.style.css')}}" rel="stylesheet">
+        <script src="{{asset('confirm-form/notifier.script.js')}}"></script>
     </body>
 </html>

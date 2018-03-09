@@ -63,10 +63,10 @@
         <div class="wrapper">
 
             <!--Navbar-->
-            @include('layouts.navbar')
-            
+            @include('layouts.admincomponents.navbar')
+
             <!-- Left side column. contains the logo and sidebar -->
-            @include('layouts.leftmenu')
+            @include('layouts.admincomponents.leftmenu')
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -81,9 +81,9 @@
                         <li class="active">Dashboard</li>
                     </ol>
                 </section>
-                
-                
-                
+
+
+
                 <!--************************************-->
                 <!--************************************-->
                 <!-- Main content -->
@@ -95,7 +95,7 @@
                 <!-- /.content -->
                 <!--************************************-->
                 <!--************************************-->
-                
+
             </div>
             <!-- /.content-wrapper -->
             <footer class="main-footer">
@@ -107,10 +107,10 @@
             </footer>
 
             <!-- Control Sidebar -->
-            @include('layouts.rightmenu')
+            @include('layouts.admincomponents.rightmenu')
             <!-- /.control-sidebar -->
-            
-            
+
+
             <!-- Add the sidebar's background. This div must be placed
                   immediately after the control sidebar -->
             <div class="control-sidebar-bg"></div>
@@ -123,7 +123,7 @@
         <script src="{{asset('Admin/bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
         <script>
-            $.widget.bridge('uibutton', $.ui.button);
+$.widget.bridge('uibutton', $.ui.button);
         </script>
         <!-- Bootstrap 3.3.7 -->
         <script src="{{asset('Admin/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
@@ -154,7 +154,9 @@
         <script src="{{asset('Admin/dist/js/pages/dashboard.js')}}"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="{{asset('Admin/dist/js/demo.js')}}"></script>
-        
+
+        <link href="{{asset('confirm-form/notifier.style.css')}}" rel="stylesheet">
+        <script src="{{asset('confirm-form/notifier.script.js')}}"></script>
         <script src="{{asset('js/adminjs.js')}}"></script>
     </body>
 </html>
