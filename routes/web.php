@@ -32,7 +32,7 @@ Route::resource('admin/providers', "Admin\AdminProvidersController", array('as' 
 
 Route::resource('admin/promotions', "Admin\AdminPromotionsController", array('as' => 'admin'));
 
-Route::resource('admin/products', "Admin\AdminProductsController", array('as' => 'admin'));
+Route::resource('admin/products', "AdminProductsController", array('as' => 'admin'));
 
 Route::resource('admin/roles', "Admin\AdminRolesController", array('as' => 'admin'));
 
