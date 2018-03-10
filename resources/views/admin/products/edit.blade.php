@@ -54,7 +54,7 @@
             
             <div class="  form-group {{ $errors->has('path') ? 'has-error' : '' }}">
                 <label for="path">Thumnail:</label>
-                <input type="file" id="photo_id" name="path" class="form-control" value="{{ $products->photo }}">
+                <input type="file" id="photo_id" name="photo_id" class="form-control" value="{{ $products->photo }}">
                 <span class="text-danger">{{ $errors->first('path') }}</span>
            </div> 
             
