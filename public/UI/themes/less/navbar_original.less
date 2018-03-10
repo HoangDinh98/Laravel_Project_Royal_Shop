@@ -55,7 +55,7 @@
   font-size: 20px;
   font-weight: 200;
   color: @navbarBrandColor;
-  // text-shadow: 0 1px 0 @navbarBackgroundHighlight;
+  text-shadow: 0 1px 0 @navbarBackgroundHighlight;
   &:hover,
   &:focus {
     text-decoration: none;
@@ -245,7 +245,7 @@
   padding: ((@navbarHeight - @baseLineHeight) / 2) 15px ((@navbarHeight - @baseLineHeight) / 2);
   color: @navbarLinkColor;
   text-decoration: none;
-  // text-shadow: 0 1px 0 @navbarBackgroundHighlight;
+  text-shadow: 0 1px 0 @navbarBackgroundHighlight;
 }
 .navbar .nav .dropdown-toggle .caret {
   margin-top: 8px;
@@ -299,11 +299,43 @@
 
 // Menu position and menu carets
 .navbar .nav > li > .dropdown-menu {
-    
+  &:before {
+    content: '';
+    display: inline-block;
+    border-left:   7px solid transparent;
+    border-right:  7px solid transparent;
+    border-bottom: 7px solid #ccc;
+    border-bottom-color: @dropdownBorder;
+    position: absolute;
+    top: -7px;
+    left: 9px;
+  }
+  &:after {
+    content: '';
+    display: inline-block;
+    border-left:   6px solid transparent;
+    border-right:  6px solid transparent;
+    border-bottom: 6px solid @dropdownBackground;
+    position: absolute;
+    top: -6px;
+    left: 10px;
+  }
 }
 // Menu position and menu caret support for dropups via extra dropup class
 .navbar-fixed-bottom .nav > li > .dropdown-menu {
-    
+  &:before {
+    border-top: 7px solid #ccc;
+    border-top-color: @dropdownBorder;
+    border-bottom: 0;
+    bottom: -7px;
+    top: auto;
+  }
+  &:after {
+    border-top: 6px solid @dropdownBackground;
+    border-bottom: 0;
+    bottom: -6px;
+    top: auto;
+  }
 }
 
 // Caret should match text color on hover/focus
@@ -336,6 +368,14 @@
 .navbar .nav > li > .dropdown-menu.pull-right {
   left: auto;
   right: 0;
+  &:before {
+    left: auto;
+    right: 12px;
+  }
+  &:after {
+    left: auto;
+    right: 13px;
+  }
   .dropdown-menu {
     left: auto;
     right: 100%;
@@ -359,7 +399,7 @@
   .brand,
   .nav > li > a {
     color: @navbarInverseLinkColor;
-    // text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+    text-shadow: 0 -1px 0 rgba(0,0,0,.25);
     &:hover,
     &:focus {
       color: @navbarInverseLinkColorHover;

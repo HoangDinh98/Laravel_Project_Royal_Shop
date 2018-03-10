@@ -8,10 +8,27 @@
         <meta name="author" content="">
         <!-- styles -->
         <link rel="stylesheet/less" type="text/css" href="{{ asset('UI/themes/less/bootstrap.less') }} ">
-        <script src="themes/js/less/less.js" type="text/javascript"></script>
+        <!--<link rel="stylesheet/less" type="text/css" href="{{ asset('UI/bootstrap/css/bootstrap.css') }} ">-->
+        <script src="{{ asset('UI/themes/js/less/less.js') }}" type="text/javascript"></script>
 
         <!-- favicon-icons -->
         <link rel="shortcut icon" href="{{ asset('UI/themes/images/favicon.ico') }}">
+
+
+<!--        <link href="{{ asset('UI/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">      
+        <link href="{{ asset('UI/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet">
+
+        <link href="{{ asset('UI/themes/css/bootstrappage.css') }}" rel="stylesheet"/>
+
+         global styles 
+        <link href="{{ asset('UI/themes/css/flexslider.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('UI/themes/css/main.css') }}" rel="stylesheet"/>
+
+         scripts 
+        <script src="{{ asset('UI/themes/js/jquery-1.7.2.min.js') }}"></script>
+        <script src="{{ asset('UI/bootstrap/js/bootstrap.min.js') }}"></script>				
+        <script src="{{ asset('UI/themes/js/superfish.js') }}"></script>	
+        <script src="{{ asset('UI/themes/js/jquery.scrolltotop.js') }}"></script>-->
     </head>
     <body>
         <!-- Facebook script -->
@@ -140,5 +157,6 @@
 
         <link href="{{asset('confirm-form/notifier.style.css')}}" rel="stylesheet">
         <script src="{{asset('confirm-form/notifier.script.js')}}"></script>
+        <link rel="stylesheet" href="{{asset('css/uistyle.css')}}"
     </body>
 </html>

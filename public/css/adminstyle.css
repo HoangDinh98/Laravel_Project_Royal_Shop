@@ -54,7 +54,7 @@ and open the template in the editor.
     font-size: 20px;
     border: 1px solid;
     border-radius: 50%;
-    transition: 0.5s;
+    transition: linear 0.5s;
 }
 
 .button-space {
@@ -83,7 +83,7 @@ and open the template in the editor.
     background-color: #DDDDDD;
     border-radius: 5px;
     color: #37A68E;
-    transition: 0.5s;
+    transition: linear  0.5s;
 }
 
 .delete-button {
@@ -96,7 +96,7 @@ and open the template in the editor.
     background-color: #DDDDDD;
     border-radius: 5px;
     color: #Fb4437;
-    transition: 0.5s;
+    transition: linear  0.5s;
 }
 
 
@@ -105,7 +105,7 @@ and open the template in the editor.
     border-radius: 5px;
     cursor: pointer !important;
     text-decoration: none;
-    transition: 0.5s;
+    transition: linear  0.5s;
 }
 
 .form-delete{
@@ -152,4 +152,7 @@ and open the template in the editor.
     border-radius: 10px;
     padding: 5px 15px;
 }
+
+
+
 

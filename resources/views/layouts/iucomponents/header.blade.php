@@ -1,5 +1,4 @@
 <header class="header">
-    <h1 class="seo">Welcome to sell anything! :<em class="blink"> 50% </em> discount is available for more than <span class="blink"> 400 </span> items.</h1>
     <div class="container">
         <div class="row">
             <div class="offset6 span6 right-align loginArea">
@@ -37,22 +36,38 @@
         <div class="navbar">
             <div class="navbar-inner">
                 <a class="brand" href="index.php"><img src="{{ asset('UI/themes/images/new_logo.png') }}" alt="Bootsshop"></a>
+                <div style="display: inline-block; float: right;">
+                    <form class="form-inline navbar-search" method="post" action="products.php" style="padding-top:5px;"> 
+                        <input class="span4" type="text" placeholder="eg. T-shirt" style="padding:11px 4px;">
+                        <button type="submit" class="btn btn-warning btn-large" style="margin-top:0"> GO </button>
+                    </form>
+                </div>
+
                 <div class="nav-collapse">
-                    <ul id="topMenu" class="nav pull-right">
-                        <li class="">
-                            <form class="form-inline navbar-search" method="post" action="products.php" style="padding-top:5px;">
-                                <select class="span3" style="padding:11px 4px; height:auto">
-                                    <option>All</option>
-                                    <option>Clothes </option>
-                                    <option>Women's Wear </option>
-                                    <option>Men's Wear </option>
-                                    <option>Kids Wear </option>
-                                </select> 
-                                <input class="span4" type="text" placeholder="eg. T-shirt" style="padding:11px 4px;">
-                                <button type="submit" class="btn btn-warning btn-large" style="margin-top:0"> GO </button>
-                            </form>
-                        </li>
-                    </ul>
+                    <div style="display: block">
+                        <ul id="topMenu" class="nav nav-custom">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li class="dropdown-submenu"><a href="#">Link</a>
+                                <ul class="dropdown-menu">
+                                    <li class=""><a href="#">Link</a></li>
+                                    <li class=""><a href="#">Link</a></li>
+                                    <li class=""><a href="#">Link</a></li>
+                                    <li class="dropdown-submenu"><a href="#">Link</a>
+                                </ul>
+                            </li>
+                            <li class=""><a href="#">Link</a></li>
+                            <li class=""><a href="#">Link</a></li>
+                            <li class="dropdown-submenu"><a href="#">Link</a></li>
+                            <li class="dropdown-submenu"><a href="#">Link</a>
+                                <ul class="dropdown-menu">
+                                    <li class=""><a href="#">Link</a></li>
+                                    <li class=""><a href="#">Link</a></li>
+                                    <li class=""><a href="#">Link</a></li>
+                                    <li class="dropdown-submenu"><a href="#">Link</a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>
