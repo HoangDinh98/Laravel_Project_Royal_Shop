@@ -36,10 +36,12 @@
         <div class="navbar">
             <div class="navbar-inner">
                 <a class="brand" href="index.php"><img src="{{ asset('UI/themes/images/new_logo.png') }}" alt="Bootsshop"></a>
-                <div style="display: inline-block; float: right;">
-                    <form class="form-inline navbar-search" method="post" action="products.php" style="padding-top:5px;"> 
-                        <input class="span4" type="text" placeholder="eg. T-shirt" style="padding:11px 4px;">
-                        <button type="submit" class="btn btn-warning btn-large" style="margin-top:0"> GO </button>
+                <div class="search-box">
+                    <form class="search-form" method="post" action="products.php" style="padding-top:5px;"> 
+                        <input class="" type="text" placeholder="Tìm kiếm" style="padding:11px 4px;">
+                        <button type="submit" class="btn btn-warning btn-large search-box-logo">
+                            <i class="icon-search"></i>
+                        </button>
                     </form>
                 </div>
 
