@@ -48,7 +48,9 @@ class AdminProductsController extends Controller
      */
     public function store(Request $request) {
         $input = $request->all();
-        $input['is_thumbnail']=1;
+        $product = new Product();
+        
+        $product->create($input);
 
         
             if($file = $request->file('photo_id')) {
@@ -66,15 +68,14 @@ class AdminProductsController extends Controller
 
 
                 $file->move($upload_url, $name);
+                
+                
 
-                $photo = Photo::create(['path'=> $upload_url. $name]);
-
-
-
+                $photo = Photo::create(['path'=> $upload_url. $name,'product_id'=>$product->id]);
 
                 }
 
-                Product::create($input);
+                
                 return redirect('/admin/products');
     }
 
@@ -117,7 +118,7 @@ class AdminProductsController extends Controller
         $product_id = $id;
 
 
-        if ($file = $request->file('product_id')) {
+        if ($file = $request->file('photo_id')) {
             $year = date('Y');
             $month = date('m');
             $day = date('d');
@@ -133,7 +134,7 @@ class AdminProductsController extends Controller
             $file->move($upload_url, $name);
             
             
-            $photo = Photo::create(['path' => $upload_url . $name]);
+            $photo = Photo::create(['path' => $upload_url . $name,'product_id'=>$product_id]);
             
             
         }

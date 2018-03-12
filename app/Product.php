@@ -40,7 +40,7 @@ class Product extends Model
     }
     
     public function thumbnail() {
-        return $this->photos()->where('is_thumbnail', 1)->first();
-//        return $this->hasOne('App\Photo');
+        return $this->photos()->where('is_thumbnail', 1)->get()->last();
+
     }
 }
