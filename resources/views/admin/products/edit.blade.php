@@ -52,10 +52,10 @@
             </div> <br>
 
             
-            <div class="  form-group {{ $errors->has('path') ? 'has-error' : '' }}">
-                <label for="path">Thumnail:</label>
-                <input type="file" id="photo_id" name="photo_id" class="form-control" value="{{ $products->photo }}">
-                <span class="text-danger">{{ $errors->first('path') }}</span>
+            <div class="  form-group {{ $errors->has('photo_id') ? 'has-error' : '' }}">
+                <label for="photo_id">Thumnail:</label>
+                <input type="file" id="photo_id" name="photo_id" class="form-control" value="">
+                <span class="text-danger">{{ $errors->first('photo_id') }}</span>
            </div> 
             
             
