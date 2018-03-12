@@ -104,3 +104,28 @@ and open the template in the editor.
         margin-top: 5px;
     }
 }
+
+#nav.affix {
+    top: 0;
+    right:0;
+    left:0;
+    width: 100%;
+    z-index: 10000;
+}
+#nav-wrapper { margin-bottom:20px; }
+
+#nav.affix ~ .container {
+    position: relative;
+    top: 300px;
+}
+
+/*#nav.affix + .container {
+    padding-top: 1000px;
+}*/
+
+@media (max-width: 979px) {
+
+    body { background-color:#eee;}
+    #nav.affix, #nav.affix-top { position: relative; }
+
+}

@@ -15,33 +15,33 @@
         <link rel="shortcut icon" href="{{ asset('UI/themes/images/favicon.ico') }}">
 
 
-<!--        <link href="{{ asset('UI/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">      
-        <link href="{{ asset('UI/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet">
-
-        <link href="{{ asset('UI/themes/css/bootstrappage.css') }}" rel="stylesheet"/>
-
-         global styles 
-        <link href="{{ asset('UI/themes/css/flexslider.css') }}" rel="stylesheet"/>
-        <link href="{{ asset('UI/themes/css/main.css') }}" rel="stylesheet"/>
-
-         scripts 
-        <script src="{{ asset('UI/themes/js/jquery-1.7.2.min.js') }}"></script>
-        <script src="{{ asset('UI/bootstrap/js/bootstrap.min.js') }}"></script>				
-        <script src="{{ asset('UI/themes/js/superfish.js') }}"></script>	
-        <script src="{{ asset('UI/themes/js/jquery.scrolltotop.js') }}"></script>-->
+        <!--        <link href="{{ asset('UI/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">      
+                <link href="{{ asset('UI/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet">
+        
+                <link href="{{ asset('UI/themes/css/bootstrappage.css') }}" rel="stylesheet"/>
+        
+                 global styles 
+                <link href="{{ asset('UI/themes/css/flexslider.css') }}" rel="stylesheet"/>
+                <link href="{{ asset('UI/themes/css/main.css') }}" rel="stylesheet"/>
+        
+                 scripts 
+                <script src="{{ asset('UI/themes/js/jquery-1.7.2.min.js') }}"></script>
+                <script src="{{ asset('UI/bootstrap/js/bootstrap.min.js') }}"></script>				
+                <script src="{{ asset('UI/themes/js/superfish.js') }}"></script>	
+                <script src="{{ asset('UI/themes/js/jquery.scrolltotop.js') }}"></script>-->
     </head>
     <body>
         <!-- Facebook script -->
         <div id="fb-root"></div>
         <script>(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id))
-        return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id))
+                    return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
         </script>
 
         @include('layouts.iucomponents.header')
@@ -157,6 +157,7 @@
 
         <link href="{{asset('confirm-form/notifier.style.css')}}" rel="stylesheet">
         <script src="{{asset('confirm-form/notifier.script.js')}}"></script>
+        <script src="{{asset('js/uijs.js')}}"></script>
         <link rel="stylesheet" href="{{asset('css/uistyle.css')}}"
     </body>
 </html>

@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="nav-collapse">
-                    <div style="display: block">
+                    <div id="nav" style="display: block; clear: both">
                         <ul id="topMenu" class="nav nav-custom">
                             <li class="active"><a href="#">Home</a></li>
                             <li class="dropdown-submenu"><a href="#">Link</a>
