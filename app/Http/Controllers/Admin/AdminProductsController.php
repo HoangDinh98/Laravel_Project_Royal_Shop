@@ -8,7 +8,10 @@ use App\Photo;
 use App\Promotion;
 use App\Category;
 use App\User;
+use \Illuminate\Support\Facades\Auth;
+use \Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 date_default_timezone_set("Asia/Ho_Chi_Minh");
 
@@ -32,7 +35,10 @@ class AdminProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        //
+        $categories = Category::pluck('name', 'id')->all();
+         $providers = Provider::pluck('name', 'id')->all();
+          $promotions = Promotion::pluck('value', 'id')->all();
+        return view('admin.products.create', compact('categories','providers','promotions'));
     }
 
     /**
@@ -42,7 +48,61 @@ class AdminProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //
+        $this ->validate($request, [
+            'name' => 'required|min:3|max:30',
+            'weight' => 'required|min:1|max:3',
+            'price' => 'required|min:2|max:10',
+            'quantity' => 'required|min:1|max:3',
+            'description' => 'required|min:30|max:100',
+            ],[
+                'name.required' => 'Please enter name of product',
+                'name.min' => 'The name must be at least 5 characters',
+                'name.max' => 'The name may not be greater than 30 charaters',
+                'weight.required' => 'Please enter weight of product',
+                'weight.min' => 'The weight must be at least 1 characters',
+                'weight.max' => 'The weight may not be greater than 3 charaters',
+                'price.required' => 'Please enter price of product',
+                'price.min' => 'The price must be at least 2 characters',
+                'price.max' => 'The price may not be greater than 10 charaters',
+                'quantity.required' => 'Please enter quantity of product',
+                'quantity.min' => 'The quantity must be at least 1 characters',
+                'quantity.max' => 'The quantity may not be greater than 3 charaters',
+                'description.required' => 'Please enter description of product',
+                'description.min' => 'The description must be at least 30 characters',
+                'description.max' => 'The description may not be greater than 100 charaters',
+        ]);
+        $input = $request->all();
+        $product = new Product();
+        
+        $product->create($input);
+        $product_id = DB::getPdo()->lastInsertId();
+
+
+        
+            if($file = $request->file('photo_id')) {
+                $year = date('Y');
+                $month = date('m');
+                $day = date('d');
+                $sub_folder = $year.'/'.$month.'/'.$day.'/';
+                $upload_url= 'images/'.$sub_folder;
+
+                if (! File::exists(public_path().'/'.$upload_url)) {
+                       File::makeDirectory(public_path().'/'.$upload_url,0777,true);
+                  }
+
+                $name = time() . $file->getClientOriginalName();
+
+
+                $file->move($upload_url, $name);
+                
+                
+
+                $photo = Photo::create(['path'=> $upload_url. $name,'product_id'=>$product_id]);
+
+                }
+
+                
+                return redirect('/admin/products');
     }
 
     /**
@@ -79,12 +139,35 @@ class AdminProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+        $this ->validate($request, [
+            'name' => 'required|min:3|max:30',
+            'weight' => 'required|min:1|max:3',
+            'price' => 'required|min:2|max:10',
+            'quantity' => 'required|min:1|max:3',
+            'description' => 'required|min:30|max:100',
+            ],[
+                'name.required' => 'Please enter name of product',
+                'name.min' => 'The name must be at least 5 characters',
+                'name.max' => 'The name may not be greater than 30 charaters',
+                'weight.required' => 'Please enter weight of product',
+                'weight.min' => 'The weight must be at least 1 characters',
+                'weight.max' => 'The weight may not be greater than 3 charaters',
+                'price.required' => 'Please enter price of product',
+                'price.min' => 'The price must be at least 2 characters',
+                'price.max' => 'The price may not be greater than 10 charaters',
+                'quantity.required' => 'Please enter quantity of product',
+                'quantity.min' => 'The quantity must be at least 1 characters',
+                'quantity.max' => 'The quantity may not be greater than 3 charaters',
+                'description.required' => 'Please enter description of product',
+                'description.min' => 'The description must be at least 30 characters',
+                'description.max' => 'The description may not be greater than 100 charaters',
+        ]);
         $products = Product::findOrFail($id);
         $input = $request->all();
         $product_id = $id;
 
 
-        if ($file = $request->file('product_id')) {
+        if ($file = $request->file('photo_id')) {
             $year = date('Y');
             $month = date('m');
             $day = date('d');
@@ -100,9 +183,9 @@ class AdminProductsController extends Controller
             $file->move($upload_url, $name);
             
             
-            $photo = Photo::create(['path' => $upload_url . $name]);
+            $photo = Photo::create(['path' => $upload_url . $name,'product_id'=>$product_id]);
             
-            $input['product_id'] = $products->id;
+            
         }
 
         $products->update($input);
@@ -117,6 +200,11 @@ class AdminProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        //
+       $products = Product::findOrFail($id);
+        $products->delete();
+        
+        \Illuminate\Support\Facades\Session::flash('deleted_product','The product has been deleted');
+        
+        return redirect('/admin/products');
     }
 }

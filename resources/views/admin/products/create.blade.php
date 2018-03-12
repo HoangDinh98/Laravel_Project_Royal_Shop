@@ -67,7 +67,7 @@
            </div> 
             
             
-           <div class=" form-group {{ $errors->has('body') ? 'has-error' : '' }}">
+           <div class=" form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                     <label for="description">Description:</label>
                      <textarea class="form-control" rows="5" id="body" name="description">{{ old('description') }}</textarea>
                     <span class="text-danger">{{ $errors->first('description') }}</span>

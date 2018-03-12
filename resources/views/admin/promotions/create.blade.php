@@ -25,7 +25,7 @@
                     </div> 
 
                     <div class="form-group">
-                        <input type="submit" class="btn btn-success" value="Create Promotion" />
+                        <input type="submit" class="btn btn-success" value="Lưu" />
                     </div>
                 </div>
             </form>

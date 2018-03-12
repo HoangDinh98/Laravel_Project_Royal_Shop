@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Provider;
+use App\Http\Controllers\Standard;
 
 date_default_timezone_set("Asia/Ho_Chi_Minh");
 
@@ -29,7 +31,7 @@ class AdminProvidersController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.providers.create', compact('providers'));
     }
 
     /**
@@ -40,7 +42,21 @@ class AdminProvidersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $erroricon = '<i class="fa fa-times"></i>';
+        $this->validate($request, [
+            'name' => 'required',
+                ], [
+            'name.required' => $erroricon . ' Không thể để trống trường này'
+        ]);
+
+        $input = $request->all();
+        $provider = Standard::standardize_data($request->input('name'), 3);
+        $input['name'] = $provider;
+
+        Provider::create($input);
+
+        Session::flash('notification', 'Thêm nhà cung cấp <b>' . $input['name'] . '</b> thành công');
+        return $this->index();
     }
 
     /**
