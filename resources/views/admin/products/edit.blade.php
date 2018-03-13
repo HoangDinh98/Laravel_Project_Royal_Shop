@@ -61,25 +61,25 @@
             
             <div class=" form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                     <label for="description">Description:</label>
-                     <textarea class="form-control" rows="5" id="body" name="dexcription">{{ $products->description }}</textarea>
-                    <span class="text-danger">{{ $errors->first('dexcription') }}</span>
+                     <textarea class="form-control" rows="5" id="body" name="description">{{ $products->description }}</textarea>
+                    <span class="text-danger">{{ $errors->first('description') }}</span>
             </div> 
             
             <div class=" form-group {{ $errors->has('quantity') ? 'has-error' : '' }}">
                     <label for="quantity">Quantity:</label>
-                    <input type="text" id="title" name="quantity" class="form-control" placeholder="Enter quantity" value="{{ $products->quantity }}">
+                    <input type="number" id="title" name="quantity" class="form-control" placeholder="Enter quantity" value="{{ $products->quantity }}">
                     <span class="text-danger">{{ $errors->first('quantity') }}</span>
             </div>
             
             <div class=" form-group {{ $errors->has('weight') ? 'has-error' : '' }}">
                     <label for="weight">Weight:</label>
-                    <input type="text" id="title" name="weight" class="form-control" placeholder="Enter weight" value="{{ $products->weight }}">
+                    <input type="number" id="title" name="weight" class="form-control" placeholder="Enter weight" value="{{ $products->weight }}">
                     <span class="text-danger">{{ $errors->first('weight') }}</span>
             </div>
             
             <div class=" form-group {{ $errors->has('price') ? 'has-error' : '' }}">
                     <label for="price">Price:</label>
-                    <input type="text" id="title" name="price" class="form-control" placeholder="Enter price" value="{{ $products->price }}">
+                    <input type="number" id="title" name="price" class="form-control" placeholder="Enter price" value="{{ $products->price }}">
                     <span class="text-danger">{{ $errors->first('price') }}</span>
             </div>
             
@@ -99,14 +99,6 @@
 
     </div>
 
-
-    <div class="row">
-
-
-
-
-
-    </div>
 
 
 

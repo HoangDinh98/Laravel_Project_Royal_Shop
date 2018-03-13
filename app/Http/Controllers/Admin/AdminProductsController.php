@@ -24,9 +24,9 @@ class AdminProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $products = Product::orderBy('created_at', 'desc')->paginate(7);
-        $users = User::all();
-        return view('admin.products.index', compact('products', 'users'));
+        $products = Product::orderBy('created_at', 'desc')->paginate(5);
+        $providers = Provider::all();
+        return view('admin.products.index', compact('products', 'providers'));
     }
 
     /**
@@ -145,6 +145,7 @@ class AdminProductsController extends Controller
             'price' => 'required|min:2|max:10',
             'quantity' => 'required|min:1|max:3',
             'description' => 'required|min:30|max:100',
+
             ],[
                 'name.required' => 'Please enter name of product',
                 'name.min' => 'The name must be at least 5 characters',
@@ -161,6 +162,8 @@ class AdminProductsController extends Controller
                 'description.required' => 'Please enter description of product',
                 'description.min' => 'The description must be at least 30 characters',
                 'description.max' => 'The description may not be greater than 100 charaters',
+                
+
         ]);
         $products = Product::findOrFail($id);
         $input = $request->all();
@@ -206,5 +209,14 @@ class AdminProductsController extends Controller
         \Illuminate\Support\Facades\Session::flash('deleted_product','The product has been deleted');
         
         return redirect('/admin/products');
+    }
+    
+      public function getProviderById($id)
+    {
+         $products = Product::Where('provider_id', $id)->paginate(5);
+         $providers = Provider::all();
+
+        return view('admin.products.index', ['products'=>$products],['providers'=>$providers]);
+
     }
 }

@@ -46,17 +46,17 @@
             </div>
             <div class=" form-group {{ $errors->has('weight') ? 'has-error' : '' }}">
                     <label for="weight">Weight:</label>
-                    <input type="text" id="title" name="weight" class="form-control" placeholder="Enter weight" value="{{ old('weight') }}">
+                    <input type="number" id="title" name="weight" class="form-control" placeholder="Enter weight" value="{{ old('weight') }}">
                     <span class="text-danger">{{ $errors->first('weight') }}</span>
             </div>
             <div class=" form-group {{ $errors->has('price') ? 'has-error' : '' }}">
                     <label for="price">Price:</label>
-                    <input type="text" id="title" name="price" class="form-control" placeholder="Enter price" value="{{ old('price') }}">
+                    <input type="number" id="title" name="price" class="form-control" placeholder="Enter price" value="{{ old('price') }}">
                     <span class="text-danger">{{ $errors->first('price') }}</span>
             </div>
             <div class=" form-group {{ $errors->has('quantity') ? 'has-error' : '' }}">
                     <label for="quantity">Quantity:</label>
-                    <input type="text" id="title" name="quantity" class="form-control" placeholder="Enter quantity" value="{{ old('quantity') }}">
+                    <input type="number" id="title" name="quantity" class="form-control" placeholder="Enter quantity" value="{{ old('quantity') }}">
                     <span class="text-danger">{{ $errors->first('quantity') }}</span>
             </div>
             
@@ -83,10 +83,6 @@
     </div>
 
 
-    <div class="row">
-
-
-    </div>
 
 
 

@@ -27,7 +27,7 @@
         @if($products)
         @if (count($products) == 0)
 
-          You have no post in this Owner!
+          You have no product in this page!
 
           @else
             @foreach($products as $product)
@@ -38,8 +38,12 @@
                 <td><img style="width:200px ; height:200px" 
                          src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/200x200' }}" 
                          height="10" alt="" class="img-responsive img-rounded"></td>
-     
-                <td>{{$product->provider ? $product->provider->name : 'Uncategorized'}}</td>
+                @foreach($providers as $provider)
+                @if($provider->id == $product->provider_id)
+                <td><a href="{{ url('admin/products/'. $product->provider_id.'/provider')}}">{{$product->provider ? $product->provider->name:'Uncategorized'}}</a></td>
+                @endif
+                @endforeach
+
                 <td>{{$product->category ? $product->category->name : 'Uncategorized'}}</td>
                 <td>{{$product->promotion ? $product->promotion->value : 'Uncategorized'}}</td>
                 <td>{{$product->quantity}}</td>
@@ -65,6 +69,14 @@
         
     </div>
 
+ @section('$providers')
+    @if($providers)   
+    @foreach($providers as $provider)
 
+    <li><a href="{{ url('admin/products/'. $provider->id.'/provider') }}">{{$provider->name}}</a></li>
+    
+    @endforeach
+    @endif
+    @endsection
   
     @stop
