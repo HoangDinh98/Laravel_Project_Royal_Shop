@@ -26,7 +26,9 @@ class AdminProductsController extends Controller
     public function index() {
         $products = Product::orderBy('created_at', 'desc')->paginate(5);
         $providers = Provider::all();
-        return view('admin.products.index', compact('products', 'providers'));
+        $categories = Category::all();
+        $promotions = Promotion::all();
+        return view('admin.products.index', compact('products', 'providers','categories','promotions'));
     }
 
     /**
@@ -94,10 +96,29 @@ class AdminProductsController extends Controller
 
 
                 $file->move($upload_url, $name);
-                
-                
 
-                $photo = Photo::create(['path'=> $upload_url. $name,'product_id'=>$product_id]);
+
+                $photo = Photo::create(['path'=> $upload_url. $name,'product_id'=>$product_id,'is_thumbnail'=>1]);
+
+                }
+                if($file = $request->file('photo')) {
+                $year = date('Y');
+                $month = date('m');
+                $day = date('d');
+                $sub_folder = $year.'/'.$month.'/'.$day.'/';
+                $upload_url= 'images/'.$sub_folder;
+
+                if (! File::exists(public_path().'/'.$upload_url)) {
+                       File::makeDirectory(public_path().'/'.$upload_url,0777,true);
+                  }
+
+                $name = time() . $file->getClientOriginalName();
+
+
+                $file->move($upload_url, $name);
+
+
+                $phot = Photo::create(['path'=> $upload_url. $name,'product_id'=>$product_id,'is_thumbnail'=>0]);
 
                 }
 
