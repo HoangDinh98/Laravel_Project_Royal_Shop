@@ -19,7 +19,8 @@ class UIHomeController extends Controller
      */
     public function index()
     {
-        return view('ui.index');
+         $products = Product::all();
+        return view('ui.index', compact('products'));
     }
 
     /**
