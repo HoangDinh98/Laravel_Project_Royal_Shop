@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use App\Product;
+use App\Category;
 use App\Http\Controllers\Standard;
 
 date_default_timezone_set("Asia/Ho_Chi_Minh");
@@ -20,8 +21,10 @@ class UIHomeController extends Controller
     public function index()
     {
          $products = Product::all();
-        return view('ui.index', compact('products'));
+         $categories = Category::all();
+        return view('ui.index', ['products' =>$products, 'categories' =>$categories]);
     }
+  
 
     /**
      * Show the form for creating a new resource.
@@ -52,7 +55,9 @@ class UIHomeController extends Controller
      */
     public function show($id)
     {
-        //
+        $categories = Category::get();
+        return view('ui.index', compact('categories'));
+        
     }
 
     /**

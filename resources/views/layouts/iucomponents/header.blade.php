@@ -44,33 +44,9 @@
                         </button>
                     </form>
                 </div>
-
-                <div class="nav-collapse">
-                    <div id="nav" style="display: block; clear: both">
-                        <ul id="topMenu" class="nav nav-custom">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li class="dropdown-submenu"><a href="#">Link</a>
-                                <ul class="dropdown-menu">
-                                    <li class=""><a href="#">Link</a></li>
-                                    <li class=""><a href="#">Link</a></li>
-                                    <li class=""><a href="#">Link</a></li>
-                                    <li class="dropdown-submenu"><a href="#">Link</a>
-                                </ul>
-                            </li>
-                            <li class=""><a href="#">Link</a></li>
-                            <li class=""><a href="#">Link</a></li>
-                            <li class="dropdown-submenu"><a href="#">Link</a></li>
-                            <li class="dropdown-submenu"><a href="#">Link</a>
-                                <ul class="dropdown-menu">
-                                    <li class=""><a href="#">Link</a></li>
-                                    <li class=""><a href="#">Link</a></li>
-                                    <li class=""><a href="#">Link</a></li>
-                                    <li class="dropdown-submenu"><a href="#">Link</a>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                
+                    @include(' includes.header_nav_widget')
+                    
                 <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
