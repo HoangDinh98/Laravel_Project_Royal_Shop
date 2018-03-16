@@ -3,9 +3,9 @@
 
 @section('content')
 
-
+    @include('includes.tinyeditor')
     <h1>Create Products</h1>
-
+    <div class="container">
     <div class="row">
          
         <form action="{{ route('admin.products.store') }}" method="post" enctype='multipart/form-data'>
@@ -86,8 +86,7 @@
       
 
     </div>
-
-
+    </div>
 
 
 

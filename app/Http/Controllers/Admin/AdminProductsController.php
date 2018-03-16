@@ -207,10 +207,30 @@ class AdminProductsController extends Controller
             $file->move($upload_url, $name);
             
             
-            $photo = Photo::create(['path' => $upload_url . $name,'product_id'=>$product_id]);
+            $photo = Photo::create(['path' => $upload_url . $name,'product_id'=>$product_id,'is_thumbnail'=>0]);
             
             
         }
+        if($file = $request->file('photo')) {
+                $year = date('Y');
+                $month = date('m');
+                $day = date('d');
+                $sub_folder = $year.'/'.$month.'/'.$day.'/';
+                $upload_url= 'images/'.$sub_folder;
+
+                if (! File::exists(public_path().'/'.$upload_url)) {
+                       File::makeDirectory(public_path().'/'.$upload_url,0777,true);
+                  }
+
+                $name = time() . $file->getClientOriginalName();
+
+
+                $file->move($upload_url, $name);
+
+
+                $phot = Photo::create(['path'=> $upload_url. $name,'product_id'=>$product_id,'is_thumbnail'=>0]);
+
+                }
 
         $products->update($input);
 
@@ -227,7 +247,7 @@ class AdminProductsController extends Controller
        $products = Product::findOrFail($id);
         $products->delete();
         
-        \Illuminate\Support\Facades\Session::flash('deleted_product','The product has been deleted');
+        \Illuminate\Support\Facades\Session::flash('deleted_product','Xóa Danh mục <b>' . $products->name . '</b> Thành công');
         
         return redirect('/admin/products');
     }

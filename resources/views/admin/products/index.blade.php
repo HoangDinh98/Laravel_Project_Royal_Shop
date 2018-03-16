@@ -2,9 +2,12 @@
 
 
 @section('content')
-
-    @if(Session::has('deleted_product'))
-        <p class="bg-danger">{{session('deleted_products')}}</p>
+    
+    @if (Session::has('deleted_product'))
+    <div class="alert alert-success" id="notify">
+        <button data-dismiss="alert" class="close">×</button>
+        {!! Session::get('deleted_product') !!}
+    </div>
     @endif
     <h1>Products Management</h1>
 

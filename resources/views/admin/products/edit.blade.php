@@ -3,9 +3,9 @@
 
 @section('content')
 
-
+    @include('includes.tinyeditor')
     <h1>Edit Products</h1>
-
+    <div class="container">
     <div class="row">
          
         <form action="{{ route('admin.products.update',$products->id) }}" method="post" enctype='multipart/form-data'>
@@ -57,7 +57,11 @@
                 <input type="file" id="photo_id" name="photo_id" class="form-control" value="">
                 <span class="text-danger">{{ $errors->first('photo_id') }}</span>
            </div> 
-            
+            <div class="  form-group {{ $errors->has('photo') ? 'has-error' : '' }}">
+                <label for="photo">Image:</label>
+                <input type="file" id="photo_id" name="photo" class="form-control" value="{{ old('photo') }}">
+                <span class="text-danger">{{ $errors->first('photo') }}</span>
+           </div> 
             
             <div class=" form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                     <label for="description">Description:</label>
@@ -98,9 +102,7 @@
       
 
     </div>
-
-
-
+    </div>
 
 
 @stop
