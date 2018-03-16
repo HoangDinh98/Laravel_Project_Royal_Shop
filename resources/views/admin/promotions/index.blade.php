@@ -1,12 +1,11 @@
 @extends ('layouts.admin')
 
 @section('content')
-@if(Session::has('deleted_promotion'))
-
-
-<p class="bg-danger">{{session('deleted_promotion')}}</p>
-
-
+@if (Session::has('notification'))
+<div class="alert alert-success" id="notify">
+    <button data-dismiss="alert" class="close">×</button>
+    {!! Session::get('notification') !!}
+</div>
 @endif
 
 <h1>Khuyến mãi</h1>
@@ -28,7 +27,7 @@
             <td id="name_{{$promotion->id}}">{{$promotion->value.' %'}}</td>
             <td>{{$promotion->description}}</td>
             <td>{{$promotion->is_active?'1':'0'}}</td>
-            <td><a class="button-a edit-button" href="{{ route('admin.promotions.edit', $promotion->id) }}" 
+            <td><a class="button-a edit-button " href="{{ route('admin.promotions.edit', $promotion->id) }}" 
                    title="Chỉnh sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;
                 <a class="button-a delete-button delete-fnt" data-type="2" data-id="{{$promotion->id }}"
                    title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;

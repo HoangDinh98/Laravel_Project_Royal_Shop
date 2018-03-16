@@ -36,7 +36,7 @@
                         @foreach($providers as $provider)
                         <tr>
                             <td>{{$provider->id}}</td>
-                            <td>{{$provider->name}}</td>
+                            <td id="name_{{$provider->id}}">{{$provider->name}}</td>
                             <td>{{$provider->address}}</td>
                             <td>{{$provider->email}}</td>
                             <td>{{$provider->website}}</td>
@@ -47,10 +47,10 @@
                                 <a class="button-a edit-button" href="{{ route('admin.providers.edit', $provider->id)}}"
                                    title="Chỉnh sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;
                                    
-                                <a class="button-a delete-button delete-fnt" data-type="1" data-id="{{$provider->id }}"
+                                <a class="button-a delete-button delete-fnt" data-type="3" data-id="{{$provider->id }}"
                                    title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;
                             </td>
-                            <form id="provider_{{$promotion->id}}" action="{{ route('admin.providers.destroy', $provider->id) }}" method="POST">
+                            <form id="provider_{{$provider->id}}" action="{{ route('admin.providers.destroy', $provider->id) }}" method="POST">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                         <input type="hidden" name="_method" value="DELETE">
                     </form> 

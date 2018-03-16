@@ -98,8 +98,9 @@ class AdminPromotionsController extends Controller {
     public function destroy($id) {
     $promotions = Promotion::findOrFail($id);
         $promotions->delete();
-        
-        return redirect('admin/promotions');
+        $promotion->update(['is_active'=>'0']);
+         Session::flash('notification', 'Xóa Khuyến Mãi <b>' . $promotion->value . '</b> Thành công');
+        return redirect('admin/promotions/index');
     }
 
 }
