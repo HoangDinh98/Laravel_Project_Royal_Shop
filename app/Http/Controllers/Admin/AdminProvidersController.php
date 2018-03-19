@@ -91,25 +91,30 @@ class AdminProvidersController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+        $providers = Provider::findOrFail($id);
+
         $erroricon = '<i class="fa fa-times"></i>';
         $this->validate($request, [
             'name' => 'required',
             'address' => 'required',
-            'email' => 'required|email|unique:users'
+            'email' => 'required|email|unique:users',
                 ], [
             'name.required' => $erroricon . ' Không thể để trống trường này',
-            'address.required' => $erroricon . 'Không thể để trống trường này',
-            'email.required' => $erroricon . 'Không thể để trống trường này',
-            'email.email' => $erroricon . 'Nhập đúng định dạng Email',
-            'email.unique' => $erroricon . 'Email này đã tồn tại'
+            'address.required' => $erroricon . ' Không thể để trống trường này',
+            'email.required' => $erroricon . ' Không thể để trống trường này',
+            'email.email' => $erroricon . ' Vui lòng nhập đúng định dạng email',
+            'email.unique' => $erroricon . ' Email đã tồn tại'
         ]);
-        $input = $request->all();
-        $providername = Standard::standardize_data($request->input('name'), 1);
-        $input['name'] = $providername;
 
-        $provider->update($input);
-        Session::flash('notification', 'Thêm Nhà cung cấp <b>' . $input['name'] . '</b> Thành công');
-        return redirect('admin/providers');
+        $input = $request->all();
+
+        $input['name'] = Standard::standardize_data($request->input('name'), 0);
+
+        $providers->update($input);
+        $newname = $input['name'];
+
+        Session::flash('notification', 'Chỉnh sửa Nhà cung cấp <b>' . '</b> Thành công');
+        return redirect('/admin/providers');
     }
 
     /**
@@ -118,11 +123,14 @@ class AdminProvidersController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+     public function destroy($id) {
         $provider = Provider::findOrFail($id);
-        $provider->update(['is_detele' => '0']);
-        Session::flash('notification', 'Xóa Nhà cung cấp <b>' . '</b> Thành công');
-        returnredirect()->route('admin.providers.index');
+        
+        $provider->update(['is_delete' => '0']);
+        $provider->save();
+        
+        Session::flash('notification', 'Xóa Nhà cung cấp <b>' . $provider->name . '</b> Thành công');
+        return redirect()->route('admin.providers.index');
     }
 
 }

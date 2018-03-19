@@ -1,12 +1,7 @@
 @extends ('layouts.admin')
 
 @section('content')
-@if (Session::has('notification'))
-<div class="alert alert-success" id="notify">
-    <button data-dismiss="alert" class="close">×</button>
-    {!! Session::get('notification') !!}
-</div>
-@endif
+
 
 <div class="box box-primary">
     <div class="box-header with-border">
