@@ -14,16 +14,16 @@
     <table class="table">
        <thead>
          <tr>
-             <th>Id</th>
-             <th>Name</th>
-             <th>Photos</th>
-             <th>Provider</th>
-             <th>Category</th>
-             <th>Promotion</th>
-             <th>Quantity</th>
-             <th>Weight</th>
-             <th>Price</th>
-             <th>Description</th>
+             <th>No.</th>
+             <th>Tên sản phẩm</th>
+             <th>Hình ảnh chính</th>
+             <th>Nhà cung cấp</th>
+             <th>Phân loại</th>
+             <th>Khuyến mãi</th>
+             <th>Số lượng</th>
+             <th>Khối lượng</th>
+             <th>Giá</th>
+             <th>Mô tả</th>
         
         </thead>
         <tbody>
@@ -52,7 +52,7 @@
                 <td>{{$product->quantity}}</td>
                 <td>{{$product->weight}}</td>
                 <td>{{$product->price}}</td>
-                <td><a href="{{ url('admin/products/'. $product->id.'/edit') }}">{{$product->description}}</a></td>
+                <td><a href="{{ url('admin/products/'. $product->id.'/edit') }}">{{strip_tags($product->description)}}</a></td>
 
 
             </tr>
