@@ -41,8 +41,8 @@
                             <td>{{$provider->email}}</td>
                             <td>{{$provider->website}}</td>
                             <td>{{$provider->phone}}</td>
-                            <td>{{$provider->create_at}}</td>
-                            <td>{{$provider->update_at}}</td>
+                            <td>{{$provider->created_at}}</td>
+                            <td>{{$provider->updated_at}}</td>
                             <td>
                                 <a class="button-a edit-button" href="{{ route('admin.providers.edit', $provider->id)}}"
                                    title="Chỉnh sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;
