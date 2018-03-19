@@ -32,7 +32,7 @@
                 <a class="button-a delete-button delete-fnt" data-type="2" data-id="{{$promotion->id }}"
                    title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;
                    
-                <form action="{{ route('admin.promotions.destroy', $promotion->id) }}" method="POST" >
+                   <form id="fnt_{{$promotion->id}}" action="{{ route('admin.promotions.destroy', $promotion->id) }}" method="POST" >
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 </form>

@@ -80,7 +80,7 @@ class AdminProvidersController extends Controller {
      */
     public function edit($id) {
         $provider = Provider::findOrFail($id);
-        return view('admin/providers/edit', compact('provider'));
+        return view('admin.providers.edit', compact('provider'));
     }
 
     /**
@@ -109,7 +109,7 @@ class AdminProvidersController extends Controller {
 
         $provider->update($input);
         Session::flash('notification', 'Thêm Nhà cung cấp <b>' . $input['name'] . '</b> Thành công');
-        return redirect('/admin/providers');
+        return redirect('admin/providers');
     }
 
     /**

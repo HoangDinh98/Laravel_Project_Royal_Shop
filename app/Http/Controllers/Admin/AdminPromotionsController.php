@@ -17,8 +17,7 @@ class AdminPromotionsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $promotions = Promotion::orderBy('created_at', 'desc')->paginate(10);
-
+        $promotions = Promotion::where('is_active', 1)->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.promotions.index', compact('promotions'));
     }
 
@@ -43,6 +42,7 @@ class AdminPromotionsController extends Controller {
             'value' => 'required',
                 ], [
             'value.required' => $erroricon . ' Không thể để trống trường này'
+                    
         ]);
         Promotion::create($request->all());
         Session::flash('notification', 'Thêm khuyến mãi <b>' . $request['name'] . '</b> Thành công');
@@ -79,12 +79,14 @@ class AdminPromotionsController extends Controller {
      */
     public function update(Request $request, $id) {
         $promotions = Promotion::findOrFail($id);
-        
+        $old_promo = $promotions['value'];
+
         $input = $request->all();
-        if(empty($input['is_active'])){
+        if (empty($input['is_active'])) {
             $input['is_active'] = 0;
         }
         $promotions->update($input);
+        Session::flash('notification', 'Cập nhật Khuyến mãi <b>'.$old_promo. ' -> '.$input['value'] . '</b> Thành công');
 
         return redirect('/admin/promotions');
     }
@@ -96,11 +98,11 @@ class AdminPromotionsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-    $promotions = Promotion::findOrFail($id);
-        $promotions->delete();
-        $promotion->update(['is_active'=>'0']);
-         Session::flash('notification', 'Xóa Khuyến Mãi <b>' . $promotion->value . '</b> Thành công');
-        return redirect('admin/promotions/index');
+        $promotion = Promotion::findOrFail($id);
+        
+        $promotion->update(['is_active' => '0']);
+        Session::flash('notification', 'Xóa Khuyến Mãi <b>' . $promotion->value . '</b> Thành công');
+        return redirect()->route('admin.promotions.index');
     }
 
 }

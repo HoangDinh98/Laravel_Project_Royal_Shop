@@ -18,11 +18,9 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 <input type="hidden" name="_method" value="PUT">
                 <div class="box-body">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                    
                     <div class=" form-group {{ $errors->has('name') ? 'has-error' : '' }}" >
                         <label for="name">Tên Nhà cung cấp :</label>
-                        <input type="number" id="name" name="name" class="form-control"  value="{{ $provider->name ? $provider->name: old('name') }}">
+                        <input type="text" id="name" name="name" class="form-control"  value="{{ $provider->name ? $provider->name: old('name') }}">
                         <span class="text-danger">{!! $errors->first('name') !!}</span>
                     </div>  
 
@@ -49,8 +47,6 @@
                         <input type="text" class="form-control" id="phone" name="phone" value="{{ $provider->phone ? $provider->phone: old('phone') }}">
                         <span class="text-danger">{{ $errors->first('phone') }}</span>
                     </div> 
-                    
-                    
                     <div class="form-group">
                         <input type="submit" class="btn btn-success" value="Chỉnh sửa" />
                     </div>

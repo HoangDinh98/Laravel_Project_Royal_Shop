@@ -11,7 +11,7 @@
     <div class="col-md-8">
         <form role="form" action="{{ route('admin.providers.store')}}" method="POST" enctype='multipart/form-data'>
             <div class="box-body">
-            <input type="hidden" name="_method" value="{{ csrf_token() }}"/>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                     <label for="name">Tên nhà cung cấp</label>
                     <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}">
