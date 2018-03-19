@@ -50,10 +50,9 @@
                                 <a class="button-a delete-button delete-fnt" data-type="3" data-id="{{$provider->id }}"
                                    title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;
                             </td>
-                    <form id="provider_{{$provider->id}}" action="{{ route('admin.providers.destroy', $provider->id) }}" method="POST">
+                    <form id="fnt_{{$provider->id}}" action="{{ route('admin.providers.destroy', $provider->id) }}" method="POST">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-
                     </form> 
                     </td>
                     </tr>

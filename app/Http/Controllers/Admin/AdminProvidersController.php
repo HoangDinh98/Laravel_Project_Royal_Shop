@@ -18,7 +18,7 @@ class AdminProvidersController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $providers = Provider::orderBy('created_at', 'desc')->paginate(10);
+        $providers = Provider::where('is_delete', 1)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('admin.providers.index', compact('providers'));
     }
@@ -127,7 +127,7 @@ class AdminProvidersController extends Controller {
         $provider = Provider::findOrFail($id);
         
         $provider->update(['is_delete' => '0']);
-        $provider->save();
+//        $provider->save();
         
         Session::flash('notification', 'Xóa Nhà cung cấp <b>' . $provider->name . '</b> Thành công');
         return redirect()->route('admin.providers.index');
