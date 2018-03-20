@@ -154,5 +154,22 @@ and open the template in the editor.
 }
 
 
+/*style for required file * */
 
+.form-group label span {
+    font-weight: bold;
+    color: #EF0000;
+}
+
+.form-group a {
+    color: #009421;
+}
+
+.repass {
+    border: 1px solid #00bcd4;
+    border-radius: 5px;
+    padding: 10px;
+    /*margin-top: -15px;*/
+    background-color: #bae4de;
+}
 

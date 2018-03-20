@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'phone', 'role_id', 'is_active'
     ];
 
     /**
@@ -26,4 +26,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function role() {
+        return $this->belongsTo('App\Role');
+    }
+    
+    public function photos() {
+        return $this->hasMany('App\Photo');
+    }
+    
+    public function avatar() {
+        return $this->photos()->where('is_thumbnail', 1)->first();
+    }
 }
