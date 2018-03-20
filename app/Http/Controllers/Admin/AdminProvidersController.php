@@ -113,7 +113,7 @@ class AdminProvidersController extends Controller {
         $providers->update($input);
         $newname = $input['name'];
 
-        Session::flash('notification', 'Cập nhật Nhà cung cấp <b>' . '</b> Thành công');
+        Session::flash('notification', 'Chỉnh sửa Nhà cung cấp <b>' . '</b> Thành công');
         return redirect('/admin/providers');
     }
 
