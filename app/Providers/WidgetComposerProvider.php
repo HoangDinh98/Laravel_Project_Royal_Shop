@@ -12,7 +12,7 @@ class WidgetComposerProvider extends ServiceProvider {
      * @return void
      */
     public function boot() {
-        //
+        
     }
 
     /**

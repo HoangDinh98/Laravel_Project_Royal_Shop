@@ -3,7 +3,7 @@
         <ul id="topMenu" class="nav nav-custom">
             <li class="active"><a href="#">Home</a></li>
             @foreach ( $categories as $key =>$category)
-            <li class="dropdown-submenu"><a href="#">{{ $category->parent() .$category->parent_id }}</a>
+            <li class="dropdown-submenu"><a href="#">{{ $category->name }}</a>
                 @if ( count($category->children))
                 <ul class="dropdown-menu">
                     @foreach($category->children AS $cate_child)
