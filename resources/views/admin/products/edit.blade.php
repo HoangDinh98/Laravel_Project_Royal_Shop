@@ -91,13 +91,6 @@
             </div>
         </form>
         
-        <form action="{{route('admin.products.destroy',$products->id)}}" method="POST">
-         <input type="hidden" name="_method" value="DELETE">
-         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-         <div class="frorm-group">
-             <input type="submit" class="btn btn-danger" value="Xóa sản phẩm">
-         </div>
-        </form>
       
 
     </div>

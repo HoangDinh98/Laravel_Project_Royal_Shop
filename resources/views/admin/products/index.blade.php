@@ -3,10 +3,10 @@
 
 @section('content')
     
-    @if (Session::has('deleted_product'))
+    @if (Session::has('delete_product'))
     <div class="alert alert-success" id="notify">
         <button data-dismiss="alert" class="close">×</button>
-        {!! Session::get('deleted_product') !!}
+        {!! Session::get('delete_product') !!}
     </div>
     @endif
     <h1>Products Management</h1>
@@ -37,7 +37,7 @@
 
             <tr>
                 <td>{{$product->id}}</td>
-                <td><a href="{{ url('admin/products/'. $product->id.'/edit') }}">{{$product->name}}</td>
+                <td>{{$product->name}}</td>
                 <td><img style="width:200px ; height:200px" 
                          src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/200x200' }}" 
                          height="10" alt="" class="img-responsive img-rounded"></td>
@@ -52,8 +52,19 @@
                 <td>{{$product->quantity}}</td>
                 <td>{{$product->weight}}</td>
                 <td>{{$product->price}}</td>
-                <td><a href="{{ url('admin/products/'. $product->id.'/edit') }}">{{strip_tags($product->description)}}</a></td>
+                <td>{{strip_tags($product->description)}}</a></td>
+                <td>
+                    <a class="button-a edit-button " href="{{ route('admin.products.edit', $product->id) }}" 
+                       title="Chỉnh sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;
 
+                    <a class="button-a delete-button delete-fnt" data-type="0" data-id="{{$product->id }}"
+                       title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;
+
+                       <form id="fnt_{{$product->id}}" action="{{ route('admin.products.destroy', $product->id) }}" method="POST" >
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                    </form>
+                </td>
 
             </tr>
 

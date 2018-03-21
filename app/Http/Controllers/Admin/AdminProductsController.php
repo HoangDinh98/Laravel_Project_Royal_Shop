@@ -24,7 +24,7 @@ class AdminProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $products = Product::orderBy('created_at', 'desc')->paginate(5);
+        $products = Product::orderBy('created_at', 'desc')->where('is_delete',0)->paginate(5);
         $providers = Provider::all();
         $categories = Category::all();
         $promotions = Promotion::all();
@@ -244,12 +244,11 @@ class AdminProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-       $products = Product::findOrFail($id);
-        $products->delete();
+       $product = Product::findOrFail($id);
         
-        \Illuminate\Support\Facades\Session::flash('deleted_product','Xóa Danh mục <b>' . $products->name . '</b> Thành công');
-        
-        return redirect('/admin/products');
+        $product->update(['is_delete' => '1']);
+        \Illuminate\Support\Facades\Session::flash('delete_product', 'Xóa sản phẩm <b>' . $product->name . '</b> thành công');
+        return redirect()->route('admin.products.index');
     }
     
       public function getProviderById($id)

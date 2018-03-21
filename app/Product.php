@@ -15,6 +15,7 @@ class Product extends Model
         'quantity',
         'weight',
         'price',
+        'is_delete',
         'description'
 
     ];
@@ -40,7 +41,7 @@ class Product extends Model
     }
     
     public function thumbnail() {
-        return $this->photos()->where('is_thumbnail', 1)->get()->last();
+        return $this->photos()->where([['is_thumbnail', 1],['is_delete', 0]])->get()->last();
 
     }
 }
