@@ -2,31 +2,32 @@
 
 @section('content')
 
-@include('layouts.iucomponents.carousel')
+
 
 <section>
-    <h3 class="title"><span>Các Sản Phẩm Liên Quan</span></h3>
+    <h3 class="title"><span>ITEM DETAILS</span></h3>
     <div class="row">
         <div class="span6">
             <div id="detailViewCarousel" class="carousel slide">
                 <div class="displayStyle">
-<!--                    <ol class="carousel-indicators">
+
+                    <!--                    quy định ảnh slide của sản phẩm-->
+                    <ol class="carousel-indicators">
                         <li data-target="#detailViewCarousel" data-slide-to="0" class="active"></li>
                         <li data-target="#detailViewCarousel" data-slide-to="1"></li>
                         <li data-target="#detailViewCarousel" data-slide-to="2"></li>
                         <li data-target="#detailViewCarousel" data-slide-to="3"></li>
                         <li data-target="#detailViewCarousel" data-slide-to="4"></li>
                         <li data-target="#detailViewCarousel" data-slide-to="5"></li>
-                    </ol> -->
+                    </ol> 
                     <!-- Carousel items -->
-<!--                    <div class="carousel-inner">
+
+                    <!--                    Bỏ ảnh theo id vào chỗ này-->
+                    <div class="carousel-inner">
                         <div class="active item"><img src="themes/images/carousel/carousel2.jpg" alt="#" /></div>
-                        <div class="item"><img src="themes/images/carousel/carousel1.jpg" alt="#" /></div>
-                        <div class="item"><img src="themes/images/carousel/carousel3.jpg" alt="#" /></div>
-                        <div class="item"><img src="themes/images/carousel/carousel4.jpg" alt="#" /></div>
-                        <div class="item"><img src="themes/images/carousel/carousel5.jpg" alt="#" /></div>
-                        <div class="item"><img src="themes/images/carousel/3.jpg" alt="#" /></div>
-                    </div>-->
+                        <div class="item"><img src="themes/images/carousel/carousel1.jpg" alt="#" /></div>                      
+                    </div>
+
                     <!-- Carousel nav -->
                     <a class="carousel-control left" href="#detailViewCarousel" data-slide="prev">&lsaquo;</a>
                     <a class="carousel-control right" href="#detailViewCarousel" data-slide="next">&rsaquo;</a>
@@ -34,6 +35,7 @@
             </div>
         </div>
 
+        <!--        Thông tin của sản phẩm-->
         <div class="span6">
             <div class="promoDetail">
                 <h1>Ladies Pullover Doll Collar  <span>3/4 Sleeves Chiffon Blouse Blue M</span></h1>
@@ -58,10 +60,14 @@
                 <a class="btn btn-warning" href="checkout.php"> ADD TO CART NOW </a>
             </div>
             <br>
-         
-    </div>
+            <div class="">
+                <strong>SHIPPING INFORMATIONS</strong>
+                <p>If you are looking for upgrade your website for mobiles and tablets, Even if you do not have any website. </p> 
+            </div>
+        </div>
 
-    <h3 class="title"><span>Related products</span></h3>
+        <!--Các sản phẩm có liên quan-->
+        <h3 class="title"><span>Related products</span></h3>
         <div class="span2">
             <div class="carousel slide">
                 <div class="carousel-inner">
@@ -73,85 +79,11 @@
                         <a href="details.php"><img src="themes/images/clothes/sma2.jpg" alt="#">
                             View Details</a>
                     </div>
-                    <div class="item">
-                        <a href="details.php"><img src="themes/images/clothes/sma1.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                    <div class="item">
-                        <a href="details.php"><img src="themes/images/clothes/sma6.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                    <div class="item">
-                        <a href="details.php"><img src="themes/images/clothes/sma5.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                    <div class="item">
-                        <a href="details.php"><img src="themes/images/clothes/sma4.jpg" alt="#">
-                            View Details</a>
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="span2">
-            <div class="carousel slide">
-                <div class="carousel-inner">
-                    <div class="item">
-                        <a href="details.php"><img src="themes/images/clothes/sma2.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                    <div class="item active">
-                        <a href="details.php"><img src="themes/images/clothes/sma1.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                    <div class="item">
-                        <a href="details.php"><img src="themes/images/clothes/sma6.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                    <div class="item">
-                        <a href="details.php"><img src="themes/images/clothes/sma5.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                    <div class="item">
-                        <a href="details.php"><img src="themes/images/clothes/sma4.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                    <div class="item">
-                        <a href="details.php"><img src="themes/images/clothes/sma3.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="span2">
-            <div class="carousel slide">
-                <div class="carousel-inner">
-                    <div class="item">
-                        <a href="details.php"><img src="themes/images/clothes/sma1.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                    <div class="item active">
-                        <a href="details.php"><img src="themes/images/clothes/sma6.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                    <div class="item">
-                        <a href="details.php"><img src="themes/images/clothes/sma5.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                    <div class="item">
-                        <a href="details.php"><img src="themes/images/clothes/sma4.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                    <div class="item">
-                        <a href="details.php"><img src="themes/images/clothes/sma3.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                    <div class="item">
-                        <a href="details.php"><img src="themes/images/clothes/sma2.jpg" alt="#">
-                            View Details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
+
     </div>
 </section>
 @endsection
