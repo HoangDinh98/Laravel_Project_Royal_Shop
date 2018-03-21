@@ -33,7 +33,7 @@
                             <h5>{{ $product->name }}</h5>
                             <p>
                                 <a class="btn btn-warning" href="#" > Add to <i class="icon-shopping-cart"></i></a> 
-                                <a class="btn" href="product_detail.php?i=<?php echo $product['id'] ?>">view details</a>
+                                <a class="btn" href="{{ route('ui.home.show', $product->id)}}">view details</a>
                             </p>
                             <p><span class="price"><small>$</small>{{ $product->price }}</span></p>
 

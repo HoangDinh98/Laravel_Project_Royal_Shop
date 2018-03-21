@@ -56,7 +56,7 @@ class UIHomeController extends Controller
     public function show($id)
     {
         $categories = Category::get();
-        return view('ui.index', compact('categories'));
+        return view('ui.details', compact('categories'));
         
     }
 

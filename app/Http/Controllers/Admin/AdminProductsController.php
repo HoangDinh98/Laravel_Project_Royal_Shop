@@ -207,7 +207,7 @@ class AdminProductsController extends Controller
             $file->move($upload_url, $name);
             
             
-            $photo = Photo::create(['path' => $upload_url . $name,'product_id'=>$product_id,'is_thumbnail'=>0]);
+            $photo = Photo::create(['path' => $upload_url . $name,'product_id'=>$product_id,'is_thumbnail'=>1]);
             
             
         }
