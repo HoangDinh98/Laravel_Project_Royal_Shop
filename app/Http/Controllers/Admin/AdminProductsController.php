@@ -253,7 +253,7 @@ class AdminProductsController extends Controller
     
       public function getProviderById($id)
     {
-         $products = Product::Where('provider_id', $id)->paginate(5);
+         $products = Product::Where([['provider_id', $id],['is_delete',0]])->paginate(5);
          $providers = Provider::all();
 
         return view('admin.products.index', ['products'=>$products],['providers'=>$providers]);
