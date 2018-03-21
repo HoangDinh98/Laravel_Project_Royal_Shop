@@ -1,7 +1,7 @@
 <div class="nav-collapse">
     <div id="nav" style="display: block; clear: both">
         <ul id="topMenu" class="nav nav-custom">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="{{ route('ui.home.index')}}">Home</a></li>
             @foreach ( $categories as $key =>$category)
             <li class="dropdown-submenu"><a href="#">{{ $category->name }}</a>
                 @if ( count($category->children))
