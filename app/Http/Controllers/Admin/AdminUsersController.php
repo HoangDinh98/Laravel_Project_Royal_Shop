@@ -161,8 +161,45 @@ class AdminUsersController extends Controller {
                     ]
             );
         }
-        
-        
+
+        if (trim($request->password) == '') {
+            $input = $request->except('password');
+        } else {
+            $input = $request->all();
+            $input['password'] = bcrypt($request->password);
+        }
+        $input['name'] = Standard::standardize_data($input['name'], 1);
+
+        if (empty($_POST['is_active'])) {
+            $input['is_active'] = 0;
+        }
+
+        $user = User::findOrFail($id);
+        $user->update($input);
+
+        if ($file = $request->file('avatar')) {
+            $user_id = $id;
+            Photo::where('user_id', '=', $user_id)->update(['is_thumbnail' => 0]);
+
+            $year = date('Y');
+            $month = date('m');
+            $day = date('d');
+            $sub_folder = 'users/' . $user_id . '/' . $year . '/' . $month . '/' . $day . '/';
+            $upload_url = 'images/' . $sub_folder;
+
+            if (!File::exists(public_path() . '/' . $upload_url)) {
+                File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
+            }
+
+            $name = time() . $file->getClientOriginalName();
+
+            $file->move($upload_url, $name);
+            Photo::create(['user_id' => $user_id, 'path' => $upload_url . $name]);
+        }
+
+
+        Session::flash('notification', 'Câp nhật thông tin tài khoản <b>' . $input['name'] . '</b> thànnh công');
+        return redirect('/admin/users');
     }
 
     /**

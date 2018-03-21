@@ -31,8 +31,7 @@
                         <div id="changepass" class="collapse repass {{ $errors->has('password')?'in':$errors->has('re_password')?'in':'' }}">
                             <div class=" form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                                 <label for="password">Mật khẩu mới <span>*</span></label>
-                                <input type="password" id="password" name="password" class="form-control" 
-                                       value="{{ Form::input('password', 'password', Input::old('password')) }}">
+                                <input type="password" id="password" name="password" class="form-control" value="{{ old('password') }}">
                                 <span class="text-danger">{!! $errors->first('password') !!}</span>
                             </div>
                             <div class=" form-group {{ $errors->has('re_password') ? 'has-error' : '' }}">
