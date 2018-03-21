@@ -104,10 +104,11 @@
                     <li><a href="{{ route('admin.users.create') }}"><i class="fa fa-circle-o"></i> Thêm mới tài khoản</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+            <li class="">
                 <a href="{{ route('admin.media.index') }}">
                     <i class="fa fa-picture-o maroon"></i> <span>Media</span>
                 </a>
+
             </li>
 
         </ul>

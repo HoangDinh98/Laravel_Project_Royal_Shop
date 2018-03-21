@@ -45,7 +45,8 @@
                     </form>
                 </div>
                 
-                    @include(' includes.header_nav_widget')
+             
+@include(' includes.header_nav_widget')
                     
                 <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>

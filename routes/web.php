@@ -55,3 +55,4 @@ Route::resource("ui/home", "UI\UIHomeController", array('as' => 'ui'));
 Auth::routes();
 
 Route::get('admin/products/{id}/provider',[ 'uses'=>'Admin\AdminProductsController@getProviderById'] );
+Route::get('admin/media/{id}/product',[ 'uses'=>'Admin\AdminMediaController@getProductById'] );
