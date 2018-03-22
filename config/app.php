@@ -159,7 +159,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\WidgetComposerProvider::class,
+        App\Providers\CategoriesWidgetProvider::class,
+//        App\Providers\WidgetComposerProvider::class,
 //        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
     ],

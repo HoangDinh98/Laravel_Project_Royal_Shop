@@ -21,8 +21,8 @@ class UIHomeController extends Controller
     public function index()
     {
          $products = Product::all();
-         $categories = Category::where('parent_id',  0)->get();
-        return view('ui.index', ['products' => $products, 'categories' => $categories]);
+//         $categories = Category::where('parent_id',  0)->get();
+        return view('ui.index', ['products' => $products]);
     }
   
 

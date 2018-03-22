@@ -46,7 +46,7 @@
                 </div>
                 
              
-@include(' includes.header_nav_widget')
+@include('includes.nav')
                     
                 <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>
