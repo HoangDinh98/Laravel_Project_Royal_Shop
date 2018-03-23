@@ -8,31 +8,26 @@
     <h3 class="title"><span>ITEM DETAILS</span></h3>
     <div class="row">
         <div class="span6">
-            <div id="detailViewCarousel" class="carousel slide">
-                <div class="displayStyle">
+            
+              
 
                     <!--                    quy định ảnh slide của sản phẩm-->
-                    <ol class="carousel-indicators">
-                        <li data-target="#detailViewCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#detailViewCarousel" data-slide-to="1"></li>
-                        <li data-target="#detailViewCarousel" data-slide-to="2"></li>
-                        <li data-target="#detailViewCarousel" data-slide-to="3"></li>
-                        <li data-target="#detailViewCarousel" data-slide-to="4"></li>
-                        <li data-target="#detailViewCarousel" data-slide-to="5"></li>
-                    </ol> 
+                     
                     <!-- Carousel items -->
 
                     <!--                    Bỏ ảnh theo id vào chỗ này-->
+                    @foreach($product->photos AS $photo)
                     <div class="carousel-inner">
-                        <div class="active item"><img src="themes/images/carousel/carousel2.jpg" alt="#" /></div>
-                        <div class="item"><img src="themes/images/carousel/carousel1.jpg" alt="#" /></div>                      
+                        <div class="active item"><img src="{{ $photo->path ? asset($photo->path): 'http://placehold.it/200x200' }}" alt="#" /></div>
+                        <div class="item"><img src="themes/images/carousel/carousel1.jpg" alt="#" /></div>
                     </div>
+                    @endforeach
 
                     <!-- Carousel nav -->
                     <a class="carousel-control left" href="#detailViewCarousel" data-slide="prev">&lsaquo;</a>
                     <a class="carousel-control right" href="#detailViewCarousel" data-slide="next">&rsaquo;</a>
-                </div>
-            </div>
+             
+           
         </div>
 
         <!--        Thông tin của sản phẩm-->
@@ -82,7 +77,7 @@
                 </div>
             </div>
         </div>
-        
+
 
     </div>
 </section>

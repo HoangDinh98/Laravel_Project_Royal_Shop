@@ -49,8 +49,8 @@ class UIHomeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        $categories = Category::get();
-        return view('ui.details', compact('categories'));
+        $product = Product::findOrFail($id);
+        return view('ui.details', compact('product'));
     }
 
     public function getProByCate($id) {

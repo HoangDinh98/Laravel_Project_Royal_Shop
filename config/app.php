@@ -161,7 +161,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\CategoriesWidgetProvider::class,
 //        App\Providers\WidgetComposerProvider::class,
-//        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
     ],
 
