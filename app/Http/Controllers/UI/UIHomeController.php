@@ -11,28 +11,24 @@ use App\Http\Controllers\Standard;
 
 date_default_timezone_set("Asia/Ho_Chi_Minh");
 
-class UIHomeController extends Controller
-{
+class UIHomeController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-         $products = Product::all();
-//         $categories = Category::where('parent_id',  0)->get();
-        return view('ui.index', ['products' => $products]);
+    public function index() {
+        $products = Product::all();
+        return view('ui.index', compact('products'));
     }
-  
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -42,8 +38,7 @@ class UIHomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -53,11 +48,14 @@ class UIHomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         $categories = Category::get();
         return view('ui.details', compact('categories'));
-        
+    }
+
+    public function getProByCate($id) {
+        $products = Product::where('category_id', $id)->paginate(7);
+        return view('ui.lists', compact('products'));
     }
 
     /**
@@ -66,8 +64,7 @@ class UIHomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -78,8 +75,7 @@ class UIHomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -89,8 +85,8 @@ class UIHomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }

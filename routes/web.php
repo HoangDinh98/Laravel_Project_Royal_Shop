@@ -54,5 +54,7 @@ Auth::routes();
 Route::resource("ui/home", "UI\UIHomeController", array('as' => 'ui'));
 Auth::routes();
 
+Route::get("ui/home/category/{id}", "UI\UIHomeController@getProByCate")->name('ui.home.getProByCate');
+
 Route::get('admin/products/{id}/provider',[ 'uses'=>'Admin\AdminProductsController@getProviderById'] );
 Route::get('admin/media/{id}/product',[ 'uses'=>'Admin\AdminMediaController@getProductById'] );
