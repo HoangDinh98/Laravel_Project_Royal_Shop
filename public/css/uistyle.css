@@ -123,6 +123,61 @@ and open the template in the editor.
     padding-top: 1000px;
 }*/
 
+
+/*-----------  STYLE FOR CART  ------------*/
+.stickcart {
+    position: fixed;
+    right: 1%;
+    top: 65px;
+    background: #fff;
+    border-radius: 40px;
+    box-shadow: 5px 10px 10px 0 rgba(0,0,0,.5);
+    font-size: 14px;
+    color: #288ad6;
+    padding: 0 10px 0 0;
+    /*width: 140px;*/
+    z-index: 99;
+}
+
+.stickcart div {
+    float: left;
+    width: 38px;
+    height: 38px;
+    border-radius: 40px;
+    background: #ffde31;
+    margin: 2px 5px 2px 2px;
+    font-size: 25px;
+    color: #000000;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/*.stickcart span {
+  display: block;
+  padding: 4px 0 0;
+  white-space: nowrap;
+}*/
+
+.stickcart strong {
+    display: block;
+    white-space: nowrap;
+}
+
+.stickcart .p-num {
+    display: inline-block;
+    min-width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #EF1212;
+    color: #EFEF02;
+    text-align: center;
+    font-family: arial;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-left: -15px;
+}
+
 @media (max-width: 979px) {
 
     body { background-color:#eee;}

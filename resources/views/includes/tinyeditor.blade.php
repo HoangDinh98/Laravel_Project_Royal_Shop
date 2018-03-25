@@ -1,8 +1,9 @@
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<!--<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>-->
 <!--  <script>tinymce.init({ selector:'textarea' });</script>-->
+<script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 <script>
   var editor_config = {
-    path_absolute : "/php19_blog/public/",
+    path_absolute : "/laravel_project_royal_shop/public/",
     selector: "textarea",
     plugins: [
       "advlist autolink lists link image charmap print preview hr anchor pagebreak",

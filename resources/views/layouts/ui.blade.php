@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- styles -->
         <link rel="stylesheet/less" type="text/css" href="{{ asset('UI/themes/less/bootstrap.less') }} ">
         <!--<link rel="stylesheet/less" type="text/css" href="{{ asset('UI/bootstrap/css/bootstrap.css') }} ">-->
@@ -13,6 +14,8 @@
 
         <!-- favicon-icons -->
         <link rel="shortcut icon" href="{{ asset('UI/themes/images/favicon.ico') }}">
+        <link rel="stylesheet" href="{{asset('Admin/bower_components/font-awesome/css/font-awesome.min.css')}}">
+
 
 
         <!--        <link href="{{ asset('UI/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">      
@@ -146,7 +149,7 @@
                 </div>
             </div>
         </footer>
-        <span id="toTop" style="display: none;"><span><i class="icon-angle-up"></i></span></span>
+        <span id="toTop" style="display: none;"><span style="font-size: 30px;"><i class="fa fa-arrow-up"></i></span></span>
 
         <!--  javascript
             ================================================== -->

@@ -58,3 +58,8 @@ Route::get("ui/home/category/{id}", "UI\UIHomeController@getProByCate")->name('u
 
 Route::get('admin/products/{id}/provider',[ 'uses'=>'Admin\AdminProductsController@getProviderById'] );
 Route::get('admin/media/{id}/product',[ 'uses'=>'Admin\AdminMediaController@getProductById'] );
+
+
+//------ Cart ------
+
+Route::post("ui/addcart", "UI\UIHomeController@addCart")->name('ui.addcart');

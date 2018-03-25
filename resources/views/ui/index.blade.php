@@ -32,7 +32,7 @@
                             <a class="displayStyle" href="#"><img src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/200x200' }}"></a>
                             <h5>{{ $product->name }}</h5>
                             <p>
-                                <a class="btn btn-warning" href="#" > Add to <i class="icon-shopping-cart"></i></a> 
+                                <a class="btn btn-warning addcart" data-id="{{$product->id}}"> Add to <i class="icon-shopping-cart"></i></a> 
                                 <a class="btn" href="{{ route('ui.home.show', $product->id)}}">view details</a>
                             </p>
                             <p><span class="price"><small>$</small>{{ $product->price }}</span></p>
@@ -58,5 +58,7 @@
     </div>
         
 </section>
+
+@include('ui.sticky_cart')
 
 @endsection

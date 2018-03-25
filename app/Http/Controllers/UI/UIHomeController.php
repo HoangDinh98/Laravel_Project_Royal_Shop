@@ -88,5 +88,14 @@ class UIHomeController extends Controller {
     public function destroy($id) {
         //
     }
+    
+    
+//    ----- CART -----
+    public function addCart(Request $request) {
+        if($request->ajax()) {
+            $product = Product::findOrFail($request->id);
+            return response()->json($product);
+        }
+    }
 
 }
