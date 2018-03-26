@@ -18,9 +18,10 @@
                     <!--                    Bỏ ảnh theo id vào chỗ này-->
                     @foreach($product->photos AS $photo)
                     <div class="carousel-inner">
-                        <div class="active item"><img src="{{ $photo->path ? asset($photo->path): 'http://placehold.it/200x200' }}" alt="#" /></div>
-                        <div class="item"><img src="themes/images/carousel/carousel1.jpg" alt="#" /></div>
+                        <div class="active item"><img src="{{ $photo->path ? asset($photo->path): 'http://placehold.it/200x200' }}" alt="#" />
+                        </div>
                     </div>
+                    <div class="item"><img src="themes/images/carousel/carousel1.jpg" alt="#" /></div>
                     @endforeach
 
                     <!-- Carousel nav -->
@@ -37,13 +38,13 @@
                 <p>Sourcingmap</p>
                 <br/>
                 <ul>
-                    <li>Size: Medium, Colour: Blue</li>
-                    <li>In stock. Dispatched from and sold by sourcingmap.</li>
-                    <li>US Size : 8;UK Size : 10;EU Size : 38</li>
-                    <li>Bust Girth : 36 inches;Waist Girth : 28 inches;Hip Girth : 38.5 inches</li>
-                    <li>Shoulder Width: 15.7inches, Sleeve Length: 16inches, Total Length: 22.8inches, Net Weight: 82g</li>
+                    <li>{{'Tên Sản Phẩm: '.$product->name }}</li>
+                    <li>{{'Thông tin chi tiết sản phẩm: '.$product->description}}</li>
+                    <li>{{'Cân Nặng: '.$product->weight.'gam'}}</li>
+                    <li>{{'Giá:'.$product->price.'.000.000VND'}}</li>
+                    
                 </ul>
-                <h3><small class="oldPrice">$18.00</small>NEW Price: $9.00 </h3>
+                <h3><small class="oldPrice">{{'$'.$product->price.'.000.000'}}</small>NEW price </h3>
                 <p><i class="icon-star"></i> <i class="icon-star"></i> <i class="icon-star"></i> <i class="icon-star-empty"></i></p>
                 <form class="form-horizontal qtyFrm">
                     <div class="control-group">
