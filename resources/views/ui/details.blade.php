@@ -19,34 +19,41 @@
                         <li data-target="#detailViewCarousel" data-slide-to="5"></li>
                     </ol>
 
-
-
-
-                    <!--                    quy định ảnh slide của sản phẩm-->
-
-                    <!-- Carousel items -->
-
                     <!--                    Bỏ ảnh theo id vào chỗ này-->
+                    @php 
+                $step = 0
+                 @endphp
+                   <div class="carousel-inner">
                     @foreach($product->photos AS $photo)
-                    <div class="carousel-inner">
-                        <div class="active item"><img src="{{ $photo->path ? asset($photo->path): 'http://placehold.it/200x200' }}" alt="#" />
+                    
+                    @if($step == 0) 
+                {!!  '<div class="active item"> <div class="row">'  !!}
+             @elseif ($step != 0 && $step % 1 == 0) 
+                    {!!  '<div class="item"><div class="row">'  !!}
+             @endif
+                  
+                      <img src="{{ $photo->path ? asset($photo->path): 'http://placehold.it/200x200' }}" alt="#" />
                         </div>
-                        <div class="item"><img src="{{ $photo->path ? asset($photo->path): 'http://placehold.it/200x200' }}" alt="#" /></div>
-                        <div class="item"><img src="{{ $photo->path ? asset($photo->path): 'http://placehold.it/200x200' }}" alt="#" /></div>
-                        <div class="item"><img src="{{ $photo->path ? asset($photo->path): 'http://placehold.it/200x200' }}" alt="#" /></div>
-                        <div class="item"><img src="{{ $photo->path ? asset($photo->path): 'http://placehold.it/200x200' }}" alt="#" /></div>
-                        <div class="item"><img src="{{ $photo->path ? asset($photo->path): 'http://placehold.it/200x200' }}" alt="#" /></div>
+                     
                     </div>
+                        @if ($step % 1 == 3 || $step == $product->count()-1) 
+             {!!  '</div></div>' !!}
+             @endif
+             
+            @php
+                $step++
+            @endphp
 
                     @endforeach
-
+                        </div>
                     <!-- Carousel nav -->
                     <a class="carousel-control left" href="#detailViewCarousel" data-slide="prev">&lsaquo;</a>
                     <a class="carousel-control right" href="#detailViewCarousel" data-slide="next">&rsaquo;</a>
 
 
-                </div>
+                
             </div>
+                    </div>
         </div>
 
                 <!--        Thông tin của sản phẩm-->
@@ -75,6 +82,7 @@
                     <br>
 
                 </div>
+                 </div>
                 <div class="span12">
                     <hr class="soften"/>
                     <p>
@@ -101,7 +109,7 @@
                 </div>
 
 
-            </div>
+        
             </section>
             @endsection
 
