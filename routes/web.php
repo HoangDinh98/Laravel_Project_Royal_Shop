@@ -63,3 +63,5 @@ Route::get('admin/media/{id}/product',[ 'uses'=>'Admin\AdminMediaController@getP
 //------ Cart ------
 
 Route::post("ui/addcart", "UI\UIHomeController@addCart")->name('ui.addcart');
+
+Route::post(" ui/home/search","UI\UIHomeController@search")->name('ui.home.search');
