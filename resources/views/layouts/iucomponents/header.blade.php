@@ -37,11 +37,14 @@
             <div class="navbar-inner">
                 <a class="brand" href="index.php"><img src="{{ asset('UI/themes/images/new_logo.png') }}" alt="Bootsshop"></a>
                 <div class="search-box">
-                    <form class="search-form" method="post" action="products.php" style="padding-top:5px;"> 
-                        <input class="" type="text" placeholder="Tìm kiếm" style="padding:11px 4px;">
+                    <form action="{{ url ('ui/search') }}" class="search-form " method="post"style="padding-top:5px;"> 
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <input class="" type="text" name="keyword" placeholder="Nhập từ khóa" style="padding:11px 4px;"value="{{ old('keyword') }}">
                         <button type="submit" class="btn btn-warning btn-large search-box-logo">
                             <i class="icon-search"></i>
                         </button>
+                        <div>{{ $errors->has('keyword') ? '' : '' }}</div>
+                        <span class="text-danger">{!! $errors->first('keyword') !!}</span>
                     </form>
                 </div>
                 

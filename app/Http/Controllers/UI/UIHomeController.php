@@ -20,6 +20,7 @@ class UIHomeController extends Controller {
      */
     public function index() {
         $products = Product::all();
+        
         return view('ui.index', compact('products'));
     }
 
@@ -88,14 +89,31 @@ class UIHomeController extends Controller {
     public function destroy($id) {
         //
     }
-    
-    
+
 //    ----- CART -----
     public function addCart(Request $request) {
-        if($request->ajax()) {
+        if ($request->ajax()) {
             $product = Product::findOrFail($request->id);
             return response()->json($product);
         }
     }
 
+    public function search(Request $request) {
+        $keyword = $request->keyword;
+        if(empty($keyword)) {
+        $erroricon = '<i class="fa fa-times"></i>';
+        $this->validate($request, 
+                [
+                   'keyword' => 'required',
+                ], [
+            'keyword.required' => $erroricon . ' Bạn chưa nhập dữ liệu'
+                ]);
+                }
+
+        else {
+        $products = Product::whereRaw("MATCH(name, description) AGAINST(? IN BOOLEAN MODE)", $keyword)->get();
+        return view('ui.search', ['products' => $products, 'keyword' => $keyword]);
+        }
+        
+    }
 }

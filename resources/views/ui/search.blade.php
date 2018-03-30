@@ -6,13 +6,11 @@
 
 @php 
     $step = 0
+    
 @endphp
 
 <section id="featuredProduct">
     <h3 class="title"><span>Kết quả tìm kiếm cho "{{$keyword}}"</span></h3>
-    
-
-             
     <div id="myCarouselOne" class="carousel slide">
         <!-- Dot Indicators -->
        
