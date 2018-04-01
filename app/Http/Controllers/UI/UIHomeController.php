@@ -20,7 +20,7 @@ class UIHomeController extends Controller {
      */
     public function index() {
         $products = Product::all();
-        
+
         return view('ui.index', compact('products'));
     }
 
@@ -100,20 +100,19 @@ class UIHomeController extends Controller {
 
     public function search(Request $request) {
         $keyword = $request->keyword;
-        if(empty($keyword)) {
-        $erroricon = '<i class="fa fa-times"></i>';
-        $this->validate($request, 
-                [
-                   'keyword' => 'required',
-                ], [
-            'keyword.required' => $erroricon . ' Bạn chưa nhập dữ liệu'
-                ]);
-                }
-
-        else {
-        $products = Product::whereRaw("MATCH(name, description) AGAINST(? IN BOOLEAN MODE)", $keyword)->get();
-        return view('ui.search', ['products' => $products, 'keyword' => $keyword]);
+        if (empty($keyword)) {
+            $erroricon = '<i class="fa fa-times"></i>';
+//            $validator = $this->validate($request, [
+//                'keyword' => 'required',
+//                    ], [
+//                'keyword.required' => $erroricon . ' Bạn chưa nhập dữ liệu'
+//            ]);
+            return redirect()->route('ui.home.index');
+            
+        } else {
+            $products = Product::whereRaw("MATCH(name, description) AGAINST(? IN BOOLEAN MODE)", $keyword)->get();
+            return view('ui.search', ['products' => $products, 'keyword' => $keyword]);
         }
-        
     }
+
 }

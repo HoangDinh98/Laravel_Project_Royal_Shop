@@ -37,8 +37,7 @@
             <div class="navbar-inner">
                 <a class="brand" href="index.php"><img src="{{ asset('UI/themes/images/new_logo.png') }}" alt="Bootsshop"></a>
                 <div class="search-box">
-                    <form action="{{ route('ui.home.search') }}" class="search-form " method="POST"style="padding-top:5px;"> 
-                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <form action="{{ route('ui.home.search') }}" class="search-form " method="GET"style="padding-top:5px;">
                         <input class="" type="text" name="keyword" placeholder="Nhập từ khóa" style="padding:11px 4px;"value="{{ old('keyword') }}">
                         <button type="submit" class="btn btn-warning btn-large search-box-logo">
                             <i class="icon-search"></i>
