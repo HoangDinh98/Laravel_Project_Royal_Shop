@@ -1,16 +1,10 @@
-<a class="stickcart" href="./cart.php">
+<a class="stickcart" href="{{ route('ui.cart')}}">
     <div>
         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
     </div>
     <span class="p-num" id="p-num">
         <p>
-            <?php
-            if (isset($_SESSION['product'])) {
-                echo $_SESSION['product_num'];
-            } else {
-                echo 0;
-            }
-            ?>
+            {{ Session::has('cart') ? Session::get('cart')->totalQty : '0' }}
         </p>
     </span>
     <!--<strong id="qty-p">0 sản phẩm</strong>-->

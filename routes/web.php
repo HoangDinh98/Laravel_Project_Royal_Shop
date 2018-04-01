@@ -61,7 +61,12 @@ Route::get('admin/media/{id}/product',[ 'uses'=>'Admin\AdminMediaController@getP
 
 
 //------ Cart ------
+Route::post("ui/addcart", "UI\UICartController@addCart")->name('ui.addcart');
+Route::post("ui/cart/plus", "UI\UICartController@plusCart")->name('ui.cart.plus');
+Route::post("ui/cart/minus", "UI\UICartController@minusCart")->name('ui.cart.minus');
+Route::post("ui/cart/remove", "UI\UICartController@removeItem")->name('ui.cart.remove');
+Route::get("ui/cart", "UI\UICartController@show")->name("ui.cart");
+Route::get("ui/checkout", "UI\UICartController@checkout")->name("ui.checkout");
+Route::post("ui/checkout", "UI\UICartController@checkoutSubmit")->name("ui.checkout");
 
-Route::post("ui/addcart", "UI\UIHomeController@addCart")->name('ui.addcart');
-
-Route::post(" ui/home/search","UI\UIHomeController@search")->name('ui.home.search');
+Route::post("ui/home/search", "UI\UIHomeController@search")->name('ui.home.search');

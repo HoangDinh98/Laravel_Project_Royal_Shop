@@ -29,7 +29,7 @@
                                 <small class="oldPrice"><small>$</small>{{ $product->price }}</small>
                                 <span class="newPrice"><small>$</small>{{ $product->price }}</span>
                             </span>
-                            <a class="displayStyle" href="#"><img src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/200x200' }}"></a>
+                            <a class="displayStyle" href="#"><img id="product-img-{{$product->id}}" src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/200x200' }}"></a>
                             <h5>{{ $product->name }}</h5>
                             <p>
                                 <a class="btn btn-warning addcart" data-id="{{$product->id}}"> Add to <i class="icon-shopping-cart"></i></a> 
@@ -60,5 +60,8 @@
 </section>
 
 @include('ui.sticky_cart')
+
+@include('ui.notify_modal')
+@include('ui.error_modal')
 
 @endsection

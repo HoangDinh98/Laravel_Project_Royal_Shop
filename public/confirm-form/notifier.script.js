@@ -8,6 +8,7 @@
             rtl:false,
             vertical_align:"center",
             has_icon:true,
+            image:'',
             btns:[
                 {
                     label:"OK",
@@ -95,6 +96,11 @@
         if($options.has_icon){
             $body.append('<i class="notifier-icon notifier-icon-' + type + '"></i>');
             $body.addClass("has-icon");
+        }
+        
+        if($options.image !== ''){
+            $body.append('<img src="' + $options.image + '">');
+            $body.addClass("has-image");
         }
 
         $.each($options.btns, function(index, btnObj){
