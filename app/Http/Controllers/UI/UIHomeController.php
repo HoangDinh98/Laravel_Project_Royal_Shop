@@ -4,6 +4,7 @@ namespace App\Http\Controllers\UI;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Product;
 use App\Category;
@@ -51,13 +52,21 @@ class UIHomeController extends Controller {
      */
     public function show($id) {
         $product = Product::findOrFail($id);
-        return view('ui.details', compact('product'));
+        $related_product = Product::where('category_id', $product->category_id)->orderBy('created_at', 'desc')->take(8)->get();
+        return view('ui.details', compact('product', 'related_product'));
     }
 
     public function getProByCate($id) {
         $products = Product::where('category_id', $id)->paginate(7);
         return view('ui.lists', compact('products'));
     }
+    
+//    public function relatedPro($id) {
+//        
+//        $products = Product::where('category_id', $id);
+//        return view('ui.details', compact('products'));
+//        
+//    }
 
     /**
      * Show the form for editing the specified resource.

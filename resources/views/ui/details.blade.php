@@ -63,7 +63,7 @@
                     <div class="control-group">
                         <div class="">
                             <p>Số Lượng Đặt Mua</p>
-                            <input type="number" class="span1" placeholder="SL."> 
+                            <input type="number" class="span1" placeholder="SL: "> 
                         </div>
                     </div>
                 </form>
@@ -88,20 +88,13 @@
     <div class="span2">
         <div class="carousel slide">
             <div class="carousel-inner">
-                <div class="item">
-                    <div class="item"><img src="themes/images/carousel/carousel1.jpg" alt="#" /></div>
+               
+
+                        </div>
+                    </div>
                 </div>
-                <div class="item active">
-                    <div class="item"><img src="themes/images/carousel/carousel1.jpg" alt="#" /></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-</section>
-@endsection
+                </section>
+                @endsection
 
 
 
