@@ -2,34 +2,56 @@
     <div class="container">
         <div class="row">
             <div class="offset6 span6 right-align loginArea">
-                <a href="#login" role="button" data-toggle="modal"><span class="btn btn-mini"> Login  </span></a> 
+                
+                @if (Auth::guest())
+                    <span id="user_btn">
+                    <a id="user_menu" href="#login" role="button" data-toggle="modal"><span class="btn btn-mini"> Login  </span></a>
+                    </span>
+                @else
+                <ul>
+                   <li>{{ Auth::user()->name }}</li>
+                   <li><a href="{{route('ui.user.logout')}}"
+                          >
+                           Logout
+                       </a>
+
+                       <form id="logout-form" action="#" method="POST" style="display: none;">
+                           {{ csrf_field() }}
+                       </form>
+                   </li>
+                </ul>
+                   @endif
                 <a href="register.php"><span class="btn btn-mini btn-success"> Register  </span></a> 
                 <a href="checkout.php"><span class="btn btn-mini btn-danger"> Cart [2] </span></a> 
+                
             </div>
         </div>
 
         <!-- Login Block -->
         <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3>Sell Anythings : Login Block</h3>
+                <button id="btn_close" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>Royal Shop : Đăng nhập</h3>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal loginFrm">
-                    <div class="control-group">								
-                        <input type="text" id="inputEmail" placeholder="Email">
+                    <div id="email_box" class="control-group" >								
+                        <input type="email" id="email" placeholder="Email" required autofocus>
+                        <span id="email_Err" class="text-danger">{{ $errors->first('emailErr') }}</span>
                     </div>
-                    <div class="control-group">
-                        <input type="password" id="inputPassword" placeholder="Password">
+
+                    <div id="pass_box" class="control-group">
+                        <input type="password" id="password" placeholder="Mật khẩu">
+                        <span id="pass_Err" class="text-danger">{{ $errors->first('passwordErr') }}</span>
                     </div>
                     <div class="control-group">
                         <label class="checkbox">
-                            <input type="checkbox"> Remember me
+                            <input type="checkbox"> Ghi nhớ tôi
                         </label>
                     </div>
                 </form>		
-                <button type="submit" class="btn btn-success">Sign in</button>
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                <button type="button" class="btn btn-success btn_login">Đăng nhập</button>
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Đóng</button>
             </div>
         </div>
 

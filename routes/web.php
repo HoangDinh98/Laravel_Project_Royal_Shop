@@ -59,7 +59,10 @@ Route::get("ui/home/category/{id}", "UI\UIHomeController@getProByCate")->name('u
 Route::get('admin/products/{id}/provider',[ 'uses'=>'Admin\AdminProductsController@getProviderById'] );
 Route::get('admin/media/{id}/product',[ 'uses'=>'Admin\AdminMediaController@getProductById'] );
 
+//--- UI ----
+Route::resource("ui/user", "UI\UIUserController", array('as' => 'ui'));
 
+Route::post("ui/user/login", "UI\UIUserController@login")->name('ui.user.login');
 //------ Cart ------
 Route::post("ui/addcart", "UI\UICartController@addCart")->name('ui.addcart');
 Route::post("ui/cart/plus", "UI\UICartController@plusCart")->name('ui.cart.plus');

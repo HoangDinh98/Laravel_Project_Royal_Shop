@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Standard;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 date_default_timezone_set("Asia/Ho_Chi_Minh");
 
@@ -118,7 +119,9 @@ class UIUserController extends Controller {
                 'userid' => $user->id,
                 'path' => 'http://localhost/laravel_project_diamond_shop/public/',
             );
-
+            
+            Auth::attempt(['email' => $email, 'password' => $password], 0);
+            
             return response()->json($result);
         }
     }
