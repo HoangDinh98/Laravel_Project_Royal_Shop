@@ -40,13 +40,13 @@
                 <h3>Royal Shop : Đăng nhập</h3>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal loginFrm">
-                    <div id="email_box" class="control-group" >								
+                <form class="loginFrm">
+                    <div id="email_box" class="control-group input-box" >								
                         <input type="email" id="email" placeholder="Email" required autofocus>
                         <span id="email_Err" class="text-danger">{{ $errors->first('emailErr') }}</span>
                     </div>
 
-                    <div id="pass_box" class="control-group">
+                    <div id="pass_box" class="control-group input-box">
                         <input type="password" id="password" placeholder="Mật khẩu">
                         <span id="pass_Err" class="text-danger">{{ $errors->first('passwordErr') }}</span>
                     </div>
@@ -55,9 +55,12 @@
                             <input type="checkbox"> Ghi nhớ tôi
                         </label>
                     </div>
+                    <div class="control-group">
+                        <button type="button" class="btn btn-success btn_login">Đăng nhập</button>
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Đóng</button>
+                    </div>
                 </form>		
-                <button type="button" class="btn btn-success btn_login">Đăng nhập</button>
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Đóng</button>
+
             </div>
         </div>
 
