@@ -3,26 +3,32 @@
         <div class="row">
             <div class="offset6 span6 right-align loginArea">
 
-                @if (Auth::guest())
+                @if (Auth::check())
+                <div class = "btn-group" >
+                    <a class = "btn btn-mini dropdown-toggle" data-toggle ="dropdown" href = "#" >{{ Auth::user()->name }}</a>
+                    <ul class = "dropdown-menu" >
+                        <li><a href="">Trang cá nhân</a></li>
+                        @if(Auth::user()->role_id == 1)
+                        <li><a href="{{ route('admin.categories.index') }}" target="_blank">Quan trị trang</a></li>
+                        @endif
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                                Đăng xuất
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                @else
                 <span id="user_btn">
                     <a id="user_menu" href="#login" role="button" data-toggle="modal"><span class="btn btn-mini"> Login  </span></a>
                 </span>
-                @else
-                <ul>
-                    <li>{{ Auth::user()->name }}</li>
-                    <li><a href="{{route('user.logout')}}"
-                           >
-                            Logout
-                        </a>
-
-                        <form id="logout-form" action="#" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
-                </ul>
+                <a href="register.php"><span class="btn btn-mini btn-success"> Đăng ký  </span></a>
                 @endif
-                <a href="register.php"><span class="btn btn-mini btn-success"> Register  </span></a> 
-                <a href="checkout.php"><span class="btn btn-mini btn-danger"> Cart [2] </span></a> 
 
             </div>
         </div>

@@ -39,6 +39,7 @@ $(document).ready(function () {
                     }
                     
                     $('#user_btn').html(action);
+                    location.reload(true);
                     
                 } else {
                     if (data.emailErr != '') {

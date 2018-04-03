@@ -11,9 +11,11 @@
   |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', "UI\UIHomeController@index");
 
 Route::get('/home', 'HomeController@index')->name('home');
 
