@@ -8,6 +8,26 @@ and open the template in the editor.
     Author     : hoang.dinh
 */
 
+@font-face {
+    font-family: 'UTM_ViceroyJF';
+    /*src: url('./fonts/UTM_ViceroyJF.ttf');  IE9 Compat Modes */
+    src: url('../fonts/UTM_ViceroyJF.ttf')  format('truetype');
+}
+
+.title {
+    border-bottom: 2px solid #ededed;
+    margin-bottom: 28px;
+    min-height: 38px;
+    clear: both;
+    font-family: 'UTM_ViceroyJF';
+    color: #d00000;
+    font-size: 42px;
+    text-align: center;
+    line-height: 38px;
+    font-weight: normal;
+    text-shadow: 0 0 1px #666;
+}
+
 .nav-custom {
     width: 100%;
     background-color: #000000;

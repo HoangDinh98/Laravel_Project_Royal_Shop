@@ -33,7 +33,7 @@
                             <h5>{{ $product->name }}</h5>
                             <p>
                                 <a class="btn btn-warning addcart" data-id="{{$product->id}}"> Thêm vào giỏ hàng <i class="icon-shopping-cart"></i></a> 
-                                <a class="btn" href="{{ route('ui.home.show', $product->id)}}">Xem chi tiết</a>
+                                <a class="btn" href="{{ route('product.index', $product->id)}}">Xem chi tiết</a>
                             </p>
                             <p><span class="price"><small>$</small>{{ $product->price }}</span></p>
 

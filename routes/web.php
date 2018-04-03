@@ -15,63 +15,55 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
 
 
 
 // My Routes
 Route::resource('admin/categories', "Admin\AdminCategoriesController", array('as' => 'admin'));
-Auth::routes();
 
 Route::resource('admin/providers', "Admin\AdminProvidersController", array('as' => 'admin'));
-Auth::routes();
 
 Route::resource('admin/promotions', "Admin\AdminPromotionsController", array('as' => 'admin'));
-Auth::routes();
 
 Route::resource('admin/products', "Admin\AdminProductsController", array('as' => 'admin'));
-Auth::routes();
 
 Route::resource('admin/roles', "Admin\AdminRolesController", array('as' => 'admin'));
-Auth::routes();
 
 Route::resource('admin/users', "Admin\AdminUsersController", array('as' => 'admin'));
-Auth::routes();
 
 Route::resource('admin/orders', "Admin\AdminOrdersController", array('as' => 'admin'));
-Auth::routes();
 
 Route::resource('admin/orders', "Admin\AdminCommentsController", array('as' => 'admin'));
-Auth::routes();
 
 Route::resource('admin/media', "Admin\AdminMediaController", array('as' => 'admin'));
-Auth::routes();
 
-Route::resource("ui/home", "UI\UIHomeController", array('as' => 'ui'));
-Auth::routes();
+Route::resource("/home", "UI\UIHomeController");
 
-Route::get("ui/home/category/{id}", "UI\UIHomeController@getProByCate")->name('ui.home.getProByCate');
+Route::get("/product/{id}", "UI\UIProductDetailController@index")->name('product.index');
+Route::post("/product/{id}/comment", "UI\UIProductDetailController@addComment")->name('product.addcomment');
+
+Route::get("/home/category/{id}", "UI\UIHomeController@getProByCate")->name('home.getProByCate');
 
 Route::get('admin/products/{id}/provider',[ 'uses'=>'Admin\AdminProductsController@getProviderById'] );
 Route::get('admin/media/{id}/product',[ 'uses'=>'Admin\AdminMediaController@getProductById'] );
 
 //--- UI ----
-Route::resource("ui/user", "UI\UIUserController", array('as' => 'ui'));
+Route::resource("user", "UI\UIUserController");
+Route::post("user/login", "UI\UIUserController@login")->name('user.login');
+Route::post("user/logout", "UI\UIUserController@login")->name('user.logout');
 
-Route::post("ui/user/login", "UI\UIUserController@login")->name('ui.user.login');
 //------ Cart ------
-Route::post("ui/addcart", "UI\UICartController@addCart")->name('ui.addcart');
-Route::post("ui/cart/plus", "UI\UICartController@plusCart")->name('ui.cart.plus');
-Route::post("ui/cart/minus", "UI\UICartController@minusCart")->name('ui.cart.minus');
-Route::post("ui/cart/remove", "UI\UICartController@removeItem")->name('ui.cart.remove');
-Route::get("ui/cart", "UI\UICartController@show")->name("ui.cart");
-Route::get("ui/checkout", "UI\UICartController@checkout")->name("ui.checkout");
-Route::post("ui/checkout", "UI\UICartController@checkoutSubmit")->name("ui.checkout");
+Route::post("cart/addcart", "UI\UICartController@addCart")->name('cart.addcart');
+Route::post("cart/plus", "UI\UICartController@plusCart")->name('cart.plus');
+Route::post("cart/minus", "UI\UICartController@minusCart")->name('cart.minus');
+Route::post("cart/remove", "UI\UICartController@removeItem")->name('cart.remove');
+Route::get("cart", "UI\UICartController@show")->name("cart");
+Route::get("checkout", "UI\UICartController@checkout")->name("checkout");
+Route::post("checkout", "UI\UICartController@checkoutSubmit")->name("checkout");
 
-Route::post("ui/addcart", "UI\UIHomeController@addCart")->name('ui.addcart');
+Route::get("/search","UI\UIHomeController@search")->name('home.search');
 
-Route::get("ui/search","UI\UIHomeController@search")->name('ui.home.search');
+
+//Make auth for routes
+Auth::routes();

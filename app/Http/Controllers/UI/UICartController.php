@@ -5,12 +5,12 @@ namespace App\Http\Controllers\UI;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use App\Product;
 use App\Cart;
 use App\Order;
 use App\OrderDetail;
-
-date_default_timezone_set("Asia/Ho_Chi_Minh");
+use App\Http\Controllers\Standard;
 
 class UICartController extends Controller {
 
@@ -228,8 +228,53 @@ class UICartController extends Controller {
             ]);
         }
         
-        $name;
-        $address;
+//        $name, $address, $phone, $email, $description;
+//        $order_id, $product_id, $quantity, $price, $original_price;
+        
+//        Standardize data for Orders tabale
+        $name = Standard::standardize_data($request->lastname.' '.$request->firstname, 1);
+        
+        $city = Standard::standardize_data($request->city, 1);
+        $district = Standard::standardize_data($request->district, 1);
+        $town = Standard::standardize_data($request->town, 1);
+        $village = Standard::standardize_data($request->village, 1);
+        
+        $address = $village.', '.$town.', '.$district.', '.$city;
+        
+        $email = $request->has('email') ? $request->email : '';
+        
+        $description = '';
+//        if(Auth::user()->name) {
+//            $description = 'Thành viên';
+//        } else {
+//            $description = 'Không phải thành viên';
+//        }
+        
+        $order = Order::create([
+            'customer_name' => $name,
+            'phone' => $request->phone,
+            'email' => $email,
+            'address' => $address,
+            'description' => $description
+        ]);
+        
+        $order_id = $order->id;
+        
+//        Insert data from Session into Order detail Table
+        foreach (Session::get('cart')->items AS $id => $item) {
+            $product_id = $id;
+            $quantity = $item['qty'];
+            $original_price = $item['item']->price;
+            $price = round($original_price * (1- 0.01 * $item['item']->promotion->value));
+            
+            OrderDetail::create([
+                'order_id' => $order_id,
+                'product_id' => $product_id,
+                'quantity' => $quantity,
+                'original_price' => $original_price,
+                'price' => $price,
+            ]);
+        }
     }
 
 }

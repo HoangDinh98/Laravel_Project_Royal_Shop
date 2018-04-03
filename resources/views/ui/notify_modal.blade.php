@@ -17,14 +17,14 @@
 
             </div>
             <div class="span6 cart-info">
-                <div>Giỏ hàng của bạn có <b id="product-totalQty-modal">6</b> sản phẩm <a href="{{ route('ui.cart') }}"><i class="fa fa-edit"></i></a></div>
+                <div>Giỏ hàng của bạn có <b id="product-totalQty-modal">6</b> sản phẩm <a href="{{ route('cart') }}"><i class="fa fa-edit"></i></a></div>
                 <div class="temp-money">Tạm tính: <span id="temp-money">1200000 đ</span></div>
                 <div class="total-money">Tổng tiền: <span id="total-money">1200000 đ</span></div>
             </div>
         </div>
         <div class="action">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Tiếp tục mua hàng</button>
-            <a class="btn btn-success" href="{{ route('ui.checkout') }}">Thanh Toán</a>
+            <a class="btn btn-success" href="{{ route('checkout') }}">Thanh Toán</a>
         </div>
     </div>
 </div>

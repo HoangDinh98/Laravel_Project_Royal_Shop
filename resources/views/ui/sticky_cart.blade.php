@@ -1,4 +1,4 @@
-<a class="stickcart" href="{{ route('ui.cart')}}">
+<a class="stickcart" href="{{ route('cart')}}">
     <div>
         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
     </div>

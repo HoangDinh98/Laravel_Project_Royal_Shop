@@ -119,8 +119,8 @@ class UIUserController extends Controller {
                 'userid' => $user->id,
                 'path' => 'http://localhost/laravel_project_diamond_shop/public/',
             );
-            
-            Auth::attempt(['email' => $email, 'password' => $password], 0);
+
+            Auth::attempt(['email' => $email, 'password' => $password], 1);
             
             return response()->json($result);
         }

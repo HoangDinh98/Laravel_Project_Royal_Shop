@@ -32,7 +32,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "addcart",
+            url: "cart/addcart",
             data: {
                 'id': pro_id
             },

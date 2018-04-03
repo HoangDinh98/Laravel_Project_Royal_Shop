@@ -3,7 +3,7 @@
 @section('content')
 
 @php
-$session_timeout = 5*60;
+$session_timeout = 30*60;
 
 if (!Session::has('last_visit')) {
 Session::put('last_visit', time());
@@ -45,7 +45,7 @@ Session::put('last_visit', time());
                         @foreach($products AS $id => $product)
                         <tr id="row-id-{{$id}}">
                             <td class="">
-                                <a href="">
+                                <a href="{{ route('product.index', $id)}}">
                                     <div class="img-box">
                                         <img id="product-img-{{$id}}" src="{{ $product['item']->thumbnail()? asset($product['item']->thumbnail()->path):'http://placehold.it/800x800' }}" alt="#">
                                     </div>
@@ -122,7 +122,7 @@ Session::put('last_visit', time());
                     </div>
                     <div id="check-out-container">
                         @if(session()->has('cart'))
-                        <a class="btn btn-danger" href="{{ route('ui.checkout') }}"> TIẾN HÀNH THANH TOÁN</a>
+                        <a class="btn btn-danger" href="{{ route('checkout') }}"> TIẾN HÀNH THANH TOÁN</a>
                         @endif
                     </div>
                 </div>

@@ -15,38 +15,8 @@
         <!-- favicon-icons -->
         <link rel="shortcut icon" href="{{ asset('UI/themes/images/favicon.ico') }}">
         <link rel="stylesheet" href="{{asset('Admin/bower_components/font-awesome/css/font-awesome.min.css')}}">
-
-
-
-        <!--        <link href="{{ asset('UI/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">      
-                <link href="{{ asset('UI/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet">
-        
-                <link href="{{ asset('UI/themes/css/bootstrappage.css') }}" rel="stylesheet"/>
-        
-                 global styles 
-                <link href="{{ asset('UI/themes/css/flexslider.css') }}" rel="stylesheet"/>
-                <link href="{{ asset('UI/themes/css/main.css') }}" rel="stylesheet"/>
-        
-                 scripts 
-                <script src="{{ asset('UI/themes/js/jquery-1.7.2.min.js') }}"></script>
-                <script src="{{ asset('UI/bootstrap/js/bootstrap.min.js') }}"></script>				
-                <script src="{{ asset('UI/themes/js/superfish.js') }}"></script>	
-                <script src="{{ asset('UI/themes/js/jquery.scrolltotop.js') }}"></script>-->
     </head>
     <body>
-        <!-- Facebook script -->
-        <div id="fb-root"></div>
-        <script>(function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id))
-                    return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-            fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
-
         @include('layouts.iucomponents.header')
         <!-- ======================================================================================================================== -->
         <div class="container">
@@ -56,7 +26,6 @@
             @yield('content')
             <!--**************************************-->
             <!--**************************************-->
-
 
             <section id="scn">
                 <h3 class="title"><span>WELCOME !</span></h3>
@@ -138,7 +107,7 @@
         <footer class="footer">
             <div class="container">
                 <h5>Accepted Payment Methods </h5>
-                <p><a href="#"><img src="{{ asset('UI/themes/images/payment_methods.png" alt="payment methods') }}"/></a></p>
+                <p><a href="#"><img src="{{ asset('UI/themes/images/payment_methods.png') }}" alt="payment methods" /></a></p>
                 <hr class="soften"/>
                 <div class="footerMenu">
                     <a href="register.php"> REGISTRATION</a> | 

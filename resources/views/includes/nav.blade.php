@@ -1,13 +1,13 @@
 <div class="nav-collapse">
     <div id="nav" style="display: block; clear: both">
         <ul id="topMenu" class="nav nav-custom">
-            <li class="active"><a href="{{ route('ui.home.index')}}">Home</a></li>
+            <li class="active"><a href="{{ route('home.index')}}">Home</a></li>
             @foreach ( $categories as $key => $category)
             <li class="dropdown-submenu"><a href="#">{{ $category->name }}</a>
                 @if ( count($category->children))
                 <ul class="dropdown-menu">
                     @foreach($category->children AS $cate_child)
-                    <li class=""><a href="{{ route('ui.home.getProByCate', $cate_child->id) }}">{{$cate_child->name}}</a></li>
+                    <li class=""><a href="{{ route('home.getProByCate', $cate_child->id) }}">{{$cate_child->name}}</a></li>
                     @endforeach
                 </ul>
                 @endif

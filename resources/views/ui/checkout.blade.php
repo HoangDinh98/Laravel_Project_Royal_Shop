@@ -7,7 +7,7 @@
 
 </section>	
 <section class="main-content">
-    <h3 class="title"><span>THÔNG TIN ĐẶT HÀNG</span></h3>
+    <h3 class="title"><span>Thông tin đặt hàng</span></h3>
     <p style="text-align: center">Vui lòng nhập chính xác các thông tin yêu vào biểu mẫu dưới đây<br>
         Những trường có dấu (*) là bắt buộc
     </p>
@@ -15,7 +15,7 @@
         <div class="span12">
             <div class="accordion-group">
                 <div class="accordion-inner">
-                    <form class="row-fluid" id="checkout-form" method="POST" action="{{route('ui.checkout')}}">
+                    <form class="row-fluid" id="checkout-form" method="POST" action="{{route('checkout')}}">
                         <div class="span6 part-block">
                             <div class="group-block">
                                 <h4>Thông tin người nhận</h4>
