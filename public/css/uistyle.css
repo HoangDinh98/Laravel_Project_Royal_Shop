@@ -486,6 +486,24 @@ section.header_text.sub {
 }
 
 
+/*------------- STYLE FOR LOGIN FORM --------------*/
+.control-group {
+    padding: 0px 20px;
+}
+.input-box {
+    padding: 5px 20px;
+}
+
+.input-box input {
+    width: 96%;
+}
+
+
+
+.well {
+    text-align: center;
+}
+
 /* ------------ RESPONSIVE ---------------------*/
 
 @media (max-width: 979px) {
