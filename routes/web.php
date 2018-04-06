@@ -51,9 +51,11 @@ Route::get('admin/products/{id}/provider',[ 'uses'=>'Admin\AdminProductsControll
 Route::get('admin/media/{id}/product',[ 'uses'=>'Admin\AdminMediaController@getProductById'] );
 
 //--- UI ----
-Route::resource("user", "UI\UIUserController");
 Route::post("user/login", "UI\UIUserController@login")->name('user.login');
-Route::post("user/logout", "UI\UIUserController@login")->name('user.logout');
+//Route::post("user/logout", "UI\UIUserController@login")->name('user.logout');
+
+Route::get('user/register', 'UI\UIUserController@registerShow')->name('user.register');
+Route::post('user/register', 'UI\UIUserController@Register')->name('user.register.submit');
 
 //------ Cart ------
 Route::post("cart/addcart", "UI\UICartController@addCart")->name('cart.addcart');

@@ -23,7 +23,7 @@ $(document).ready(function () {
                     var path = data.path;
 
                     $('#btn_close').click();
-                    alert('Success');
+                    alert('Login Success');
 
                     $('#login').remove();
                     $('#user_menu').remove();
