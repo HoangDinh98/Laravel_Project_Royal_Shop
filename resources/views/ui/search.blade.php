@@ -1,27 +1,15 @@
 @extends ('layouts.ui')
-
 @section('content')
-
-@include('layouts.iucomponents.carousel')
-
-@php 
-    $step = 0
-    
-@endphp
-
 <section id="featuredProduct">
+    <!-- Dot Indicators -->
     <h3 class="title"><span>Kết quả tìm kiếm cho "{{$keyword}}"</span></h3>
-    <div id="myCarouselOne" class="carousel slide">
-        <!-- Dot Indicators -->
-       
-        <div class="carousel-inner">
-            @foreach($products as $product)
-            
-            @if($step == 0) 
-                {!!  '<div class="item active"> <div class="row">'  !!}
-             @elseif ($step != 0 && $step % 4 == 0) 
-                    {!!  '<div class="item"><div class="row">'  !!}
-             @endif
+    @if(count($products) ==0)
+    <p> Có <b>{{count($products)}}</b> kết quả cho từ khóa "{{$keyword}}"</p>
+    @else
+    <p> Có <b>{{count($products)}}</b> kết quả cho từ khóa "{{$keyword}}"</p>
+    <div class="item active"> <div class="row">
+            <div class="item"><div class="row">
+                    @foreach($products as $product)
                     <div class="span3">
                         <div class="well well-small">
                             <span class="newTag"></span>
@@ -39,27 +27,19 @@
 
                         </div>
                     </div>
-             @if ($step % 4 == 3 || $step == $products->count()-1) 
-             {!!  '</div></div>' !!}
-             @endif
-             
-            @php
-                $step++
-            @endphp
-            
-         @endforeach
-            
+                    @endforeach
+                    
+                   
+                </div>
+            </div>
         </div>
-        
-       
-      
-        <a class="left carousel-control" href="#myCarouselOne" data-slide="prev">‹</a>
-        <a class="right carousel-control" href="#myCarouselOne" data-slide="next">›</a>
     </div>
-        
+    
+    
+    @endif
+
 </section>
 
 @include('ui.sticky_cart')
 
 @endsection
-

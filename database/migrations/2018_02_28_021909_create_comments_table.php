@@ -15,7 +15,7 @@ class CreateCommentsTable extends Migration {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id')->unsigned()->nullable();
-            $table->string('author', 255)->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->string('email', 100)->nullable();
             $table->integer('parent_id')->default(0);
             $table->text('content')->nullable();
@@ -25,6 +25,9 @@ class CreateCommentsTable extends Migration {
         Schema::table('comments', function($table) {
             $table->foreign('product_id')
                     ->references('id')->on('products')
+                    ->onDelete('cascade');
+            $table->foreign('user_id')
+                    ->references('id')->on('users')
                     ->onDelete('cascade');
         });
     }

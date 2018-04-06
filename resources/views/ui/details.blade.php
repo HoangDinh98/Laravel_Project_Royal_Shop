@@ -116,7 +116,7 @@
                                         <a class="btn btn-warning addcart" data-id="{{$product->id}}">Thêm vào <i class="icon-shopping-cart"></i></a> 
                                         <a class="btn" href="{{ route('product.index', $product->id)}}">Chi tiết</a>
                                     </p>
-                                    <p><span class="price"><small>$</small>{{ $product->price }}</span></p>
+                                    <p><span class="price">{{ number_format($product->price) }}<small> đ</small></span></p>
 
                                 </div>
                             </div>
