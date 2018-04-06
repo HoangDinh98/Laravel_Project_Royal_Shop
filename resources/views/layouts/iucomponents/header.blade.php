@@ -1,3 +1,9 @@
+@if (session('status'))
+<script>
+    alert("{{session('status')}}");
+</script>
+@endif
+
 <header class="header">
     <div class="container">
         <div class="row">
@@ -27,7 +33,7 @@
                 <span id="user_btn">
                     <a id="user_menu" href="#login" role="button" data-toggle="modal"><span class="btn btn-mini"> Login  </span></a>
                 </span>
-                <a href="register.php"><span class="btn btn-mini btn-success"> Đăng ký  </span></a>
+                <a href="{{ route('user.register') }}"><span class="btn btn-mini btn-success"> Đăng ký  </span></a>
                 @endif
 
             </div>
@@ -63,7 +69,6 @@
 
             </div>
         </div>
-
         <div class="navbar">
             <div class="navbar-inner">
                 <a class="brand" href="index.php"><img src="{{ asset('UI/themes/images/new_logo.png') }}" alt="Bootsshop"></a>

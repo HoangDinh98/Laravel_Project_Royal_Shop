@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="{{asset('Admin/bower_components/font-awesome/css/font-awesome.min.css')}}">
     </head>
     <body>
+
         @include('layouts.iucomponents.header')
         <!-- ======================================================================================================================== -->
         <div class="container">
@@ -126,11 +127,18 @@
         <script src="{{ asset('UI/themes/js/jquery-1.8.3.min.js') }}"></script>
         <script src="{{ asset('UI/bootstrap/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('UI/themes/js/smart.js') }}"></script>
-
+        
         <link href="{{asset('confirm-form/notifier.style.css')}}" rel="stylesheet">
         <script src="{{asset('confirm-form/notifier.script.js')}}"></script>
         <script src="{{asset('js/uijs.js')}}"></script>
         <script src="{{asset('js/homejs.js')}}"></script>
         <link rel="stylesheet" href="{{asset('css/uistyle.css')}}">
     </body>
+
+    @if (session('status'))
+    <script>
+        $('#login').modal('show');
+    </script>
+    session()->forget('status')
+    @endif
 </html>
