@@ -504,6 +504,32 @@ section.header_text.sub {
     text-align: center;
 }
 
+#text_content{
+    margin: 0px 0px 10px;
+    height: 86px;
+    width: 900px;
+   margin-left: 4%;
+    margin-top: 20px;
+    
+}
+#img_avatar{
+    width:50%;
+    height:50% ;
+    margin-left: 1%;
+  
+   
+}
+.send_comment{
+    float: right;
+}
+.content_comment{
+    margin-left: 4%;
+  
+}
+
+
+
+
 /* ------------ RESPONSIVE ---------------------*/
 
 @media (max-width: 979px) {
@@ -512,3 +538,7 @@ section.header_text.sub {
     #nav.affix, #nav.affix-top { position: relative; }
 
 }
+
+/*STYLE FOR COMMENT FORM*/
+/*************************/
+

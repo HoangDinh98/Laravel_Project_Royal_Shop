@@ -44,6 +44,7 @@ Route::resource("/home", "UI\UIHomeController");
 
 Route::get("/product/{id}", "UI\UIProductDetailController@index")->name('product.index');
 Route::post("/product/{id}/comment", "UI\UIProductDetailController@addComment")->name('product.addcomment');
+Route::get('/product/{id}/delete', 'UI\UIProductDetailController@deleteComment')->name('product.deletecomment');
 
 Route::get("/home/category/{id}", "UI\UIHomeController@getProByCate")->name('home.getProByCate');
 

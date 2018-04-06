@@ -77,15 +77,72 @@
         <hr class="soften"/>
         <p>
             {!!'<b>Mô tả sản phẩm</b>'. $product->description !!}
-            Ngoài hình ảnh, họa tiết, một trang sức hoàn hảo phải phụ thuộc rất nhiều vào công nghệ chế tác.
-            Những mẫu trang sức áp dụng kỹ thuật chế tác công nghệ cao sẽ đem đến một làn gió mới, hiện đại, tạo nên kiểu dáng mềm mại, uyển chuyển, làm nổi bật sự sang trọng cho người sở hữu.
-            Với hàng loạt mẫu thiết kế trang sức tinh xảo được lấy cảm hứng chủ đạo từ vẻ đẹp nồng nàn, huyền bí và quyến rũ nhất của phái đẹp - một nửa tuyệt vời của thế giới.
-        </p>
+        </p></br>
     </div>
-
-    <!--Các sản phẩm có liên quan-->
 </section>
 
+<!--Comment-->
+<section>
+    <div>
+       
+        @if(Auth::check())
+        <h4>Viết bình luận
+            <span class="glyphicon glyphicon-pencil"></span>
+        </h4>
+        <br>
+        <form action="{{ route('product.addcomment', $product->id) }}" method="POST" role="form">
+            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+            <input type="hidden" id="product_id" name="product_id" value="{{$product->id}}">                         
+            <div id="img_avatar">
+            <img src="{{ asset(Auth::user()->avatar()->path) }}" width="10%" height="10%" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
+             {{Auth::user() ? Auth::user()->name : 'Uncategorized'}}
+            </div>
+            <div class=" row {{ $errors->has('content') ? 'has-error' : '' }}">
+            <textarea id="text_content" cols="20"  placeholder="Nhập bình luận" value="{{ old('content') }}" ></textarea>
+                <span class="text-danger">{{ $errors->first('content') }}</span>
+            </div> 
+            
+            
+<button type="submit" class="btn btn-primary" style="margin-left: 2%;">Gửi</button>
+        
+        </form> 
+        @endif
+    </div>
+    
+    <div id ="comment">
+    @if(count($comments) ==0)
+     <h4>Không có bình luận nào </h4>
+     @else
+     
+    @if($comments)
+    <h4> Có {{count($comments)}} bình luận</h4>
+    @foreach($comments as $comment)
+    <div>
+        @if($comment->user)                               
+        <img src="{{ asset($comment->user->avatar()->path) }}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
+        {{$comment->user ? $comment->user->name : 'Uncategorized'}}<br>
+        @endif
+
+
+        <p class="content_comment"><span class="glyphicon glyphicon-time"></span>{{$comment->created_at}} {{$comment->update_at }}</p>
+        <p class="content_comment" >{{$comment->content}}</p>
+
+        <div>
+     <form action="{{ route('product.deletecomment', $comment->id) }}" method="GET">
+    <button type="submit" class="btn btn-danger pull-right">Delete</button>
+</form>
+            </div>
+                       
+              
+    </div>
+    @endforeach
+    @endif
+    @endif
+    </div>
+
+</section>
+
+<!--Các sản phẩm có liên quan-->
 <section id="orther-products">
     <h3 class="title"><span>Sản phẩm liên quan</span></h3>
 
@@ -138,14 +195,14 @@
                 <a class="right carousel-control" href="#myCarouselOne" data-slide="next">›</a>
             </div>
 
-</section>
+            </section>
 
-@include('ui.sticky_cart')
+            @include('ui.sticky_cart')
 
-@include('ui.notify_modal')
-@include('ui.error_modal')
+            @include('ui.notify_modal')
+            @include('ui.error_modal')
 
-@endsection
+            @endsection
 
 
 
