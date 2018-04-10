@@ -29,9 +29,17 @@ Session::put('last_visit', time());
                     </div>
                     @endif
                 </div>
-
-                <table class="table table-bordered table-striped">
+                
+                <div class="product-quatity-notify">
                     @if (Session::has('cart'))
+                    <b>CÓ <span id="product-totalQty">{{ Session::get('cart')->totalQty }}</span> SẢN PHẨM</b>
+                    @else
+                    <b>Hiện tại, không có sản phẩm nào trong giỏ hàng của bạn</b>
+                    @endif
+                </div>
+                
+                @if (Session::has('cart'))
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Sản phẩm</th>
@@ -59,10 +67,10 @@ Session::put('last_visit', time());
                                     @php
                                     $current_price = $product['item']->price*(1 - 0.01*$product['item']->promotion->value)
                                     @endphp
-                                    {{ number_format($current_price).' đ' }}
+                                    {{ Helper::vn_currencyunit($current_price) }}
                                 </p>
                                 <p class="original-price">
-                                    {{ number_format($product['item']->price).' đ' }}
+                                    {{ number_format($product['item']->price, 0, ',', '.').' đ' }}
                                 </p>
                                 <p class="promotion-ratio">
                                     {{ '- '.$product['item']->promotion->value.' %' }}
@@ -81,7 +89,7 @@ Session::put('last_visit', time());
                                 </div>
                             </td>
                             <td class="number-box" id="sum-price-{{$id}}">
-                                {{ number_format($product['sum_price']).' đ' }}
+                                {{ Helper::vn_currencyunit($product['sum_price']) }}
                             </td>
                             <td class="number-box romove-sign">
                                 <a class="remove" data-id="{{$id}}">
@@ -90,11 +98,9 @@ Session::put('last_visit', time());
                             </td>
                         </tr>
                         @endforeach
-                        @else
-                        {!! '<b>Hiện tại, không có sản phẩm nào trong giỏ hàng của bạn</b>' !!}
-                    @endif	  
                     </tbody>
                 </table>
+                @endif
             </div>
             <div class="span2">
                 <div class = "block" style="">
@@ -109,14 +115,14 @@ Session::put('last_visit', time());
                     <div class="line-block">
                         <span class="float-left">Tạm tính:</span>
                         <span class="number-box float-right" id="temp-money">
-                            {{Session::has('cart')? number_format(Session::get('cart')->totalPrice) : '0'}} đ
+                            {{Session::has('cart')? number_format(Session::get('cart')->totalPrice, 0, ',', '.') : '0'}} đ
                         </span>
                     </div>
                     <div class="line-block">
                         <span class="float-left"><b>Tổng tiền:</b></span>
                         <span class="number-box float-right">
                             <b id="total-money">
-                                {{Session::has('cart')? number_format(Session::get('cart')->totalPrice) : '0'}} đ
+                                {{Session::has('cart')? number_format(Session::get('cart')->totalPrice, 0, ',', '.') : '0'}} đ
                             </b>
                         </span>
                     </div>

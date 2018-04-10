@@ -975,11 +975,11 @@ if (typeof jQuery === 'undefined') {
     this.isShown = true
 
     this.checkScrollbar()
-    this.setScrollbar()
+//    this.setScrollbar()
     this.$body.addClass('modal-open')
 
     this.escape()
-    this.resize()
+//    this.resize()
 
     this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this))
 

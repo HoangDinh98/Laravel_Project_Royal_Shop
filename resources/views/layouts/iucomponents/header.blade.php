@@ -11,17 +11,17 @@
 
                 @if (Auth::check())
                 <div class = "btn-group" >
-                    <a class = "btn btn-mini dropdown-toggle" data-toggle ="dropdown" href = "#" >{{ Auth::user()->name }}</a>
-                    <ul class = "dropdown-menu" >
-                        <li><a href="">Trang cá nhân</a></li>
+                    <a class = "btn btn-mini btn-success dropdown-toggle" data-toggle ="dropdown" href = "#" >{{ Auth::user()->name }}&nbsp; <i class="icon-cog"></i></a>
+                    <ul class = "dropdown-menu user-small-menu" >
+                        <li><a href="{{ route('user.account', Auth::user()->id)}}"><i class="icon-user"></i> Tài khoản của tôi</a></li>
                         @if(Auth::user()->role_id == 1)
-                        <li><a href="{{ route('admin.categories.index') }}" target="_blank">Quan trị trang</a></li>
+                        <li><a href="{{ route('admin.categories.index') }}" target="_blank"><i class="icon-key"></i> Quan trị trang</a></li>
                         @endif
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                        document.getElementById('logout-form').submit();">
-                                Đăng xuất
+                                <i class="icon-signout"></i> Đăng xuất
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
@@ -31,9 +31,9 @@
                 </div>
                 @else
                 <span id="user_btn">
-                    <a id="user_menu" href="#login" role="button" data-toggle="modal"><span class="btn btn-mini"> Login  </span></a>
+                    <a id="user_menu" href="#login" role="button" data-toggle="modal"><span class="btn btn-mini btn-success"> Đăng nhập  </span></a>
                 </span>
-                <a href="{{ route('user.register') }}"><span class="btn btn-mini btn-success"> Đăng ký  </span></a>
+                <a href="{{ route('user.register') }}"><span class="btn btn-mini btn-primary"> Đăng ký  </span></a>
                 @endif
 
             </div>
@@ -57,9 +57,10 @@
                         <span id="pass_Err" class="text-danger">{{ $errors->first('passwordErr') }}</span>
                     </div>
                     <div class="control-group">
-                        <label class="checkbox">
+                        <label class="checkbox" style="display: inline-block">
                             <input type="checkbox"> Ghi nhớ tôi
                         </label>
+                        <a href="{{ route('user.register') }}" style="float: right"><b>Tạo tài khoản mới</b></a>
                     </div>
                     <div class="control-group">
                         <button type="button" class="btn btn-success btn_login">Đăng nhập</button>

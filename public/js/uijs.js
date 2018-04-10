@@ -49,9 +49,9 @@ $(document).ready(function () {
                     /////////////////////////////
                     $("#product-img-modal").attr("src", $("#product-img-" + pro_id).attr("src"));
                     $("#product-name-modal").text(data.name);
-                    $("#product-price-modal").text(data.price + " đ");
-                    $("#temp-money").text(data.totalPrice + " đ");
-                    $("#total-money").text(data.totalPrice + " đ");
+                    $("#product-price-modal").text(data.price);
+                    $("#temp-money").text(data.totalPrice);
+                    $("#total-money").text(data.totalPrice);
                     $("#product-totalQty-modal").text(data.totalQty);
 
                     $("#notify-modal").modal('show');
@@ -79,10 +79,11 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 $("#product-qty-" + pro_id).html(data.qty);
-                $("#sum-price-" + pro_id).html(data.sum_price + " đ");
+                $("#sum-price-" + pro_id).html(data.sum_price);
                 $("#notify-num-box").text(data.totalQty);
-                $("#temp-money").text(data.totalPrice + ' đ');
-                $("#total-money").text(data.totalPrice + ' đ');
+                $("#product-totalQty").text(data.totalQty);
+                $("#temp-money").text(data.totalPrice);
+                $("#total-money").text(data.totalPrice);
 
                 if (data.qty >= 5) {
                     $('#plus-' + pro_id).addClass('disabled');
@@ -111,10 +112,11 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 $("#product-qty-" + pro_id).html(data.qty);
-                $("#sum-price-" + pro_id).html(data.sum_price + " đ");
+                $("#sum-price-" + pro_id).html(data.sum_price);
                 $("#notify-num-box").text(data.totalQty);
-                $("#temp-money").text(data.totalPrice + ' đ');
-                $("#total-money").text(data.totalPrice + ' đ');
+                $("#product-totalQty").text(data.totalQty);
+                $("#temp-money").text(data.totalPrice);
+                $("#total-money").text(data.totalPrice);
 
                 if (data.qty <= 1) {
                     $('#minus-' + pro_id).addClass('disabled');
@@ -159,10 +161,11 @@ $(document).ready(function () {
                                     success: function (data) {
                                         console.log(data);
                                         $("#notify-num-box").text(data.totalQty);
-                                        $("#temp-money").text(data.totalPrice + ' đ');
-                                        $("#total-money").text(data.totalPrice + ' đ');
+                                        $("#product-totalQty").text(data.totalQty);
+                                        $("#temp-money").text(data.totalPrice);
+                                        $("#total-money").text(data.totalPrice);
                                         $("#row-id-" + pro_id).remove();
-                                        if(data.totalQty <= 0) {
+                                        if (data.totalQty <= 0) {
                                             $("#check-out-container").empty();
                                         }
                                         $("#notification-content").empty();
@@ -187,6 +190,14 @@ $(document).ready(function () {
                 });
     });
 
+});
+
+$('#call-login').click(function () {
+    $('#login').modal('show');
+});
+
+$('.btn-shippingAgree').click(function () {
+    $('#shippingAgree-form').submit();
 });
 
 //$(document).ready(function () {

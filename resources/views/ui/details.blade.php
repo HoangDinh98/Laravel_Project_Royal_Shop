@@ -94,7 +94,7 @@
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
             <input type="hidden" id="product_id" name="product_id" value="{{$product->id}}">                         
             <div id="img_avatar">
-            <img src="{{ asset(Auth::user()->avatar()->path) }}" width="10%" height="10%" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
+            <img src="" width="10%" height="10%" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
              {{Auth::user() ? Auth::user()->name : 'Uncategorized'}}
             </div>
             <div class=" row {{ $errors->has('content') ? 'has-error' : '' }}">

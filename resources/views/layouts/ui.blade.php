@@ -20,7 +20,7 @@
 
         @include('layouts.iucomponents.header')
         <!-- ======================================================================================================================== -->
-        <div class="container">
+        <div id="maincontainer" class="container">
 
             <!--Put content in here-->
             <!--**************************************-->
@@ -133,6 +133,8 @@
         <script src="{{asset('js/uijs.js')}}"></script>
         <script src="{{asset('js/homejs.js')}}"></script>
         <link rel="stylesheet" href="{{asset('css/uistyle.css')}}">
+        
+        @yield('extraNotify')
     </body>
 
     @if (session('status'))

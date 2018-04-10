@@ -176,3 +176,9 @@
 @include('ui.error_modal')
 
 @endsection
+
+@section('extraNotify')
+@if( session('shippingSuccess'))
+    @include('ui.shipping_success')
+@endif
+@endsection

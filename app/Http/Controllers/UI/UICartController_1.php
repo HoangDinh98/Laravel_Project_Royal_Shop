@@ -11,9 +11,8 @@ use App\Cart;
 use App\Order;
 use App\OrderDetail;
 use App\Http\Controllers\Standard;
-use \Helper;
 
-class UICartController extends Controller {
+class UICartController_1 extends Controller {
 
     /**
      * Display a listing of the resource.
@@ -103,8 +102,8 @@ class UICartController extends Controller {
 
             $cart->add($product, $product->id);
 
-            $price = Helper::vn_currencyunit(round($product->price * (1 - 0.01 * $product->promotion->value)));
-            $totalPrice = Helper::vn_currencyunit($cart->totalPrice, 0, ',', '.');
+            $price = number_format(round($product->price * (1 - 0.01 * $product->promotion->value)));
+            $totalPrice = number_format($cart->totalPrice, 0, ',', '.');
 
             $request->session()->put('cart', $cart);
             return response()->json([
@@ -127,16 +126,12 @@ class UICartController extends Controller {
                 $request->session()->put('cart', $cart);
             }
             $qty = $cart->items[$request->id]['qty'];
-            $totalQty = $cart->totalQty;
-            $sum_price = Helper::vn_currencyunit($cart->items[$request->id]['sum_price']);
-            $totalPrice = Helper::vn_currencyunit($cart->totalPrice);
+            $totalQty = number_format($cart->totalQty, 0, ',', '.');
+            $sum_price = number_format($cart->items[$request->id]['sum_price'], 0, ',', '.');
+            $totalPrice = number_format($cart->totalPrice, 0, ',', '.');
 
-            return response()->json([
-                        'qty' => $qty,
-                        'sum_price' => $sum_price,
-                        'totalQty' => $totalQty,
-                        'totalPrice' => $totalPrice
-            ]);
+            return response()->json(['qty' => $qty, 'sum_price' => $sum_price,
+                        'totalQty' => $totalQty, 'totalPrice' => $totalPrice]);
         }
     }
 
@@ -150,17 +145,13 @@ class UICartController extends Controller {
             }
 
             $qty = $cart->items[$request->id]['qty'];
-            $sum_price = Helper::vn_currencyunit($cart->items[$request->id]['sum_price']);
-            $totalQty = $cart->totalQty;
-            $totalPrice = Helper::vn_currencyunit($cart->totalPrice);
+            $sum_price = number_format($cart->items[$request->id]['sum_price'], 0, ',', '.');
+            $totalQty = number_format($cart->totalQty, 0, ',', '.');
+            $totalPrice = number_format($cart->totalPrice, 0, ',', '.');
 
 //            return response()->json(['qty' => $qty, 'sum_price' => $sum_price]);
-            return response()->json([
-                        'qty' => $qty,
-                        'sum_price' => $sum_price,
-                        'totalQty' => $totalQty,
-                        'totalPrice' => $totalPrice
-            ]);
+            return response()->json(['qty' => $qty, 'sum_price' => $sum_price,
+                        'totalQty' => $totalQty, 'totalPrice' => $totalPrice]);
         }
     }
 
@@ -178,15 +169,12 @@ class UICartController extends Controller {
                 Session::forget('cart');
             }
 
-            $totalQty = $cart->totalQty;
-            $totalPrice = Helper::vn_currencyunit($cart->totalPrice);
+            $totalQty = number_format($cart->totalQty, 0, ',', '.');
+            $totalPrice = number_format($cart->totalPrice, 0, ',', '.');
 
 //            return response()->json(['qty' => $qty, 'sum_price' => $sum_price]);
-            return response()->json([
-                        'totalQty' => $totalQty,
-                        'totalPrice' => $totalPrice,
-                        'productName' => $productName
-            ]);
+            return response()->json(['totalQty' => $totalQty, 'totalPrice' => $totalPrice,
+                        'productName' => $productName]);
         }
     }
 
@@ -209,8 +197,8 @@ class UICartController extends Controller {
             }
             $oldCart = Session::get('cart');
             $cart = new Cart($oldCart);
-
-            return view('ui.checkout', ['user' => $user, 'products' => $cart->items]);
+            
+            return view('ui.checkout', ['user'=>$user, 'products' => $cart->items]);
         } else {
             return redirect()->route('home.index');
         }
@@ -283,37 +271,12 @@ class UICartController extends Controller {
             $description = 'Không phải thành viên';
         }
 
-        if (Session::has('order')) {
-            Session::forget('order');
-        }
-
-        //        $order = App::make();
-        $order = app()->make('App');
-        $order->customer_name = $name;
-        $order->phone = $request->phone;
-        $order->email = $email;
-        $order->address = $address;
-        $order->description = $description;
-
-//        Push data into session
-        Session::put('order', $order);
-
-//        var_export($order);
-        return view('ui.shipping');
-    }
-
-    public function shipping() {
-        return view('ui.shipping');
-    }
-
-    public function shippingSubmit() {
-
         $order = Order::create([
-                    'customer_name' => Session::get('order')->customer_name,
-                    'phone' => Session::get('order')->phone,
-                    'email' => Session::get('order')->email,
-                    'address' => Session::get('order')->address,
-                    'description' => Session::get('order')->description
+                    'customer_name' => $name,
+                    'phone' => $request->phone,
+                    'email' => $email,
+                    'address' => $address,
+                    'description' => $description
         ]);
 
         $order_id = $order->id;
@@ -335,11 +298,13 @@ class UICartController extends Controller {
         }
 
         Session::forget('cart');
-        Session::forget('order');
 
-        return redirect('/')->with('shippingSuccess', 1);
-//        return redirect()->route('home', ['shippingSuccess' => 1]);
-//        return view('ui.home', ['shippingSuccess' => 1]);
+//        return view('ui.checkout_success', ['phone' => $request->phone]);
+        return view('ui.shipping', ['phone' => $request->phone]);
+    }
+    
+    public function shipping() {
+        return view('ui.shipping');
     }
 
 }

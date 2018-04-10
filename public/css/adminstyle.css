@@ -8,6 +8,10 @@ and open the template in the editor.
     Author     : hoang.dinh
 */
 
+body {
+    padding-right: 0px !important
+}
+
 .skin-blue .sidebar-menu>li:hover>a>i, .skin-blue .sidebar-menu>li.active>a>i, .skin-blue .sidebar-menu>li.menu-open>a>i {
     color: #FFFFFF;
 }
@@ -50,7 +54,7 @@ and open the template in the editor.
 .button-a {
     /*padding: 2px 5px;*/
     padding: 5px 7px;
-    color: #93a1a1;
+    /*color: #93a1a1;*/
     font-size: 20px;
     border: 1px solid;
     border-radius: 50%;
@@ -173,3 +177,42 @@ and open the template in the editor.
     background-color: #bae4de;
 }
 
+/*STYLE FOR ORDER*/
+
+td[id^=order-status] {
+    font-weight: bold;
+}
+
+td[data-id='0'] {
+    color: #003bea;
+}
+
+td[data-id='1'] {
+    color: #e26d05;
+}
+
+td[data-id='2'] {
+    color: #0a9e4d;
+}
+
+td[data-id='3'] {
+    color: #f30000;
+}
+
+.disabled {
+    opacity: .6;
+    cursor: not-allowed !important;
+    pointer-events: default;
+}
+
+
+/*EDIT FOR UPDATE FORM*/
+.modal-postion-20pc {
+    top: 20%
+}
+
+/*EDIT FOR ORDER DETAIL*/
+
+.number-box {
+    text-align: right;
+}

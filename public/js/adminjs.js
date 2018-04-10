@@ -8,7 +8,7 @@ function deleteA(para) {
 
 $(".delete-fnt").click(function () {
     var types = ["Sản phẩm", "Danh mục", "Khuyến mãi", "Nhà cung cấp", "Đơn hàng", "Tài khoản", "Tập tin"];
-    
+
     var type = types[$(this).attr("data-type")];
     var id = $(this).attr("data-id");
     var item_name = $("#name_" + id).text();
@@ -38,4 +38,99 @@ $(".delete-fnt").click(function () {
                 ],
                 callback: function () { }
             });
+});
+
+$('.order-update-modal').on('click', function (e) {
+    var order_id = $(this).data('id');
+    var form_name = '#update-form-' + order_id;
+
+    $(form_name + ' .order-inprocess-box').removeClass('disabled');
+    $(form_name + ' .order-delivering-box').removeClass('disabled');
+    $(form_name + ' .order-delivered-box').removeClass('disabled');
+    $(form_name + ' .order-canceled-box').removeClass('disabled');
+
+    $(form_name + ' .order-inprocess-box').html('<input class="order-inprocess" type="radio" name="status" value="0"> Chờ xử lý');
+    $(form_name + ' .order-delivering-box').html('<input class="order-delivering" type="radio" name="status" value="1"> Đang giao');
+    $(form_name + ' .order-delivered-box').html('<input class="order-delivered" type="radio" name="status" value="2"> Đã giao');
+    $(form_name + ' .order-canceled-box').html('<input class="order-canceled" type="radio" name="status" value="3"> Đã hủy');
+
+    $('input[name="status"]').prop('checked', false);
+    var order_status = $('#order-status-' + order_id).attr('data-id');
+    console.log('Form name = ' + form_name + '| status = ' + order_status);
+    
+    switch ($('#order-status-' + order_id).attr('data-id')) {
+        case '0':
+            $(form_name + ' .order-inprocess').prop('checked', true);
+            break;
+        case '1':
+            $(form_name + ' .order-delivering').prop('checked', true);
+            break;
+        case '2':
+            $(form_name + ' .order-delivered').prop('checked', true);
+            break;
+        default:
+            $(form_name + ' .order-canceled').prop('checked', true);
+    }
+
+    $( form_name + ' input[name="status"]').filter(function () {
+        return $(this).val() >= parseInt(parseInt(order_status) + 2);
+    }).prop('disabled', true);
+
+//    $('.form label').filter(function(){
+//        return $(this).has('input:disabled');
+//    }).addClass('disabled');
+
+    $(form_name + ' .form label').has('input:disabled').addClass('disabled');
+    
+    $('#order-status-mess-' + order_id).text($('#order-status-' + order_id).text());
+    
+    $(form_name).modal('show');
+});
+
+$('.checkbox label').click(function () {
+    if ($(this).hasClass('disabled')) {
+        $(this).find('input[type="radio"]').prop('disabled', true);
+    } else {
+        $(this).find('input[type="radio"]').prop('checked', true);
+    }
+});
+
+$('.update-form-submit').on('click', function () {
+    var order_id = $(this).data('id');
+    var status = $("input[name='status']:checked", "#update-form-" + order_id).val();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        cache: false
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "/laravel_project_royal_shop/public/admin/orders/updateindex",
+        data: {
+            'id': order_id,
+            'status': status
+        },
+        success: function (data) {
+//                    console.log(data);
+            if (data.is_changed == 1) {
+                $('#notification-form-content').html('Cập nhật thành công' + data.message);
+                $('#update-form-' + order_id).modal('hide');
+
+                $('#order-status-' + order_id).text(data.status_text);
+                $('#order-status-' + order_id).attr('data-id', data.status);
+                $('#notification-form').modal('show');
+
+            } else {
+                $('#notification-form-content').html('Không thay đổi');
+                $('#update-form-' + order_id).modal('hide');
+                $('#notification-form').modal('show');
+            }
+        },
+        complete: function () {
+            $(this).data('requestRunning', false);
+        }
+    });
+    return true;
 });

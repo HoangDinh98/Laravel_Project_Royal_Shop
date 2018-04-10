@@ -14,6 +14,10 @@ and open the template in the editor.
     src: url('../fonts/UTM_ViceroyJF.ttf')  format('truetype');
 }
 
+a:hover {
+    cursor: pointer !important;
+}
+
 .title {
     border-bottom: 2px solid #ededed;
     margin-bottom: 28px;
@@ -117,6 +121,14 @@ and open the template in the editor.
     background: linear-gradient(#00d2ff, #928DAB);
 }
 
+.user-small-menu {
+    text-align: left;
+}
+
+.user-small-menu li a {
+    padding: 3px 10px;
+}
+
 
 @media (max-width: 767px) {
     .search-box {
@@ -139,9 +151,9 @@ and open the template in the editor.
 }
 #nav-wrapper { margin-bottom:20px; }
 
-#nav.affix ~ .container {
+#nav.affix ~ .maincontainer {
     position: relative;
-    top: 300px;
+    top: 500px;
 }
 
 /*#nav.affix + .container {
@@ -154,10 +166,10 @@ and open the template in the editor.
 
 .has-error input {
     border-color: #FA0000;
-    box-shadow: 0px 0px 3px 1px #EF1212;
+    box-shadow: 0px 0px 7px -1px #EF1212;
 }
 
-
+/*/////////////////////////////////////////*/
 /*-----------  STYLE FOR CART  ------------*/
 .stickcart {
     position: fixed;
@@ -359,6 +371,25 @@ span.disabled {
     pointer-events: none;
 }
 
+.product-quatity-notify {
+    text-align: left;
+    text-transform: capitalize;
+    color: #136905;
+}
+
+#total-money {
+    color: #b70707;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.next-group {
+    margin-top: 10px;
+}
+
+
 /*---------------------------------------------*/
 /*---------------------------------------------*/
 /*---------- STYLE FOR NOTIFY-FORM -------------*/
@@ -437,6 +468,9 @@ span.disabled {
 
 /*EDIT FOR CHECKOUT FORM*/
 /*************************/
+form label {
+    cursor: default
+}
 .header_text {
     margin-bottom: 0px;
 }
@@ -455,12 +489,21 @@ section.header_text.sub {
     font-weight: normal;
     float: right;
 }
+.noted {
+    text-align: center;
+    border-bottom: 2px solid;
+    color: #b13c02;
+}
 
 .group-block {
     /*width: fit-content;*/
-    width: 80%;
+    width: 100%;
     text-align: left;
     margin: 5px auto;
+}
+.group-block h4 {
+    padding-left: 20px;
+    color: #de5400;
 }
 
 .group-block label {
@@ -508,23 +551,23 @@ section.header_text.sub {
     margin: 0px 0px 10px;
     height: 86px;
     width: 900px;
-   margin-left: 4%;
+    margin-left: 4%;
     margin-top: 20px;
-    
+
 }
 #img_avatar{
     width:50%;
     height:50% ;
     margin-left: 1%;
-  
-   
+
+
 }
 .send_comment{
     float: right;
 }
 .content_comment{
     margin-left: 4%;
-  
+
 }
 
 

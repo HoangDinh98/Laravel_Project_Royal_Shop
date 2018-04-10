@@ -10,7 +10,7 @@ $(document).ready(function () {
         });
         $.ajax({
             type: "POST",
-            url: "user/login",
+            url: "/laravel_project_royal_shop/public/user/login",
             data: {
                 'email': email,
                 'password': password
@@ -23,7 +23,7 @@ $(document).ready(function () {
                     var path = data.path;
 
                     $('#btn_close').click();
-                    alert('Login Success');
+                    alert('Đăng nhập thành công');
 
                     $('#login').remove();
                     $('#user_menu').remove();
