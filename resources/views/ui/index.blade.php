@@ -72,7 +72,7 @@
         @endphp
         
         <div class="carousel-inner">
-            @foreach($products as $product)
+            @foreach($hot_products as $product)
             
             @if($step == 0) 
                 {!!  '<div class="item active"> <div class="row">'  !!}
@@ -126,7 +126,7 @@
         @endphp
         
         <div class="carousel-inner">
-            @foreach($products as $product)
+            @foreach($cate_products as $product)
             
             @if($step == 0) 
                 {!!  '<div class="item active"> <div class="row">'  !!}
