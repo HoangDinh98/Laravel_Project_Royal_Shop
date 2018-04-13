@@ -60,8 +60,8 @@
                         <label class="checkbox" style="display: inline-block">
                             <input type="checkbox"> Ghi nhớ tôi
                         </label>
-                        <a href="{{ route('user.register') }}" style="float: right"><b>Tạo tài khoản mới</b></a>
                     </div>
+                    <a href="{{ route('user.register') }}" style="float: right"><b>Tạo tài khoản mới ? </b></a>
                     <div class="control-group">
                         <button type="button" class="btn btn-success btn_login">Đăng nhập</button>
                         <button class="btn" data-dismiss="modal" aria-hidden="true">Đóng</button>

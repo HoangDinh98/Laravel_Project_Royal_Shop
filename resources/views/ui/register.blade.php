@@ -14,47 +14,45 @@
                 <h3>Thông tin cá nhân</h3>
 
                 <div class="control-group">
-                    <label class="control-label" for="name">Tên <sup>*</sup></label>
-                    <div class="controls">
-                        <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
+                    <label class="control-label" style="text-align: left;" for="name">Tên <sup>*</sup></label>
+                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required ><br>
+                    <div>
                         @if ($errors->has('name'))
                         <span class="invalid-feedback">
-                            <strong>{{ $errors->first('name') }}</strong>
+                            <strong><p class="feed">{{ $errors->first('name') }}</p></strong>
                         </span>
-                        @endif                    </div>
+                        @endif     
+                </div>
                 </div>
 
                 <div class="control-group">
-                    <label class="control-label" for="email">Email <sup>*</sup></label>
-                    <div class="controls">
-                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
+                    <label class="control-label" style="text-align: left;" for="email">Email <sup>*</sup></label>
+                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required><br>
+                    <div>
                         @if ($errors->has('email'))
                         <span class="invalid-feedback">
-                            <strong>{{ $errors->first('email') }}</strong>
+                            <strong><p class="feed">{{ $errors->first('email') }}</p></strong>
                         </span>
-                        @endif                    </div>
+                        @endif 
                 </div>	  
+                </div>
 
                 <div class="control-group">
-                    <label class="control-label" for="password">Mật khẩu <sup>*</sup></label>
-                    <div class="controls">
-                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
+                    <label class="control-label" style="text-align: left;" for="password">Mật khẩu <sup>*</sup></label>
+                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required><br>
+                    <div>
                         @if ($errors->has('password'))
-                        <span class="invalid-feedback">
-                            <strong>{{ $errors->first('password') }}</strong>
+                        <span class="invalid-feedback ">
+                            <strong><p class="feed">{{ $errors->first('password') }}</p></strong>
                         </span>
-                        @endif                    </div>
+                        @endif                    
                 </div>	 
+                </div>
 
                 <div class="control-group">
-                    <label class="control-label" for="password-confirm">Xác nhận mật khẩu <sup>*</sup></label>
-                    <div class="controls">
+                    <label class="control-label " style="text-align: left;" for="password-confirm">Xác nhận mật khẩu <sup>*</sup></label>
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                     </div>
-                </div>
 
                 <div class="control-group">
                     <div class="controls">
