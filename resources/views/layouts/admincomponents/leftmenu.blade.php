@@ -92,6 +92,16 @@
                         <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
                 </ul> -->
             </li>
+               <li class="">
+                <a href="{{ route('admin.comments.index') }}">
+                    <i class="fa fa-comments yellow"></i> <span>Comment</span>
+                </a>
+                <!-- <ul class="treeview-menu">
+                        <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> </a></li>
+                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
+                        <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                </ul> -->
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-user-circle purple"></i> <span>Tài khoản người dùng</span>

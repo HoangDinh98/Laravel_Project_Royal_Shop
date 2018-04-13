@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 date_default_timezone_set("Asia/Ho_Chi_Minh");
 use App\Http\Controllers\Controller;
-
+use App\Comment;
+use App\User;
+use App\Product;
 use Illuminate\Http\Request;
 
 class AdminCommentsController extends Controller
@@ -15,7 +17,8 @@ class AdminCommentsController extends Controller
      */
     public function index()
     {
-        //
+         $comments = Comment::orderBy('created_at', 'desc')->get();
+        return view('admin.comments.index', compact('comments'));
     }
 
     /**
@@ -47,7 +50,7 @@ class AdminCommentsController extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**
@@ -71,6 +74,35 @@ class AdminCommentsController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function updateAjax(Request $request) {
+        $message_option = [
+            0 => 'Đang chờ duyệt ',
+            1 => 'Đã duyệt',
+            2 => 'Không duyệt',        
+        ];
+
+        if ($request->ajax()) {
+            $comment = Comment::findOrFail($request->id);
+
+            $old_status = $comment->status;
+
+            if ($comment->status != $request->status) {
+                $comment->status = $request->status;
+                $comment->save();
+                $message = '<br><b> ' . $message_option[$old_status] . ' -> <span class="blue">' . $message_option[$comment->status] . '</span></b>';
+
+                return response()->json([
+                            'is_changed' => 1,
+                            'status' => $comment->status,
+                            'status_text' => $message_option[$comment->status],
+                            'message' => $message
+                ]);
+            }
+
+            return response()->json(['is_changed' => 0, 'status' => $comment->status, 'message' => '']);
+        }
     }
 
     /**

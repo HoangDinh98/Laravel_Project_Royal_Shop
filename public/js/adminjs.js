@@ -72,7 +72,7 @@ $('.order-update-modal').on('click', function (e) {
             $(form_name + ' .order-canceled').prop('checked', true);
     }
 
-    $( form_name + ' input[name="status"]').filter(function () {
+    $(form_name + ' input[name="status"]').filter(function () {
         return $(this).val() >= parseInt(parseInt(order_status) + 2);
     }).prop('disabled', true);
 
@@ -101,8 +101,7 @@ $('.update-form-submit').on('click', function () {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        cache: false
+        }
     });
 
     $.ajax({
@@ -127,10 +126,73 @@ $('.update-form-submit').on('click', function () {
                 $('#update-form-' + order_id).modal('hide');
                 $('#notification-form').modal('show');
             }
-        },
-        complete: function () {
-            $(this).data('requestRunning', false);
         }
     });
     return true;
 });
+
+
+//CUSTOMIZE FOR COMMENTS
+$(' .comment-update-modal').on('click', function (e) {
+    var comment_id = $(this).data('id');
+    var form_name = '#update-form-' + comment_id;
+
+    $(form_name + ' .comment-inprocess-box').html('<input class="comment-inprocess" type="radio" name="status" value="0"> Chờ xử lý');
+    $(form_name + ' .comment-accepted-box').html('<input class="comment-accepted" type="radio" name="status" value="1"> Đã duyệt');
+    $(form_name + ' .comment-unaccepted-box').html('<input class="comment-unaccepted" type="radio" name="status" value="2"> Không duyệt');
+
+    $('input[name="status"]').prop('checked', false);
+    var comment_status = $('#comment-status-' + comment_id).attr('data-id');
+//    console.log('Form name = ' + form_name + '| status = ' + order_status);
+
+    switch ($('#comment-status-' + comment_id).attr('data-id')) {
+        case '0':
+            $(form_name + ' .comment-inprocess').prop('checked', true);
+            break;
+        case '1':
+            $(form_name + ' .comment-accepted').prop('checked', true);
+            break;
+        default:
+            $(form_name + ' .comment-unaccepted').prop('checked', true);
+    }
+    $('#comment-status-mess-' + comment_id).text($('#comment-status-' + comment_id).text());
+
+    $(form_name).modal('show');
+});
+
+$('.update-comment-submit').on('click', function () {
+    var comment_id = $(this).data('id');
+    var status = $("input[name='status']:checked", "#update-form-" + comment_id).val();
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "/laravel_project_royal_shop/public/admin/comments/update",
+        data: {
+            'id': comment_id,
+            'status': status
+        },
+        success: function (data) {
+//                    console.log(data);
+            if (data.is_changed == 1) {
+                $('#notification-form-content').html('Cập nhật thành công' + data.message);
+                $('#update-form-' + comment_id).modal('hide');
+                $('#comment-status-' + comment_id).text(data.status_text);
+                $('#comment-status-' + comment_id).attr('data-id', data.status);
+                $('#notification-form').modal('show');
+            } else {
+                $('#notification-form-content').html('Không thay đổi');
+                $('#update-form-' + comment_id).modal('hide');
+                $('#notification-form').modal('show');
+            }
+        }
+    });
+});
+
+
+
