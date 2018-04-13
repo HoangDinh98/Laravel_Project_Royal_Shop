@@ -19,7 +19,8 @@ class UIProductDetailController extends Controller {
     public function index($id) {
         $product = Product::findOrFail($id);
         $comments = Comment::where('product_id', $id)->orderBy('created_at', 'desc')->get();
-        $related_products = Product::where('category_id', $product->category_id)->orderBy('created_at', 'desc')->take(8)->get();
+        $related_products = Product::where('is_delete',0)->where('category_id',$product->category_id)
+                ->orderBy('created_at', 'desc')->take(8)->get();
         return view('ui.details', compact('product', 'related_products', 'comments'));
     }
 

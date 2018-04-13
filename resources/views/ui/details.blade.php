@@ -53,9 +53,9 @@
                 <ul>
                     <li>{{'Nhà cung cấp: '.$product->provider->name }}</li>
                     <li>{{'Trọng lượng: '.$product->weight.' gam'}}</li>
-                    <li>{{'Giá gốc: '.number_format($product->price). ' VNĐ'}}</li>
+                    <li>{{'Giá gốc: '.Helper::vn_currencyunit($product->price) }}</li>
                     <li>{{'Khuyến mãi : '.$product->promotion->value. ' %'}}</li>
-                    <li>{{'Giá khuyến mãi: '.number_format($product->price*(1 - 0.01*$product->promotion->value)).' VND'}}</li>
+                    <li>{{'Giá khuyến mãi: '.Helper::vn_currencyunit($product->price*(1 - 0.01*$product->promotion->value)) }}</li>
 
                 </ul>
 
