@@ -137,7 +137,7 @@ $(' .comment-update-modal').on('click', function (e) {
     var comment_id = $(this).data('id');
     var form_name = '#update-form-' + comment_id;
 
-    $(form_name + ' .comment-inprocess-box').html('<input class="comment-inprocess" type="radio" name="status" value="0"> Chờ xử lý');
+    $(form_name + ' .comment-inprocess-box').html('<input class="comment-inprocess" type="radio" name="status" value="0"> Đang chờ duyệt');
     $(form_name + ' .comment-accepted-box').html('<input class="comment-accepted" type="radio" name="status" value="1"> Đã duyệt');
     $(form_name + ' .comment-unaccepted-box').html('<input class="comment-unaccepted" type="radio" name="status" value="2"> Không duyệt');
 

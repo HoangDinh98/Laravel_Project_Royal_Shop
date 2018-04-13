@@ -39,7 +39,7 @@ Route::resource('admin/orders', "Admin\AdminOrdersController", array('as' => 'ad
 Route::post("admin/orders/updateindex", "Admin\AdminOrdersController@updateAjax")->name('admin.orders.updateindex');
 
 Route::resource('admin/comments', "Admin\AdminCommentsController", array('as' => 'admin'));
-Route::post("admin/comments/update", "Admin\AdminCommentsController")->name('admin.comments.update');
+Route::post("admin/comments/update", "Admin\AdminCommentsController@updateAjax")->name('admin.comments.update');
 
 Route::resource('admin/media', "Admin\AdminMediaController", array('as' => 'admin'));
 

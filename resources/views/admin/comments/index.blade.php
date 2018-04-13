@@ -80,7 +80,7 @@
                                                     <form class="form" style="padding-left: 30%">
                                                         <div class="checkbox">
                                                             <label class="comment-inprocess-box">
-                                                                <input type="radio" name="status" value="0"> Đang chờ xử lý 
+                                                                <input type="radio" name="status" value="0"> Đang chờ duyệt 
                                                             </label>
                                                         </div>
                                                         <div class="checkbox">
