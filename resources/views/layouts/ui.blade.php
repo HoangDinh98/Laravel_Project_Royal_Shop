@@ -29,32 +29,33 @@
             <!--**************************************-->
 
             <section id="scn">
-                <h3 class="title"><span>WELCOME !</span></h3>
+                <h3 class="title"><span>Thông tin website</span></h3>
                 <div class="row">
                     <div class="span4">
                         <h1><i class="icon-heart"></i> </h1>
-                        <h4>Who we are?</h4>	
-                        <p>Bootstrapapge.com helping you to design you a professional website.Converting PSD to XHTML & CSS. Even more in Graphic Design such as Coverpage, Logo etc. </p>
-                        <p>We are helping you to design you a professional website.Converting PSD to XHTML & CSS. Even more in Graphic Design such as Coverpage </p>
+                        <h4>Về chúng tôi</h4>	
+                        <p>Sở hữu những thiết kế độc đáo, khác biệt mang hơi thở của thời trang thế giới,Royal luôn tự tin là thương hiệu trang sức dẫn đầu xu hướng tại Việt Nam. 
+                            Với sự tỉ mỉ, tinh xảo thể hiện trên từng chi tiết, từng giác cắt của sản phẩm, sắc trắng thuần khiết và độ bền vĩnh cửu của những tuyệt tác trang sức Bạch Kim kết hợp với Kim Cương tự nhiên đến từ Royal sẽ tôn vinh vẻ đẹp lịch lãm, thời thượng, phong cách cho mỗi quý ngài và nét thanh lịch, quý phái, sang trọng cho mỗi quý cô xinh đẹp, từ đó khẳng định cái tôi thời trang và đẳng cấp riêng biệt của họ.</p>
+                        <p> </p>
                     </div>
                     <div class="span4">
                         <div class="seperator">
                             <h1><i class="icon-truck iconShipping"></i> </h1>		
-                            <h4>Shipping Information</h4>		
-                            <p>If you are looking for upgrade your website for mobiles and tablets, Even if you do not have any website. Remember! bootsttrappage.com will come to make your dreams true.</p>
-                            <p class="shipping"><span class="shippingCall">Free Shipping On Orders Over $400</span></p>
+                            <h4>Phương thức thanh toán</h4>		
+                            <p>Nhân viên kinh doanh sẽ liên lạc với Quý khách để nhận thông tin địa chỉ thanh toán..</p>
+                            
                         </div>
                     </div>
                     <div class="span4">
                         <h1><i class="icon-comments-alt"></i> </h1>
-                        <h4>Find us in</h4>
+                        <h4>Liên hệ với chúng tôi</h4>
                         <p class="findUs">
                             <a href="#"><i class="icon-facebook"></i> </a>
                             <a href="#"><i class="icon-twitter"></i> </a>
                             <a href="#"><i class="icon-google-plus"></i> </a>
                         </p>
-                        <h4>Subscribe us</h4>	
-                        <div class="caption">
+<!--                        <h4>Subscribe us</h4>	-->
+<!--                        <div class="caption">
                             <p> Subscribe us for our newsletters</p>
                             <form class="">
                                 <div class="control-group">
@@ -68,13 +69,13 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </section>
-            <hr class="soften"/>
+<!--            <hr class="soften"/>
             <section id="client">
-                <h3 class="title"><span>BRANDS</span></h3>
+                <h3 class="ti  tle"><span>BRANDS</span></h3>
                 <div id="clients" class="carousel slide">
                     <div class="carousel-inner">
                         <div class="item active">
@@ -97,7 +98,7 @@
                                 <img src="{{ asset('UI/themes/images/clients/12.png') }}" alt="#" />
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <a class="left carousel-control" href="#clients" data-slide="prev">‹</a>
                     <a class="right carousel-control" href="#clients" data-slide="next">›</a>
                 </div>
@@ -107,14 +108,14 @@
         ================================================== -->
         <footer class="footer">
             <div class="container">
-                <h5>Accepted Payment Methods </h5>
+<!--                <h5>Accepted Payment Methods </h5>
                 <p><a href="#"><img src="{{ asset('UI/themes/images/payment_methods.png') }}" alt="payment methods" /></a></p>
                 <hr class="soften"/>
                 <div class="footerMenu">
                     <a href="register.php"> REGISTRATION</a> | 
                     <a href="about_us.php"> ABOUT US</a> | 
                     <a  href="topology.php" >TOPOLOGY</a> | 
-                    <a href="contact_us.php">CONTACT </a>
+                    <a href="contact_us.php">CONTACT </a>-->
                     <p class="pull-right"><a href="#">Terms and condition.php</a> &copy; Copyright 2013 Sell Anything. </p>
                 </div>
             </div>

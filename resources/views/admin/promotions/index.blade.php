@@ -7,11 +7,14 @@
     {!! Session::get('notification') !!}
 </div>
 @endif
-
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box">
+            <div class="box-header">
 <h1>Khuyến mãi</h1>
 
-
-<table class="table">
+ <div class="box-body">
+ <table id="example1" class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>STT</th>
@@ -47,6 +50,10 @@
 
     </tbody>
 </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="row">
