@@ -43,7 +43,7 @@ class UIHomeController extends Controller {
 //            ]);
             return redirect()->route('ui.home.index');
         } else {
-            $products = Product::whereRaw("MATCH(name, description) AGAINST(? IN BOOLEAN MODE)", $keyword)->get();
+            $products = Product::where('is_delete',0)->whereRaw("MATCH(name, description) AGAINST(? IN BOOLEAN MODE)", $keyword)->get();
             return view('ui.search', ['products' => $products, 'keyword' => $keyword]);
         }
     }

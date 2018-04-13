@@ -14,8 +14,8 @@
                         <div class="well well-small">
                             <span class="newTag"></span>
                             <span class="priceTag">
-                                <small class="oldPrice"><small>$</small>{{ $product->price }}</small>
-                                <span class="newPrice"><small>$</small>{{ $product->price }}</span>
+                                <small class="oldPrice"><small></small>{{Helper::vn_currencyunit( $product->price) }}</small>
+                                <span class="newPrice"><small></small>{{Helper::vn_currencyunit($product->price) }}</span>
                             </span>
                             <a class="displayStyle" href="#"><img src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/200x200' }}"></a>
                             <h5>{{ $product->name }}</h5>
@@ -23,7 +23,7 @@
                                 <a class="btn btn-warning addcart" data-id="{{$product->id}}"> Thêm vào giỏ hàng <i class="icon-shopping-cart"></i></a> 
                                 <a class="btn" href="{{ route('product.index', $product->id)}}">Xem chi tiết</a>
                             </p>
-                            <p><span class="price"><small>$</small>{{ $product->price }}</span></p>
+                            <p><span class="price"><small></small>{{Helper::vn_currencyunit($product->price) }}</span></p>
 
                         </div>
                     </div>
