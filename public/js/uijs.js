@@ -201,5 +201,132 @@ $('.btn-shippingAgree').click(function () {
 });
 
 //$(document).ready(function () {
+//    var image = $(".user-profile .avatar-box img");
+//    
+//    if( image.prop('naturalWidth') > image.prop('naturalHeight') ) {
+//        image.css({"height":"100%", "width":"auto", "max-width":"none"});
+//    } else {
+//        image.css({"height":"auto", "width":"100%" });
+//    }
+//});
+
+$(window).on("load", function () {
+    var image = $(".user-profile .avatar-box img");
+    image.css("opacity", "0");
+
+    image.animate({opacity: '0.0', opacity: '1.0'}, 'slow');
+
+    if (image.prop('naturalWidth') > image.prop('naturalHeight')) {
+        image.css({"height": "100%", "width": "auto", "max-width": "none"});
+    } else {
+        image.css({"height": "auto", "width": "100%"});
+    }
+});
+
+$("#avatar").change(function () {
+    $("#avatar-source").html('Tệp sẽ được tải lên: <b>' + $("#avatar").val().split('\\').pop() + '</b>');
+});
+
+$(document).ready(function () {
+    $(".profile-update input[type='text']").keyup(function () {
+        $(".profile-update button[type='submit']").prop('disabled', false);
+    });
+
+    $(".profile-update input[type='file']").on('change', function () {
+        $(".profile-update button[type='submit']").prop('disabled', false);
+    });
+
+
+});
+
+$(document).ready(function () {
+    $('.canceldorder').click(function () {
+        $.Notifier("Cảnh báo",
+                "Bạn thự sự muốn HỦY ĐƠN HÀNG này?",
+                "warning",
+                {
+                    vertical_align: "center",
+                    rtl: false,
+                    has_icon: false,
+                    btns: [
+                        {
+                            label: "Xác nhận",
+                            type: "success",
+                            onClick: function () {
+                                $('#order-canceled').submit();
+                            }
+                        },
+                        {
+                            label: "Hủy",
+                            type: "default",
+                            onClick: function () {
+                            }
+                        }
+                    ],
+                    callback: function () { }
+                });
+    });
+});
+
+//////////////////////////
+//////////////////////////
+//PROCESS FOR CHANGE PASS
+
+$(' .btn-change-pass').click(function () {
+    $.post('changepass', $('#change-pass-form').serialize(), function (data) {
+        if (data.hasError) {
+            $('#old-pass-error').html(data.message)
+        } else if (!$.isEmptyObject(data.error)) {
+            $('#old-pass-error').html('');
+            printError(data.error);
+        } else {
+            notify(data.message);
+        }
+    });
+});
+
+function printError(msg) {
+    console.log(msg);
+    $('span[id*=pass-error]').html('');
+
+    $.each(msg, function (key, value) {
+        $('#' + key + '-error').html(value);
+    });
+}
+
+function notify(message) {
+//    location.reload();
+//    $("#change-pass-form").trigger('reset');
+    resetForm("#change-pass-form");
+    $("#change-pass-div").modal('hide');
+    
+    $.Notifier("Thông báo",
+            message,
+            "success",
+            {
+                vertical_align: "center",
+                rtl: false,
+                has_icon: false,
+                btns: [
+                    {
+                        label: "OK",
+                        type: "success",
+                        onClick: function () {}
+                    }
+                ],
+                callback: function () {}
+            });
+}
+
+function resetForm(formID) {
+    $(formID).trigger('reset');
+    $('[id*=-error]').html('');
+}
+
+//END PROCESS FOR CHANGE PASS
+/////////////////////////////
+
+
+//$(document).ready(function () {
 //    $("#notification-content").delay(10000).fadeOut();
 //});

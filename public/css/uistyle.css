@@ -14,6 +14,10 @@ and open the template in the editor.
     src: url('../fonts/UTM_ViceroyJF.ttf')  format('truetype');
 }
 
+.orange1 {
+    color: #de5400;
+}
+
 a:hover {
     cursor: pointer !important;
 }
@@ -42,6 +46,10 @@ a:hover {
     left: 0;
 }
 
+#myCarousel .carousel-control.right {
+    right: 15px;
+    left: auto; 
+}
 
 /*CUSTOMIZE FOR NAVBAR*/
 .navbar-inner {
@@ -528,6 +536,45 @@ section.header_text.sub {
     border-radius: 5px;
 }
 
+/* ----------- STYLE FOR ACCOUNT MANAGEMENT -----*/
+.not-underline, .not-underline:hover, .not-underline:focus, .not-underline:active {
+    text-decoration: none
+}
+
+.order-detail div[class^=span] {
+    margin-top: 15px;
+}
+
+.order-detail .line-block {
+    margin: 0px;
+    padding: 4px 0px;
+}
+
+.avatar-box {
+    display: block;
+    border: 2px solid #666;
+    border-radius: 5px;
+    width: 240px;
+    height: 240px;
+    overflow: hidden;
+}
+
+.avatar-box img {
+    transition: linear 1s;
+}
+
+.profile-update input {
+    width: 90%;
+}
+
+.btn.disabled, .btn[disabled] {
+    cursor: not-allowed;
+}
+
+.required {
+    color: #EF1212;
+}
+
 
 /*------------- STYLE FOR LOGIN FORM --------------*/
 .control-group {
@@ -574,6 +621,34 @@ section.header_text.sub {
 
 
 /* ------------ RESPONSIVE ---------------------*/
+
+@media (min-width: 768px) {
+    .default-add-payment {
+        padding-left: 15px;
+        border-left: 3px solid #9F9F9F;
+    }
+
+    .user-info {
+        height: 230px;
+    }
+
+    .add-info {
+        height: 230px;
+    }
+
+    .order-detail .span6 .accordion-group {
+        height: 178px;
+    }
+
+    .avatar-box {
+        display: block;
+        border: 2px solid #666;
+        border-radius: 5px;
+        width: 210px;
+        height: 210px;
+        overflow: hidden;
+    }
+}
 
 @media (max-width: 979px) {
 

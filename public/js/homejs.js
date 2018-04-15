@@ -2,7 +2,14 @@ $(document).ready(function () {
     $('.btn_login').click(function () {
         var email = $('#email').val();
         var password = $('#password').val();
-
+        var remember_me;
+        
+        if($('#remember_me').prop('checked') == true) {
+            remember_me = $('#remember_me').val();
+        } else {
+            remember_me = null;
+        }
+        
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -13,10 +20,11 @@ $(document).ready(function () {
             url: "/laravel_project_royal_shop/public/user/login",
             data: {
                 'email': email,
-                'password': password
+                'password': password,
+                'remember_me': remember_me
             },
             success: function (data) {
-                console.log(data);
+//                console.log(data);
 
                 if (data.numErr == 0) {
                     var action;
@@ -39,6 +47,7 @@ $(document).ready(function () {
                     }
                     
                     $('#user_btn').html(action);
+//                    console.log(data);
                     location.reload(true);
                     
                 } else {
