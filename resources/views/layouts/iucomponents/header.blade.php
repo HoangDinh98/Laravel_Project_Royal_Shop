@@ -58,7 +58,7 @@
                     </div>
                     <div class="control-group">
                         <label class="checkbox" style="display: inline-block">
-                            <input type="checkbox"> Ghi nhớ tôi
+                            <input type="checkbox" id="remember_me" name="remember_me" value="1"> Ghi nhớ tôi
                         </label>
                     </div>
                     <a href="{{ route('user.register') }}" style="float: right"><b>Tạo tài khoản mới ? </b></a>
