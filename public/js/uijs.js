@@ -275,9 +275,11 @@ $(document).ready(function () {
 $(' .btn-change-pass').click(function () {
     $.post('changepass', $('#change-pass-form').serialize(), function (data) {
         if (data.hasError) {
-            $('#old-pass-error').html(data.message)
+            $('#old-pass-error').html(data.message);
+            $('#old-pass-error').parent().addClass('has-error');
         } else if (!$.isEmptyObject(data.error)) {
             $('#old-pass-error').html('');
+            $('#old-pass-error').parent().removeClass('has-error');
             printError(data.error);
         } else {
             notify(data.message);
@@ -287,19 +289,21 @@ $(' .btn-change-pass').click(function () {
 
 function printError(msg) {
     console.log(msg);
+    $('.input-box').removeClass('has-error');
     $('span[id*=pass-error]').html('');
 
     $.each(msg, function (key, value) {
         $('#' + key + '-error').html(value);
+        $('#' + key + '-error').parent().addClass('has-error');
     });
 }
 
 function notify(message) {
 //    location.reload();
 //    $("#change-pass-form").trigger('reset');
-    resetForm("#change-pass-form");
     $("#change-pass-div").modal('hide');
-    
+    resetForm("#change-pass-form");
+
     $.Notifier("Thông báo",
             message,
             "success",
@@ -321,8 +325,26 @@ function notify(message) {
 function resetForm(formID) {
     $(formID).trigger('reset');
     $('[id*=-error]').html('');
+    $(formID + ' .input-box').removeClass('has-error');
 }
 
+
+//$('#request-email').click(function () {
+//    $.ajaxSetup({
+//        headers: {
+//            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//        }
+//    });
+//    
+//    $.ajax({
+//        type: 'GET',
+////        url: $(form).attr('action'),
+//        url: '/laravel_project_royal_shop/public/user/profile/requestmail',
+//        success: function (data) {
+//            console.log(data);
+//        }
+//    });
+//});
 //END PROCESS FOR CHANGE PASS
 /////////////////////////////
 

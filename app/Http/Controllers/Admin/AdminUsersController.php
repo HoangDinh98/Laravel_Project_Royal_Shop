@@ -10,6 +10,7 @@ use App\Http\Controllers\Standard;
 use App\Role;
 use App\User;
 use App\Photo;
+use App\EmailChecker;
 
 date_default_timezone_set("Asia/Ho_Chi_Minh");
 
@@ -20,6 +21,12 @@ class AdminUsersController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
+    public $EmailChecker;
+
+    public function __construct() {
+        $this->EmailChecker = new EmailChecker();
+    }
+
     public function index() {
         $users = User::orderBy('created_at', 'desc')->get();
         return view('admin.users.index', compact('users'));
@@ -44,7 +51,7 @@ class AdminUsersController extends Controller {
     public function store(Request $request) {
         $this->validate($request, [
             'name' => 'required|min:5|max:30',
-            'email' => 'required|email|min:16|unique:users,email',
+            'email' => 'required|email|min:16|email_checker|unique:users,email',
             'password' => 'required|min:8|max:20',
             're_password' => 'required|same:password',
             'avatar' => 'mimes:jpg,jpeg,png|max:3670',
@@ -54,6 +61,7 @@ class AdminUsersController extends Controller {
             'name.max' => 'Tên quá dài (vượt quá 30 ký tự)',
             'email.required' => 'Không thể để trống Email',
             'email.min' => 'Email quá ngắn hoặc không khả dụng',
+            'email.email_checker' => 'Email không tồn tại',
             'email.unique' => 'Email này đã được sử dụng',
             'password.required' => 'Không thẻ để trống Mật khẩu',
             'password.min' => 'Mật khẩu phải từ 8-20 ký tự',
@@ -65,6 +73,7 @@ class AdminUsersController extends Controller {
                 ]
         );
         $input = $request->all();
+
         $input['password'] = bcrypt($request->password);
 
         $input['name'] = Standard::standardize_data($input['name'], 1);

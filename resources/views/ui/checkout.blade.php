@@ -130,7 +130,7 @@
                                     </label>
                                     <div class="controls {{$errors->has('city')?'has-error':''}}">
                                         <input type="text" id="city" name="city" class="input-xlarge"
-                                               value="{{ old('city') }}">
+                                               value="{{ old('city') ? old('city'): ($user->hasadd ? $user->city : '') }}">
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -141,7 +141,7 @@
                                     </label>
                                     <div class="controls {{$errors->has('district')?'has-error':''}}">
                                         <input type="text" id="district" name="district" class="input-xlarge"
-                                               value="{{ old('district') }}">
+                                               value="{{ old('district') ? old('district') : ($user->hasadd ? $user->district : '') }}">
                                     </div>
                                 </div>					  
                                 <div class="control-group">
@@ -152,7 +152,7 @@
                                     </label>
                                     <div class="controls {{$errors->has('town')?'has-error':''}}">
                                         <input type="text" id="town" name="town" class="input-xlarge"
-                                               value="{{ old('town') }}">
+                                               value="{{ old('town') ? old('town'): ($user->hasadd ? $user->town : '') }}">
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -163,7 +163,7 @@
                                     </label>
                                     <div class="controls {{$errors->has('village')?'has-error':''}}">
                                         <input type="text" id="village" name="village" class="input-xlarge"
-                                               value="{{ old('village') }}">
+                                               value="{{ old('village') ? old('village'): ($user->hasadd ? $user->village : '') }}">
                                     </div>
                                 </div>
                             </div>

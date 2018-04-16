@@ -155,6 +155,7 @@ return [
         /*
          * Application Service Providers...
          */
+        Tintnaingwin\EmailChecker\EmailCheckerServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
@@ -212,7 +213,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'EmailChecker' => Tintnaingwin\EmailChecker\Facades\EmailChecker::class,
+        
     ],
 
 ];

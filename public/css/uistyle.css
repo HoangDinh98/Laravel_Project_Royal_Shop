@@ -18,6 +18,11 @@ and open the template in the editor.
     color: #de5400;
 }
 
+.btn, .btn:hover, .btn:active, .btn:focus, .btn:visited {
+    border-radius: 4px;
+    outline: none;
+}
+
 a:hover {
     cursor: pointer !important;
 }

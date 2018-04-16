@@ -38,4 +38,13 @@ class User extends Authenticatable
     public function avatar() {
         return $this->photos()->where('is_thumbnail', 1)->first();
     }
+    
+    public function orders() {
+        return $this->hasMany('App\Order');
+    }
+    
+    public function orderslimit ($limited) {
+        return $this->hasMany('App\Order')->orderBy('created_at', 'desc')->limit($limited)->get();
+//        return $this->hasMany('App\Order')->take($limited)->get();
+    }
 }

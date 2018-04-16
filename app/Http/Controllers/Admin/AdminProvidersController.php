@@ -18,7 +18,7 @@ class AdminProvidersController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $providers = Provider::where('is_delete', 1)->orderBy('created_at', 'desc')->paginate(10);
+        $providers = Provider::where('is_delete', 0)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('admin.providers.index', compact('providers'));
     }

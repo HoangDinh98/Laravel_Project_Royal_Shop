@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 use App\Product;
 use App\Cart;
 use App\Order;
@@ -194,17 +195,26 @@ class UICartController extends Controller {
         if (session()->has('cart')) {
             if (Auth::check()) {
                 $user = Auth::user();
-                $lastname = str_before($user->name, ' ');
-                $firstname = str_after($user->name, $lastname);
 
-                $user->firstname = $firstname;
-                $user->lastname = $lastname;
+                $name = Helper::diveid_name($user->name);
+                if (!empty($user->default_add_received)) {
+                    $add = Helper::diveid_add($user->default_add_received);
+                    $user->hasadd = true;
+                    $user->city = $add['city'];
+                    $user->district = $add['district'];
+                    $user->town = $add['town'];
+                    $user->village = $add['village'];
+                }
+
+                $user->firstname = $name['firstname'];
+                $user->lastname = $name['lastname'];
             } else {
                 $user = app()->make('App');
                 $user->firstname = null;
                 $user->lastname = null;
                 $user->email = null;
                 $user->phone = null;
+                $user->hasadd = false;
 //                var_export($user);
             }
             $oldCart = Session::get('cart');
@@ -307,8 +317,19 @@ class UICartController extends Controller {
     }
 
     public function shippingSubmit() {
+        $user_id = null;
+        if (Auth::check()) {
+            $user = User::findOrFail(Auth::user()->id);
+            $user_id = $user->id;
+            
+            if (empty($user->default_add_received)) {
+                $user->default_add_received = Session::get('order')->address;
+                $user->save();
+            }
+        }
 
         $order = Order::create([
+                    'user_id' => $user_id,
                     'customer_name' => Session::get('order')->customer_name,
                     'phone' => Session::get('order')->phone,
                     'email' => Session::get('order')->email,

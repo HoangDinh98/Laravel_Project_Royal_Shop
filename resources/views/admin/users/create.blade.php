@@ -11,6 +11,21 @@
     <!-- form start -->
     <div class="row">
         <div class="col-md-8">
+            <div style="color: #F00">
+                @if(session()->has('error'))
+                {!! session()->get('error') !!}
+                @endif
+                
+                @if(session()->has('success'))
+                {!! session()->get('success') !!}
+                @endif
+                
+                @php
+                session()->forget('error');
+                session()->forget('success');
+                @endphp
+            </div>
+            
             <form role="form" action="{{ route('admin.users.store') }}" method="POST" enctype='multipart/form-data'>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 <div class="box-body">

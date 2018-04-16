@@ -82,44 +82,41 @@ class UIUserController extends Controller {
     public function destroy($id) {
         //
     }
-    
+
     public function registerShow() {
         return view('ui.register');
     }
-    
-     public function Register(Request $request)
-    {   
-         
-         $this->validate($request, [
-             'name' => 'required|string|max:50',
+
+    public function Register(Request $request) {
+
+        $this->validate($request, [
+            'name' => 'required|string|max:50',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-         ],[
-             'name.required'=>'*Vui lòng nhập tên tài khoản',
-             'name.max'=>'*Vui lòng nhập không quá 50 ký tự',
-             'email.required' => '*Vui lòng nhập email',
-             'email.unique' => '*Email đã tồn tại',
-             'password.required' => '*Vui lòng nhập mất khẩu',
-             'password.min' => '*Mật khấu tối thiểu gồm 6 ký tự',
-             
-         ]);
+                ], [
+            'name.required' => '*Vui lòng nhập tên tài khoản',
+            'name.max' => '*Vui lòng nhập không quá 50 ký tự',
+            'email.required' => '*Vui lòng nhập email',
+            'email.unique' => '*Email đã tồn tại',
+            'password.required' => '*Vui lòng nhập mất khẩu',
+            'password.min' => '*Mật khấu tối thiểu gồm 6 ký tự',
+        ]);
 
         $name = $request->input('name');
         $email = $request->input('email');
         $pass = Hash::make($request->input('password'));
-        
-        $user = User::create(['name' => $name,'email'=>$email,'password'=>$pass,'role_id'=>2]);
+
+        $user = User::create(['name' => $name, 'email' => $email, 'password' => $pass, 'role_id' => 2]);
 //        $request->session()->flash('status', 'Tạo tài khoản thành công! Bắt đầu đăng nhập để sử dụng tài khoản');
 
-        return redirect('/')->with('status', 'Tạo tài khoản thành công! Bắt đầu đăng nhập để sử dụng tài khoản');    
-        
+        return redirect('/')->with('status', 'Tạo tài khoản thành công! Bắt đầu đăng nhập để sử dụng tài khoản');
     }
 
     public function login(Request $request) {
         if ($request->ajax()) {
             $email = $request->email;
             $password = $request->password;
-            
+
 
             $user = User::where('email', '=', $email)->first();
             // Check for Errors
@@ -143,6 +140,7 @@ class UIUserController extends Controller {
             }
 
 //            Delived data if dont have any errors
+            $remember_me = empty($request->remember_me) ? false : true;
             $result = array(
                 'numErr' => 0,
                 'emailErr' => '',
@@ -153,13 +151,12 @@ class UIUserController extends Controller {
                 'path' => 'http://localhost/laravel_project_diamond_shop/public/',
             );
 
-            Auth::attempt(['email' => $email, 'password' => $password], 0);
-            
-            return response()->json($result);
+            if (Auth::attempt(['email' => $email, 'password' => $password], $remember_me)) {
+                return response()->json($result);
+            } else {
+                return response()->json(['message' => 'Đăng nhập thất bại']);
+            }
         }
     }
-    
-
-    
 
 }

@@ -63,6 +63,12 @@ Route::post('user/register', 'UI\UIUserController@Register')->name('user.registe
 
 // ----------- ACCOUNT ----------------
 Route::get('user/account/{id}', 'UI\UIAccountController@show')->name('user.account');
+Route::get('user/order/{id}', 'UI\UIAccountController@orderDetail')->name('user.orderdetail');
+Route::get('user/profile/{id}', 'UI\UIAccountController@profile')->name('user.profile');
+Route::post('user/profile/{id}', 'UI\UIAccountController@profileUpdate')->name('user.profile.update');
+Route::post('user/order/canceled', 'UI\UIAccountController@orderCanceled')->name('user.ordercanceled');
+Route::put('user/profile/changepass', 'UI\UIAccountController@changePass')->name('user.changepass');
+Route::get('user/profile/requestmail/{id}', 'UI\UIAccountController@sendMail')->name('user.sendmail');
 
 //------ Cart ------
 Route::post("cart/addcart", "UI\UICartController@addCart")->name('cart.addcart');

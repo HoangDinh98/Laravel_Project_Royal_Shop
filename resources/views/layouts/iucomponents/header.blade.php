@@ -49,12 +49,12 @@
                 <form class="loginFrm">
                     <div id="email_box" class="control-group input-box" >								
                         <input type="email" id="email" placeholder="Email" required autofocus>
-                        <span id="email_Err" class="text-danger">{{ $errors->first('emailErr') }}</span>
+                        <span id="email_Err" class="required">{{ $errors->first('emailErr') }}</span>
                     </div>
 
                     <div id="pass_box" class="control-group input-box">
                         <input type="password" id="password" placeholder="Mật khẩu">
-                        <span id="pass_Err" class="text-danger">{{ $errors->first('passwordErr') }}</span>
+                        <span id="pass_Err" class="required">{{ $errors->first('passwordErr') }}</span>
                     </div>
                     <div class="control-group">
                         <label class="checkbox" style="display: inline-block">
