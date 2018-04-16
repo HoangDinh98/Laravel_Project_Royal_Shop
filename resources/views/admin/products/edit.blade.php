@@ -4,7 +4,9 @@
 @section('content')
 
     @include('includes.tinyeditor')
-    <h1>Chỉnh sửa thông tin sản phẩm</h1>
+<div class="box">
+    <h1 style="padding-left: 5px; ">Chỉnh sửa thông tin sản phẩm</h1>
+    <div class="box-header">
     <div class="container">
     <div class="row">
          
@@ -95,6 +97,7 @@
 
     </div>
     </div>
-
+    </div>
+</div>
 
 @stop

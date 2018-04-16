@@ -9,8 +9,10 @@
         {!! Session::get('delete_product') !!}
     </div>
     @endif
-    <h1>Products Management</h1>
 
+<div class="box">
+    <h1 style="padding-left: 10px;"> Quản lý sản phẩm</h1>
+    <div class="box-header">
     <table class="table">
        <thead>
          <tr>
@@ -82,7 +84,8 @@
         </div>
         
     </div>
-
+    </div>
+</div>
  @section('$providers')
     @if($providers)   
     @foreach($providers as $provider)

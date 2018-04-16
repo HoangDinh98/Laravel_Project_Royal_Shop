@@ -8,8 +8,9 @@
         {!! Session::get('delete_photo') !!}
     </div>
     @endif
+<div class="box">
     <h1>Quản lý hình ảnh</h1>
-
+    <div class="box-header">
     <table class="table">
        <thead>
          <tr>
@@ -66,6 +67,8 @@
         </div>
         
     </div>
+    </div>
+</div>
 
 @section('$products')
     @if($products)   

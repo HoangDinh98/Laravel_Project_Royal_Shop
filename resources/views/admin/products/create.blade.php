@@ -4,7 +4,9 @@
 @section('content')
 
 @include('includes.tinyeditor')
+<div class="box">
 <h1>Tạo sản phẩm</h1>
+    <div class="box-header">
 <div class="container">
     <div class="row">
 
@@ -85,6 +87,8 @@
 
 
 
+    </div>
+</div>
     </div>
 </div>
 
