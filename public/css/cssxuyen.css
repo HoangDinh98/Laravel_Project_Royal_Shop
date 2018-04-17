@@ -1,3 +1,4 @@
+/*STYLE OF BTN CART*/
 .span3{
     height: 400px;
 }
@@ -7,5 +8,7 @@
 .span3:hover .addcart{
       display:block;
 }
+/*STYLE OF NAV GIÁ*/
+
 
 

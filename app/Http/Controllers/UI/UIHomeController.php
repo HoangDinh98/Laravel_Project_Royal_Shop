@@ -31,6 +31,17 @@ class UIHomeController extends Controller {
         $products = Product::where('category_id', $id)->paginate(7);
         return view('ui.lists', compact('products'));
     }
+    
+    public function getProByPrice(Request $request){
+        $symbol = [
+            0 => '_',
+            2 => '-',
+            3 => '+'
+        ];
+        
+        $priceproducts = Product::where('price', '>','1000000')->get();
+        return view ('ui.pricelists', compact('priceproducts'));
+    }
 
     public function search(Request $request) {
         $keyword = $request->keyword;

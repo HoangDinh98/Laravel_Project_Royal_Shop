@@ -174,9 +174,9 @@
                                         $current_price = $product->price*(1 - 0.01*$product->promotion->value)
                                         @endphp
 
-                                        <span class="price" style="font-size: 16px">{{ Helper::vn_currencyunit($current_price) }}</span><br>
                                         <span><del>{{ Helper::vn_currencyunit($product->price) }}</del></span>&nbsp;&nbsp;
-                                        <span>{{'- '.$product->promotion->value.' %'}}</span>
+                                           <span>{{'- '.$product->promotion->value.' %'}}</span><br><br>
+                                        <span class="price" style="font-size: 16px">{{ Helper::vn_currencyunit($current_price) }}</span>
                                     </p>
                                     <div class="addcart">
                                         <a class="btn btn-warning addcart" data-id="{{$product->id}}">Thêm vào giỏ hàng <i class="icon-shopping-cart"></i></a> 

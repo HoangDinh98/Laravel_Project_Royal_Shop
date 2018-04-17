@@ -10,32 +10,33 @@
     <div class="item active"> <div class="row">
             <div class="item"><div class="row">
                     @foreach($products as $product)
-                    <div class="span3">
+                    <div class="span3">                       
                         <div class="well well-small">
-                            <span class="newTag"></span>
-                            <span class="priceTag">
-                                <small class="oldPrice"><small></small>{{Helper::vn_currencyunit( $product->price) }}</small>
-                                <span class="newPrice"><small></small>{{Helper::vn_currencyunit($product->price) }}</span>
-                            </span>
-                            <a class="displayStyle" href="#"><img src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/200x200' }}"></a>
+                            <a class="displayStyle" href="{{ route('product.index', $product->id)}}"><img id="product-img-{{$product->id}}" src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/250x250' }}"></a>
                             <h5>{{ $product->name }}</h5>
                             <p>
-                                <a class="btn btn-warning addcart" data-id="{{$product->id}}"> Thêm vào giỏ hàng <i class="icon-shopping-cart"></i></a> 
-                                <a class="btn" href="{{ route('product.index', $product->id)}}">Xem chi tiết</a>
-                            </p>
-                            <p><span class="price"><small></small>{{Helper::vn_currencyunit($product->price) }}</span></p>
+                                @php
+                                $current_price = $product->price*(1 - 0.01*$product->promotion->value)
+                                @endphp
 
-                        </div>
+                                <span><del>{{ Helper::vn_currencyunit($product->price) }}</del></span>&nbsp;&nbsp;
+                                <span>{{'- '.$product->promotion->value.' %'}}</span><br><br>
+                                <span class="price" style="font-size: 16px">{{ Helper::vn_currencyunit($current_price) }}</span>
+                            </p>
+                            <div class="addcart">
+                                <a class="btn btn-warning addcart" data-id="{{$product->id}}">Thêm vào giỏ hàng <i class="icon-shopping-cart"></i></a> 
+                            </div>                    
+                        </div>                       
                     </div>
                     @endforeach
-                    
-                   
+
+
                 </div>
             </div>
         </div>
     </div>
-    
-    
+
+
     @endif
 
 </section>

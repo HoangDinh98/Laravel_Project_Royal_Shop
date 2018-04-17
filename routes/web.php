@@ -50,6 +50,7 @@ Route::post("/product/{id}/comment", "UI\UIProductDetailController@addComment")-
 Route::get('/product/{id}/delete', 'UI\UIProductDetailController@deleteComment')->name('product.deletecomment');
 
 Route::get("/home/category/{id}", "UI\UIHomeController@getProByCate")->name('home.getProByCate');
+Route::get("/home/searchbyprice/{data}", "UI\UIHomeController@getProByPrice")->name('home.getProByPrice');
 
 Route::get('admin/products/{id}/provider',[ 'uses'=>'Admin\AdminProductsController@getProviderById'] );
 Route::get('admin/media/{id}/product',[ 'uses'=>'Admin\AdminMediaController@getProductById'] );

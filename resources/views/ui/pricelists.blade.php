@@ -9,13 +9,13 @@
 @endphp
 
 <section id="featuredProduct">
-    <h3 class="title"><span>Sản phẩm theo danh mục</span></h3>
+    <h3 class="title"><span>Các sản phẩm dưới 1 triệu VNĐ</span></h3>
     
     <div id="myCarouselOne" class="carousel slide">
         <!-- Dot Indicators -->
        
         <div class="carousel-inner">
-            @foreach($products as $product)
+            @foreach($priceproducts as $product)
             
             @if($step == 0) 
                 {!!  '<div class="item active"> <div class="row">'  !!}
@@ -40,7 +40,7 @@
                                     </div>                    
                                 </div>                       
                             </div>
-             @if ($step % 4 == 3 || $step == $products->count()-1) 
+             @if ($step % 4 == 3 || $step == $priceproducts->count()-1) 
              {!!  '</div></div>' !!}
              @endif
              
