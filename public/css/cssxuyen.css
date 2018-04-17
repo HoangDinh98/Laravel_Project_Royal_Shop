@@ -2,10 +2,10 @@
 .span3{
     height: 400px;
 }
-.addcart{
+.addcart-box{
     display: none;
 }
-.span3:hover .addcart{
+.span3:hover .addcart-box{
       display:block;
 }
 /*STYLE OF NAV GIÁ*/

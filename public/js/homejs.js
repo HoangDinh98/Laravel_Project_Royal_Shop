@@ -17,7 +17,7 @@ $(document).ready(function () {
         });
         $.ajax({
             type: "POST",
-            url: "/laravel_project_royal_shop/public/user/login",
+            url: "/user/login",
             data: {
                 'email': email,
                 'password': password,
@@ -65,6 +65,12 @@ $(document).ready(function () {
                     } else {
                         $("#pass_box").removeClass("has-error");
                         $('#pass_Err').text('')
+                    }
+                    
+                    if (data.confirmErr != '') {
+                        $('#not-verify').html(data.confirmErr)
+                    } else {
+                        $('#not-verify').html('')
                     }
                 }
             }

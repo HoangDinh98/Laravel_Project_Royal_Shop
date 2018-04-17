@@ -9,50 +9,61 @@
             <li class="active">Đăng ký</li>
         </ul>
         <div class="well">
-            <form class="form-horizontal" method="POST" action="{{ route('user.register.submit') }}">
+            <form class="register-form form-horizontal" method="POST" action="{{ route('user.register.submit') }}">
+                <p>
+                    Vui lòng nhập đúng thông tin cá nhân của bạn vào biểu mẫu dưới đây.
+                    Điều này sẽ thuận tiện hơn cho việc đặt hàng.
+                    Những trường có dấu (*) là bắt buộc
+                </p>
                 @csrf
-                <h3>Thông tin cá nhân</h3>
-
+                <h3>Thông tin Đăng ký</h3>
                 <div class="control-group">
-                    <label class="control-label" style="text-align: left;" for="name">Tên <sup>*</sup></label>
-                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required ><br>
-                    <div>
-                        @if ($errors->has('name'))
-                        <span class="invalid-feedback">
-                            <strong><p class="feed">{{ $errors->first('name') }}</p></strong>
-                        </span>
-                        @endif     
-                </div>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label" style="text-align: left;" for="email">Email <sup>*</sup></label>
-                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required><br>
-                    <div>
-                        @if ($errors->has('email'))
-                        <span class="invalid-feedback">
-                            <strong><p class="feed">{{ $errors->first('email') }}</p></strong>
-                        </span>
-                        @endif 
-                </div>	  
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label" style="text-align: left;" for="password">Mật khẩu <sup>*</sup></label>
-                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required><br>
-                    <div>
-                        @if ($errors->has('password'))
-                        <span class="invalid-feedback ">
-                            <strong><p class="feed">{{ $errors->first('password') }}</p></strong>
-                        </span>
-                        @endif                    
-                </div>	 
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label " style="text-align: left;" for="password-confirm">Xác nhận mật khẩu <sup>*</sup></label>
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                    <label class="control-label" style="text-align: left;" for="name">Tên <span class="required">*</span></label>
+                    <input id="firstname" type="text" name="firstname" value="{{ old('firstname') }}"><br>
+                    <div class="required">
+                        {{ $errors->has('firstname') ? $errors->first('firstname') : '' }}
                     </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" style="text-align: left;" for="name">Họ, tên đệm <span class="required">*</span></label>
+                    <input id="lastname" type="text" name="lastname" value="{{ old('lastname') }}"><br>
+                    <div class="required">
+                        {{ $errors->has('lastname') ? $errors->first('lastname') : '' }}
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" style="text-align: left;" for="email">Email <span class="required">*</span></label>
+                    <input id="email" type="email" name="email" value="{{ old('email') }}"><br>
+                    <div class="required">
+                        {{ $errors->has('email') ? $errors->first('email') : '' }}
+                    </div>	  
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" style="text-align: left;" for="email">Số ĐT </label>
+                    <input id="phone" type="text" name="phone" value="{{ old('phone') }}" ><br>
+                    <div class="required">
+                        {{ $errors->has('phone') ? $errors->first('phone') : '' }}
+                    </div>	  
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" style="text-align: left;" for="password">Mật khẩu <span class="required">*</span></label>
+                    <input id="password" type="password" name="password"><br>
+                    <div class="required">
+                        {{ $errors->has('password') ? $errors->first('password') : '' }}
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label " style="text-align: left;" for="password-confirm">Xác nhận mật khẩu <span class="required">*</span></label>
+                    <input id="repassword" type="password" name="repassword">
+                    <div class="required">
+                        {{ $errors->has('repassword') ? $errors->first('repassword') : '' }}
+                    </div>
+                </div>
 
                 <div class="control-group">
                     <div class="controls">

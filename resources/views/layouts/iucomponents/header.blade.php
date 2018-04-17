@@ -47,6 +47,10 @@
             </div>
             <div class="modal-body">
                 <form class="loginFrm">
+                    <div class="required control-group">
+                        <b id="not-verify"></b>
+                    </div>
+                    
                     <div id="email_box" class="control-group input-box" >								
                         <input type="email" id="email" placeholder="Email" required autofocus>
                         <span id="email_Err" class="required">{{ $errors->first('emailErr') }}</span>

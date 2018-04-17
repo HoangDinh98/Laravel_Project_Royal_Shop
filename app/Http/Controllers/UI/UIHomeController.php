@@ -24,6 +24,7 @@ class UIHomeController extends Controller {
         $products = Product::orderBy('created_at', 'desc')->where('is_delete', 0)->paginate(5);
         $hot_products = Product::join('order_details', 'products.id', '=', 'order_details.product_id')->where('order_details.quantity', '>', 5)->get();
         $cate_products = Product::whereIn('category_id', array(1, 2, 3))->get();
+        
         return view('ui.index', compact('products', 'hot_products', 'cate_products'));
     }
 

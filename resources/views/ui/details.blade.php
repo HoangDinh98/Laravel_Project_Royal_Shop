@@ -101,8 +101,6 @@
                 <textarea id="text_content" name="content" cols="20"  placeholder="Nhập bình luận" value="{{ old('content') }}" ></textarea>
                 <span class="text-danger">{{ $errors->first('content') }}</span>
             </div> 
-
-
             <button type="submit" class="btn btn-primary" style="margin-left: 2%;">Gửi</button>
 
         </form> 

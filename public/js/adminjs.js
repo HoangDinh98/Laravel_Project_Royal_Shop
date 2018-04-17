@@ -106,7 +106,7 @@ $('.update-form-submit').on('click', function () {
 
     $.ajax({
         type: "POST",
-        url: "/laravel_project_royal_shop/public/admin/orders/updateindex",
+        url: "/admin/orders/updateindex",
         data: {
             'id': order_id,
             'status': status
@@ -172,7 +172,7 @@ $('.update-comment-submit').on('click', function () {
 
     $.ajax({
         type: "POST",
-        url: "/laravel_project_royal_shop/public/admin/comments/update",
+        url: "/admin/comments/update",
         data: {
             'id': comment_id,
             'status': status

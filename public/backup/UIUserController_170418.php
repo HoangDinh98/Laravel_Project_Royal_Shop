@@ -9,11 +9,12 @@ use App\Http\Controllers\Standard;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
+<<<<<<< Updated upstream
+=======
 use Validator;
 use Helper;
 use Illuminate\Support\Str;
-use App\Mail\VerifyEmail;
+>>>>>>> Stashed changes
 
 date_default_timezone_set("Asia/Ho_Chi_Minh");
 
@@ -24,6 +25,99 @@ class UIUserController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
+<<<<<<< Updated upstream
+    public function index() {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create() {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request) {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id) {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id) {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id) {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id) {
+        //
+    }
+
+    public function registerShow() {
+        return view('ui.register');
+    }
+
+    public function Register(Request $request) {
+
+        $this->validate($request, [
+            'name' => 'required|string|max:50',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+                ], [
+            'name.required' => '*Vui lòng nhập tên tài khoản',
+            'name.max' => '*Vui lòng nhập không quá 50 ký tự',
+            'email.required' => '*Vui lòng nhập email',
+            'email.unique' => '*Email đã tồn tại',
+            'password.required' => '*Vui lòng nhập mất khẩu',
+            'password.min' => '*Mật khấu tối thiểu gồm 6 ký tự',
+        ]);
+
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $pass = Hash::make($request->input('password'));
+
+        $user = User::create(['name' => $name, 'email' => $email, 'password' => $pass, 'role_id' => 2]);
+//        $request->session()->flash('status', 'Tạo tài khoản thành công! Bắt đầu đăng nhập để sử dụng tài khoản');
+
+        return redirect('/')->with('status', 'Tạo tài khoản thành công! Bắt đầu đăng nhập để sử dụng tài khoản');
+=======
     protected $messsages = array(
         'firstname.required' => 'Không thể để trống Tên',
         'lastname.required' => 'Không thể để trống Họ, tên đệm',
@@ -66,6 +160,15 @@ class UIUserController extends Controller {
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         } else {
+            //            $confirm_code = Str::random(16);
+            $is_continue = TRUE;
+            while ($is_continue) {
+                $confirm_code = Str::random(16);
+                if (count(User::where('confirm_code', '=', $confirm_code)->get()) == 0) {
+                    $is_continue = FALSE;
+                }
+            }
+
             $name = Helper::standardize_data($request->lastname, 1) . ' ' . Helper::standardize_data($request->firstname, 1);
             $email = $request->email;
             if (!empty($request->phone)) {
@@ -74,7 +177,6 @@ class UIUserController extends Controller {
                 $phone = NULL;
             }
 
-            $confirm_code = base64_encode($email);
             $password = bcrypt($request->password);
 
             $input = array(
@@ -82,38 +184,25 @@ class UIUserController extends Controller {
                 'email' => $email,
                 'password' => $password,
                 'phone' => $phone,
-                'role_id' => 3,
+                'role_id' => 1,
                 'is_active' => 0,
                 'is_confirmed' => 0,
                 'confirm_code' => $confirm_code
             );
 
-            $user = User::create($input);
-            Mail::to($user->email)->queue(new VerifyEmail($user));
-
-            return redirect('/')->with('registerStatus', $user->email);
+            var_dump($input);
+//            $input = $request->all();
+//        $name = $request->input('name');
+//        $email = $request->input('email');
+//        $pass = Hash::make($request->input('password'));
+//
+            User::create($input);
         }
 
 ////        $request->session()->flash('status', 'Tạo tài khoản thành công! Bắt đầu đăng nhập để sử dụng tài khoản');
 //
 //        return redirect('/')->with('status', 'Tạo tài khoản thành công! Bắt đầu đăng nhập để sử dụng tài khoản');
-    }
-
-    public function verifyEmail($confirm_code) {
-        $status = User::where('confirm_code', '=', $confirm_code)->update(['is_confirmed' => 1, 'confirm_code' => NULL]);
-
-        if ($status == 0) {
-            return redirect('/')->with('verifyStatus', [
-                        'err' => 1,
-                        'message' => 'Tài khoản của bạn đã được xác thực trước đó!'
-            ]);
-        } else {
-            return redirect('/')->with('verifyStatus', [
-                        'err' => 0,
-                        'message' => 'Xác thực Email thành công!<br> Đăng nhập ngay để sử dụng dịch vụ'
-            ]);
-        }
-//        echo '<<<<<<'.$status.' >>>> OK';
+>>>>>>> Stashed changes
     }
 
     public function login(Request $request) {
@@ -128,27 +217,16 @@ class UIUserController extends Controller {
                 $result = array(
                     'numErr' => 1,
                     'emailErr' => 'Email không hợp lệ',
-                    'passErr' => '',
-                    'confirmErr' => ''
+                    'passErr' => ''
                 );
                 return response()->json($result);
             } else {
-                if ($user->is_confirmed == 0 && !empty($user->confirm_code)) {
-                    $result = array(
-                        'numErr' => 1,
-                        'emailErr' => '',
-                        'passErr' => '',
-                        'confirmErr' => 'Email của bạn chưa được xác thực<br>Vui lòng kiểm tra Email của bạn và xác thực tài khoản để sử dụng dịch vụ'
-                    );
-                    return response()->json($result);
-                }
-
+//                $user = User::where('email', $email)->where('password', $request->password)->first();
                 if (!Hash::check($password, $user->password)) {
                     $result = array(
                         'numErr' => 1,
                         'emailErr' => '',
-                        'passErr' => 'Mật khẩu không chính xác',
-                        'confirmErr' => ''
+                        'passErr' => 'Mật khẩu không chính xác'
                     );
                     return response()->json($result);
                 }

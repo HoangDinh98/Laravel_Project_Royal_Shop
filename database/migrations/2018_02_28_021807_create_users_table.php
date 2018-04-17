@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('phone', 11)->nullable();
             $table->string('default_add_received')->nullable();
             $table->integer('role_id')->unsigned()->default(1);
+            $table->tinyInteger('is_confirmed')->default(0);
+            $table->string('confirm_code', 80)->nullable();
             $table->tinyInteger('is_active')->default(1);
             $table->rememberToken();
             $table->timestamps();

@@ -12,7 +12,9 @@
         @if(!Auth::check())
         <div class="span12">
             <a id="call-login"><b>Đăng nhập</b></a> để thanh toán tiện lợi hơn.
-            Nếu chưa có tài khoản, hãy <a><b>Đăng ký</b></a> ngay.
+            Nếu chưa có tài khoản, hãy
+            <a href="{{ route('user.register') }}"><b>Đăng ký</b></a>
+            ngay.
         </div>
         @endif
 

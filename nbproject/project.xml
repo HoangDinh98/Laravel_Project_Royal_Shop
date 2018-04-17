@@ -10,6 +10,7 @@
             <word>endforeach</word>
             <word>endif</word>
             <word>endphp</word>
+            <word>này</word>
             <word>php</word>
         </spellchecker-wordlist>
     </configuration>

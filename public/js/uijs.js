@@ -32,7 +32,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "/laravel_project_royal_shop/public/cart/addcart",
+            url: "/cart/addcart",
             data: {
                 'id': pro_id
             },

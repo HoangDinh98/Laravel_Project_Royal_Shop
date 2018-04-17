@@ -61,6 +61,7 @@ Route::post("user/login", "UI\UIUserController@login")->name('user.login');
 
 Route::get('user/register', 'UI\UIUserController@registerShow')->name('user.register');
 Route::post('user/register', 'UI\UIUserController@Register')->name('user.register.submit');
+Route::get('user/verifyemail/{confirm_code}', 'UI\UIUserController@verifyEmail')->name('user.verifyemail');
 
 // ----------- ACCOUNT ----------------
 Route::get('user/account/{id}', 'UI\UIAccountController@show')->name('user.account');

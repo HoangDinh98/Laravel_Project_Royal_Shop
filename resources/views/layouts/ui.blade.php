@@ -134,14 +134,17 @@
         <script src="{{asset('js/uijs.js')}}"></script>
         <script src="{{asset('js/homejs.js')}}"></script>
         <link rel="stylesheet" href="{{asset('css/uistyle.css')}}">
+        <link rel="stylesheet" href="{{asset('css/cssxuyen.css')}}">
+        <link rel="stylesheet" href="{{asset('css/cssanh.css')}}">
+        <link rel="stylesheet" href="{{asset('css/csssinh.css')}}">
         
         @yield('extraNotify')
     </body>
 
-    @if (session('status'))
+<!--    @if (session('status'))
     <script>
         $('#login').modal('show');
     </script>
     session()->forget('status')
-    @endif
+    @endif-->
 </html>
