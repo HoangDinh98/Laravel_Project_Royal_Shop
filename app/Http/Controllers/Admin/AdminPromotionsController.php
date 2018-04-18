@@ -17,7 +17,7 @@ class AdminPromotionsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $promotions = Promotion::where('is_active', 1)->orderBy('created_at', 'desc')->paginate(10);
+        $promotions = Promotion::findOrFail($id)->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.promotions.index', compact('promotions'));
     }
 

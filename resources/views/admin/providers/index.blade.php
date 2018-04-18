@@ -13,7 +13,7 @@
     <div class="col-sm-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Data Table With Full Features</h3>
+                <h3 class="box-title">Các Nhà Cung Cấp</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -49,7 +49,7 @@
 
                                 <a class="button-a delete-button delete-fnt" data-type="3" data-id="{{$provider->id }}"
                                    title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;
-                            </td>
+                           
                     <form id="fnt_{{$provider->id}}" action="{{ route('admin.providers.destroy', $provider->id) }}" method="POST">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}"/>

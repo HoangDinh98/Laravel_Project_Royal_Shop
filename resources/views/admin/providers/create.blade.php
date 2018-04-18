@@ -8,6 +8,7 @@
     </div>
     <!-- /.box-header -->
     <!-- form start -->
+    <div class="row">
     <div class="col-md-8">
         <form role="form" action="{{ route('admin.providers.store')}}" method="POST" enctype='multipart/form-data'>
             <div class="box-body">
@@ -45,5 +46,6 @@
             </div>
         </form>
     </div>
+</div>
 </div>
 @endsection

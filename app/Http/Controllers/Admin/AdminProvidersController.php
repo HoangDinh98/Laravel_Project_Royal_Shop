@@ -126,7 +126,7 @@ class AdminProvidersController extends Controller {
      public function destroy($id) {
         $provider = Provider::findOrFail($id);
         
-        $provider->update(['is_delete' => '0']);
+        $provider->update(['is_delete' => '1']);
 //        $provider->save();
         
         Session::flash('notification', 'Xóa Nhà cung cấp <b>' . $provider->name . '</b> Thành công');
