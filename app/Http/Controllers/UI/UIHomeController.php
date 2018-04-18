@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\UI;
 
 use Illuminate\Http\Request;
-use \Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use App\Product;
@@ -22,26 +22,19 @@ class UIHomeController extends Controller {
      */
     public function index() {
         $products = Product::orderBy('created_at', 'desc')->where('is_delete', 0)->paginate(5);
-        $hot_products = Product::join('order_details', 'products.id', '=', 'order_details.product_id')->where('order_details.quantity', '>', 5)->get();
+        $hot_products_id = OrderDetail::select(DB::raw('count(product_id) AS SL'),'product_id',DB::raw('sum(quantity) as Tong'))
+                                ->groupBy('product_id')
+                                ->orderBy('SL','desc')
+                                ->orderBy('Tong','desc')
+                                ->limit(2)
+                                ->get();
         $cate_products = Product::whereIn('category_id', array(1, 2, 3))->get();
-        
-        return view('ui.index', compact('products', 'hot_products', 'cate_products'));
+        return view('ui.index', compact('products', 'hot_products_id', 'cate_products'));
     }
 
     public function getProByCate($id) {
         $products = Product::where('category_id', $id)->paginate(7);
         return view('ui.lists', compact('products'));
-    }
-    
-    public function getProByPrice(Request $request){
-        $symbol = [
-            0 => '_',
-            2 => '-',
-            3 => '+'
-        ];
-        
-        $priceproducts = Product::where('price', '>','1000000')->get();
-        return view ('ui.pricelists', compact('priceproducts'));
     }
 
     public function search(Request $request) {
