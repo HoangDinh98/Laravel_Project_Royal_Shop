@@ -34,6 +34,10 @@ $step = 0;
                     <a class="displayStyle" href="{{ route('product.index', $product->id)}}"><img id="product-img-{{$product->id}}" src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/250x250' }}"></a>
                     <h5>{{ $product->name }}</h5>
                     <p>
+                        <a class="btn btn-warning addcart" data-id="{{$product->id}}">Thêm vào <i class="icon-shopping-cart"></i></a> 
+                                <a class="btn" href="{{ route('product.index', $product->id)}}">Chi tiết</a>
+                    </p>
+                    <p>
                         @php
                         $current_price = $product->price*(1 - 0.01*$product->promotion->value)
                         @endphp
@@ -99,9 +103,7 @@ $step = 0;
                                 <span><del>{{ Helper::vn_currencyunit($item->product->price) }}</del></span>&nbsp;&nbsp;
                                 <span>{{'- '.$item->product->promotion->value.' %'}}</span>
                     </p>
-                    <div class="addcart-box">
-                        <a class="btn btn-warning addcart" data-id="{{$item->product_id}}">Thêm vào giỏ hàng <i class="icon-shopping-cart"></i></a> 
-                    </div>
+
                 </div>
             </div>
 
