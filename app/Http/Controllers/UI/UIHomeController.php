@@ -26,7 +26,7 @@ class UIHomeController extends Controller {
                                 ->groupBy('product_id')
                                 ->orderBy('SL','desc')
                                 ->orderBy('Tong','desc')
-                                ->limit(8)
+                                ->limit(4)
                                 ->get();
         $cate_products = Product::whereIn('category_id', array(1, 2, 3))->get();
         return view('ui.index', compact('products', 'hot_products_id', 'cate_products'));

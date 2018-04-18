@@ -94,13 +94,15 @@
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
             <input type="hidden" id="product_id" name="product_id" value="{{$product->id}}">                         
             <div id="img_avatar">
-                <img src="{{ asset(Auth::user()->avatar()->path) }}" width="10%" height="10%" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
+                <img src="{{Auth::user()->avatar() ? asset(Auth::user()->avatar()->path) : 'http://placehold.it/70x70'}}" width="10%" height="10%" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
                 {{Auth::user() ? Auth::user()->name : 'Uncategorized'}}
             </div>
             <div class=" row {{ $errors->has('content') ? 'has-error' : '' }}">
-                <textarea id="text_content" name="content" cols="20"  placeholder="Nhập bình luận" value="{{ old('content') }}" ></textarea>
+                <textarea id="text_content" cols="20" name="content"  placeholder="Nhập bình luận" value="{{ old('content') }}" ></textarea>
                 <span class="text-danger">{{ $errors->first('content') }}</span>
             </div> 
+
+
             <button type="submit" class="btn btn-primary" style="margin-left: 2%;">Gửi</button>
 
         </form> 
@@ -113,8 +115,9 @@
     <div id ="comment">
         @if(count($comments) ==0)
         <h4>Không có bình luận nào </h4>
-        @else
-        @if($comments)
+        @endif
+
+        @if(count($comments)>0)
         <h4> Có {{count($comments)}} bình luận</h4>
         @foreach($comments as $comment)
         @if($comment -> status == 0)
@@ -124,18 +127,24 @@
         @elseif( $comment-> status == 1)
         <div>
             @if($comment->user)                               
-            <img src="{{ asset($comment->user->avatar()->path) }}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
+            <img src="{{ $comment->user->avatar()? asset($comment->user->avatar()->path) : 'http://placehold.it/70x70' }}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
             {{$comment->user ? $comment->user->name : 'Uncategorized'}}<br>
             @endif
-            <p class="content_comment" >{{$comment->content}}</p>
-            <a class="content_comment" href="product.deletecomment  {{ $comment->id}}">Xóa</a>
+
+
             <p class="content_comment"><span class="glyphicon glyphicon-time"></span>{{$comment->created_at}} {{$comment->update_at }}</p>
+            <p class="content_comment" >{{$comment->content}}</p>
+
+            <div>
+                <form action="{{ route('product.deletecomment', $comment->id) }}" method="GET">
+                    <button type="submit" class="btn btn-danger pull-right">Delete</button>
+                </form>
+            </div>
+
+
         </div>
-        @else
-        <h4> Nội dung không phù hợp</h4>
         @endif
         @endforeach
-        @endif
         @endif
     </div>
 
@@ -159,7 +168,7 @@
                     @elseif ($step != 0 && $step % 4 == 0) 
                     {!!  '<div class="item"><div class="row">'  !!}
                             @endif
-                               <div class="span3">                       
+                            <div class="span3">                       
                                 <div class="well well-small">
                                     <span class="priceTag">
                                         <small class="oldPrice">{{ Helper::vn_currencyunit($product->price) }}</small>
@@ -173,7 +182,7 @@
                                         @endphp
 
                                         <span><del>{{ Helper::vn_currencyunit($product->price) }}</del></span>&nbsp;&nbsp;
-                                           <span>{{'- '.$product->promotion->value.' %'}}</span><br><br>
+                                        <span>{{'- '.$product->promotion->value.' %'}}</span><br><br>
                                         <span class="price" style="font-size: 16px">{{ Helper::vn_currencyunit($current_price) }}</span>
                                     </p>
                                     <div class="addcart">
@@ -210,4 +219,3 @@
 
 
 
-           

@@ -8,7 +8,7 @@
 $step = 0;
 @endphp
 
-<section id="hot-products">
+<section id="new-products" class="product-show">
     <h3 class="title"><span>Sản phẩm mới</span></h3>
 
     <div id="myCarouselOne" class="carousel slide">
@@ -24,29 +24,29 @@ $step = 0;
             @elseif ($step != 0 && $step % 4 == 0) 
             {!!  Helper::product_group_notactive()  !!}
             @endif
-            <div class="span3">
+            <div class="span3 product-box">
                 <div class="well well-small">
-                    <span class="newTag"></span>
-                    <span class="priceTag">
-                        <small class="oldPrice">{{ Helper::vn_currencyunit($product->price) }}</small>
-                        <span class="newPrice">{{ Helper::vn_currencyunit($product->price) }}</span>
-                    </span>
-                    <a class="displayStyle" href="{{ route('product.index', $product->id)}}"><img id="product-img-{{$product->id}}" src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/250x250' }}"></a>
-                    <h5>{{ $product->name }}</h5>
-                    <p>
-                        <a class="btn btn-warning addcart" data-id="{{$product->id}}">Thêm vào <i class="icon-shopping-cart"></i></a> 
-                                <a class="btn" href="{{ route('product.index', $product->id)}}">Chi tiết</a>
-                    </p>
-                    <p>
-                        @php
-                        $current_price = $product->price*(1 - 0.01*$product->promotion->value)
-                        @endphp
-                        <span class="price" style="font-size: 16px">{{ Helper::vn_currencyunit($current_price) }}</span><br>
-                        <span><del>{{ Helper::vn_currencyunit($product->price) }}</del></span>&nbsp;&nbsp;
-                        <span>{{'- '.$product->promotion->value.' %'}}</span>
-                    </p>
-                    <div class="addcart-box">
-                        <a class="btn btn-warning addcart" data-id="{{$product->id}}">Thêm vào giỏ hàng <i class="icon-shopping-cart"></i></a> 
+                    <div class="displayStyle">
+                        <div class="cptn18">
+                            <a class="" href="{{ route('product.index', $product->id)}}">
+
+                                <img id="product-img-{{$product->id}}" src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/270x270' }}">
+                                <h5>{{ $product->name }}</h5>
+                                <div class="price-area">
+                                    @php
+                                    $current_price = $product->price*(1 - 0.01*$product->promotion->value)
+                                    @endphp
+                                    <span class="price">{{ Helper::vn_currencyunit($current_price) }}</span>
+                                    @if($product->promotion->value > 0)
+                                    <span><del>{{ Helper::vn_currencyunit($product->price) }}</del></span>
+                                    <div class="corner-ribbon"><span>{{ '- '.$product->promotion->value.' %' }}</span></div>
+                                    @endif
+                                </div>
+                            </a>
+                            <div class="cptn">
+                                <span class="btn btn-warning addcart" data-id="{{$product->id}}">Thêm vào <i class="icon-shopping-cart"></i></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -66,58 +66,51 @@ $step = 0;
     </div>
 </section>
 
-<section id="new-products">
+<section id="hot-products">
     <h3 class="title"><span>Sản phẩm bán chạy</span></h3>
 
-    <div id="new-products-Carousel" class="carousel slide">
-        @php 
-        $step = 0
-        @endphp
-        <div class="carousel-inner">
-            @foreach($hot_products_id as $item)
+    @php 
+    $step = 0
+    @endphp
+    @foreach($hot_products_id as $item)
 
-            @if($step == 0) 
-                {!!  '<div class="item active"> <div class="row">'  !!}
-            @elseif ($step != 0 && $step % 4 == 0) 
-                    {!!  '<div class="item"><div class="row">'  !!}
-            @endif
-            <div class="span3">
-                <div class="well well-small">
-                    <span class="newTag"></span>
-                    <span class="priceTag">
-                                <small class="oldPrice">{{ Helper::vn_currencyunit($item->product->price) }}</small>
-                                <span class="newPrice">{{ Helper::vn_currencyunit($item->product->price) }}</span>
-                    </span>
-                            <a class="displayStyle" href="#"><img id="product-img-{{$item->product_id}}" src="{{ $item->product->thumbnail() ? asset($item->product->thumbnail()->path): 'http://placehold.it/250x250' }}"></a>
+    @if ($step == 0 || $step % 4 == 0) 
+    {!! '<div class="row-fluid">' !!}
+        @endif
+        <div class="span3 product-box">
+            <div class="well well-small">
+                <div class="displayStyle">
+                    <div class="cptn18">
+                        <a class="" href="{{ route('product.index', $item->product->id)}}">
+                            <img id="product-img-{{$item->product->id}}" src="{{ $item->product->thumbnail() ? asset($item->product->thumbnail()->path): 'http://placehold.it/270x270' }}">
                             <h5>{{ $item->product->name }}</h5>
-                    <p>
-                                <a class="btn btn-warning addcart" data-id="{{$item->product_id}}">Thêm vào <i class="icon-shopping-cart"></i></a> 
-                                <a class="btn" href="{{ route('product.index', $item->product_id)}}">Chi tiết</a>
-                            </p>
-                            <p>
-                        @php
-                                    $current_price = $item->product->price*(1 - 0.01*$item->product->promotion->value)
-                        @endphp
-                                 
-                        <span class="price" style="font-size: 16px">{{ Helper::vn_currencyunit($current_price) }}</span><br>
-                                <span><del>{{ Helper::vn_currencyunit($item->product->price) }}</del></span>&nbsp;&nbsp;
-                                <span>{{'- '.$item->product->promotion->value.' %'}}</span>
-                    </p>
+                            <div class="price-area">
+                                @php
+                                $current_price = $item->product->price*(1 - 0.01*$item->product->promotion->value)
+                                @endphp
 
+                                <span class="price">{{ Helper::vn_currencyunit($current_price) }}</span>
+                                @if($item->product->promotion->value > 0)
+                                <span><del>{{ Helper::vn_currencyunit($item->product->price) }}</del></span>
+                                <div class="corner-ribbon"><span>{{ '- '.$item->product->promotion->value.' %' }}</span></div>
+                                @endif
+                            </div>
+                        </a>
+                        <div class="cptn">
+                            <span class="btn btn-warning addcart" data-id="{{$item->product->id}}">Thêm vào <i class="icon-shopping-cart"></i></span>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            @if ($step % 4 == 3 || $step == $products->count()-1) 
-             {!!  '</div></div>' !!}
-            @endif
-
-            @php
-            $step++
-            @endphp
-
-            @endforeach
         </div>
-    </div>
+        @if ($step % 4 == 3 || $step == $products->count()-1) 
+        {!!  '</div>' !!}
+    @endif
+
+    @php
+    $step++
+    @endphp
+    @endforeach
 </section>
 
 <section id="orther-products">

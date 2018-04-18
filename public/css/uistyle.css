@@ -27,6 +27,113 @@ a:hover {
     cursor: pointer !important;
 }
 
+/*CSS FOR PRODUCT BOX*/
+/*888888888888888888888*/
+
+.product-box .well {
+    padding: 0;
+    text-align: center;
+}
+
+.product-box h5 {
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 0 8px;
+    /*width: 80%;*/
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 5px 0;
+}
+
+.product-box a {
+    text-decoration: none;
+    color: #000;
+}
+
+.product-box .displayStyle {
+    /*position: relative;*/
+}
+
+.product-box .price-area {
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.product-box .price {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 2px;
+    font-size: 15px;
+    font-weight: bold;
+    height: 15px;
+}
+
+.corner-ribbon {
+    position: absolute;
+    /*    top: -6px;
+        right:-24px;*/
+    top: 0px;
+    right: 0px;
+    /*background-color: #f58025;*/
+    background-color: #da1a1a;
+    width: 60px;
+    margin: 0;
+    padding: 5px 0;
+}
+.corner-ribbon span {
+    color: #fff;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    padding-right: 0px;
+    display: block;
+    position: relative;
+}
+
+.corner-ribbon:before{
+    background: inherit;
+    content: '';
+    display: block;
+    width: 100%;
+    top: 0;
+    position: absolute;
+    bottom: 0;
+    /*-webkit-backface-visibility: hidden;  for Chrome Windows */
+    left: -10px;
+    transform: skewX(25deg);
+    transform-origin: 100% 0;
+    box-shadow: -1px 1px 1px 0 #484848;
+}
+
+.corner-ribbon:after {
+    /*display: block;*/
+    display: none;
+    position: absolute;
+    bottom:-10px;
+    right: 0;
+    content: "";
+    border-top: 0px solid transparent;
+    border-bottom: 10px solid transparent;	
+    border-left: 9px solid #484848;
+}
+
+/*CSS FOR CAROUSEL*/
+.carousel .carousel-control {
+    background: rgba(0, 0, 0, 0.3);
+    color: #FFFFFF;
+    z-index: 9999;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    line-height: 40px;
+    margin-top: -50px;
+    border: 2px solid #FFF;
+}
+
 .title {
     border-bottom: 2px solid #ededed;
     margin-bottom: 28px;
