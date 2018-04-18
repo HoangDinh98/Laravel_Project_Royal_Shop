@@ -120,19 +120,18 @@
         @if(count($comments)>0)
         <h4> Có {{count($comments)}} bình luận</h4>
         @foreach($comments as $comment)
-        @if($comment -> status == 0)
-        <script language="javascript">
-            alert('Bình luận của bạn đang được duyệt');
-        </script>
-        @elseif( $comment-> status == 1)
+        
+        @if( $comment->status== 0 && $comment->user_id == Auth::user()->id)
         <div>
             @if($comment->user)                               
             <img src="{{ $comment->user->avatar()? asset($comment->user->avatar()->path) : 'http://placehold.it/70x70' }}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
             {{$comment->user ? $comment->user->name : 'Uncategorized'}}<br>
             @endif
-
-
-            <p class="content_comment"><span class="glyphicon glyphicon-time"></span>{{$comment->created_at}} {{$comment->update_at }}</p>
+            <p class="content_comment">
+                <span class="glyphicon glyphicon-time"></span>
+                {{$comment->created_at}} {{$comment->update_at }}
+                <span style="float: right">Bình luận của bạn đang chờ duyệt</span>
+            </p>
             <p class="content_comment" >{{$comment->content}}</p>
 
             <div>
@@ -140,8 +139,28 @@
                     <button type="submit" class="btn btn-danger pull-right">Delete</button>
                 </form>
             </div>
+        </div>
+        @endif
 
+        @if( $comment->status== 1)
+        <div>
+            @if($comment->user)                               
+            <img src="{{ $comment->user->avatar()? asset($comment->user->avatar()->path) : 'http://placehold.it/70x70' }}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
+            {{$comment->user ? $comment->user->name : 'Uncategorized'}}<br>
+            @endif
+            <p class="content_comment">
+                <span class="glyphicon glyphicon-time"></span>
+                {{$comment->created_at}} {{$comment->update_at }}
 
+            </p>
+            <p class="content_comment" >{{$comment->content}}</p>
+            @if($comment->user_id == Auth::user()->id)
+            <div>
+                <form action="{{ route('product.deletecomment', $comment->id) }}" method="GET">
+                    <button type="submit" class="btn btn-danger pull-right">Delete</button>
+                </form>
+            </div>
+            @endif
         </div>
         @endif
         @endforeach
@@ -151,71 +170,66 @@
 </section>
 
 <!--Các sản phẩm có liên quan-->
-<section id="orther-products">
+
+
+
+<section id="new-products" class="product-show">
     <h3 class="title"><span>Sản phẩm liên quan</span></h3>
 
-    <div id="orther-products-Carousel" class="carousel slide">
-        <!-- Dot Indicators -->
-        @php 
-        $step = 0
-        @endphp
-
+    <div id="myCarouselOne" class="carousel slide">
         <div class="carousel-inner">
             @foreach($related_products as $product)
 
             @if($step == 0) 
-            {!!  '<div class="item active"> <div class="row">'  !!}
-                    @elseif ($step != 0 && $step % 4 == 0) 
-                    {!!  '<div class="item"><div class="row">'  !!}
-                            @endif
-                            <div class="span3">                       
-                                <div class="well well-small">
-                                    <span class="priceTag">
-                                        <small class="oldPrice">{{ Helper::vn_currencyunit($product->price) }}</small>
-                                        <span class="newPrice">{{ Helper::vn_currencyunit($product->price) }}</span>
-                                    </span>
-                                    <a class="displayStyle" href="{{ route('product.index', $product->id)}}"><img id="product-img-{{$product->id}}" src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/250x250' }}"></a>
-                                    <h5>{{ $product->name }}</h5>
-                                    <p>
-                                        @php
-                                        $current_price = $product->price*(1 - 0.01*$product->promotion->value)
-                                        @endphp
+            {!!  Helper::product_group_active()  !!}
+            @elseif ($step != 0 && $step % 4 == 0) 
+            {!!  Helper::product_group_notactive()  !!}
+            @endif
+            <div class="span3 product-box">
+                <div class="well well-small">
+                    <div class="displayStyle">
+                        <div class="cptn18">
+                            <a class="" href="{{ route('product.index', $product->id)}}">
 
-                                        <span><del>{{ Helper::vn_currencyunit($product->price) }}</del></span>&nbsp;&nbsp;
-                                        <span>{{'- '.$product->promotion->value.' %'}}</span><br><br>
-                                        <span class="price" style="font-size: 16px">{{ Helper::vn_currencyunit($current_price) }}</span>
-                                    </p>
-                                    <div class="addcart">
-                                        <a class="btn btn-warning addcart" data-id="{{$product->id}}">Thêm vào giỏ hàng <i class="icon-shopping-cart"></i></a> 
-                                    </div>                    
-                                </div>                       
+                                <img id="product-img-{{$product->id}}" src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/270x270' }}">
+                                <h5>{{ $product->name }}</h5>
+                                <div class="price-area">
+                                    @php
+                                    $current_price = $product->price*(1 - 0.01*$product->promotion->value)
+                                    @endphp
+                                    <span class="price">{{ Helper::vn_currencyunit($current_price) }}</span>
+                                    @if($product->promotion->value > 0)
+                                    <span><del>{{ Helper::vn_currencyunit($product->price) }}</del></span>
+                                    <div class="corner-ribbon"><span>{{ '- '.$product->promotion->value.' %' }}</span></div>
+                                    @endif
+                                </div>
+                            </a>
+                            <div class="cptn">
+                                <span class="btn btn-warning addcart" data-id="{{$product->id}}">Thêm vào <i class="icon-shopping-cart"></i></span>
                             </div>
-                            @if ($step % 4 == 3 || $step == $related_products->count()-1) 
-                            {!!  '</div></div>' !!}
-                    @endif
-
-                    @php
-                    $step++
-                    @endphp
-
-                    @endforeach
-
+                        </div>
+                    </div>
                 </div>
-
-
-
-                <a class="left carousel-control" href="#myCarouselOne" data-slide="prev">‹</a>
-                <a class="right carousel-control" href="#myCarouselOne" data-slide="next">›</a>
             </div>
 
-            </section>
+            @if ($step % 4 == 3 || $step == $related_products->count()-1) 
+            {!!  Helper::product_group_end() !!}
+            @endif
+            @endforeach
 
-            @include('ui.sticky_cart')
+        </div>
+        <a class="left carousel-control" href="#myCarouselOne" data-slide="prev">‹</a>
+        <a class="right carousel-control" href="#myCarouselOne" data-slide="next">›</a>
+    </div>
 
-            @include('ui.notify_modal')
-            @include('ui.error_modal')
+</section>
 
-            @endsection
+@include('ui.sticky_cart')
+
+@include('ui.notify_modal')
+@include('ui.error_modal')
+
+@endsection
 
 
 

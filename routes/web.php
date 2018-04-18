@@ -85,7 +85,9 @@ Route::post("shippingAgree", "UI\UICartController@shippingSubmit")->name("shippi
 
 
 
+//Route::get("/search","UI\UIHomeController@search")->name('home.search');
 Route::get("/search","UI\UIHomeController@search")->name('home.search');
+Route::get("/home/searchbyprice/{data}", "UI\UIHomeController@getProByPrice")->name('home.getProByPrice');
 
 
 //Make auth for routes
