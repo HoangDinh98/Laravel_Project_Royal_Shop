@@ -1,29 +1,31 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-date_default_timezone_set("Asia/Ho_Chi_Minh");
-use App\Http\Controllers\Controller;
 
+date_default_timezone_set("Asia/Ho_Chi_Minh");
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Photo;
 use App\Product;
 use App\User;
 
-class AdminMediaController extends Controller
-{
+class AdminMediaController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $photos = Photo::orderBy('created_at', 'desc')->Where('is_delete',0)->paginate(5);
+    public function index() {
+        $photos = Photo::select('id','product_id', 'is_thumbnail', 'is_delete', 'path')
+                        ->orderBy('created_at', 'desc')
+                        ->Where('is_delete', 0)
+                        ->WhereNull('user_id')
+                        ->paginate(5);
         $products = Product::all();
         $users = User::all();
-            return view('admin.media.index', compact('products', 'photos'));
- 
-        
+        return view('admin.media.index', compact('products', 'photos'));
     }
 
     /**
@@ -31,8 +33,7 @@ class AdminMediaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -42,8 +43,7 @@ class AdminMediaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -53,8 +53,7 @@ class AdminMediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -64,8 +63,7 @@ class AdminMediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -76,8 +74,7 @@ class AdminMediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -87,21 +84,18 @@ class AdminMediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         $photo = Photo::findOrFail($id);
-        
         $photo->update(['is_delete' => '1']);
         \Illuminate\Support\Facades\Session::flash('delete_photo', 'Xóa Hình ảnh <b>' . $photo->path . '</b> Thành công');
         return redirect()->route('admin.media.index');
     }
-    
-         public function getProductById($id)
-    {
-         $photos = Photo::orderBy('created_at', 'desc')->Where([['product_id', $id],['is_delete',0]])->paginate(5);
-         $products = Product::all();
 
-        return view('admin.media.index', ['products'=>$products],['photos'=>$photos]);
+    public function getProductById($id) {
+        $photos = Photo::orderBy('created_at', 'desc')->Where([['product_id', $id], ['is_delete', 0]])->paginate(5);
+        $products = Product::all();
 
+        return view('admin.media.index', ['products' => $products], ['photos' => $photos]);
     }
+
 }
