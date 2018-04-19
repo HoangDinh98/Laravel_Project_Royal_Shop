@@ -108,6 +108,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div style="text-align: center">
+                        {{ $comments->render() }}
+                    </div>
             </div>
             <!-- /.box-body -->
         </div>

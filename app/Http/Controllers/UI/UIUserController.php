@@ -100,7 +100,7 @@ class UIUserController extends Controller {
     }
 
     public function verifyEmail($confirm_code) {
-        $status = User::where('confirm_code', '=', $confirm_code)->update(['is_confirmed' => 1, 'confirm_code' => NULL]);
+        $status = User::where('confirm_code', '=', $confirm_code)->update(['is_confirmed' => 1, 'confirm_code' => NULL, 'is_active' => 1]);
 
         if ($status == 0) {
             return redirect('/')->with('verifyStatus', [

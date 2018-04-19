@@ -150,7 +150,7 @@ $step = 0;
                 </div>
             </div>
         </div>
-        @if ($step % 4 == 3 || $step == $products->count()-2) 
+        @if ($step % 4 == 3 || $step == $products->count()-1) 
         {!!  '</div>' !!}
     @endif
 

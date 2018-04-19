@@ -1,10 +1,16 @@
 @extends ('layouts.ui')
 @section('content')
-@include('layouts.iucomponents.carousel')
 <section id="featuredProduct">
     <h3 class="title"><span>Các sản phẩm</span></h3>
-          <div class="item active"> <div class="row">
-            <div class="item"><div class="row">
+    <div style="margin-bottom: 15px">
+        {!! $approxprice !!}
+    </div>
+<!--    <div>
+        {{ var_dump($priceproducts) }}
+    </div>-->
+    <div class="item active"> 
+        <div class="item">
+            <div class="row">
                     @foreach($priceproducts as $product)
                     <div class="span3 product-box">
                         <div class="well well-small">
@@ -35,7 +41,9 @@
                 </div>
             </div>
         </div>
-    </div>       
+    <div class="pagination pagination-centered">
+        {{$priceproducts-> appends (Request :: except ('page')) -> render()}}
+    </div>
 </section>
 @include('ui.sticky_cart')
 @include('ui.notify_modal')

@@ -4,31 +4,19 @@
 
 @include('layouts.iucomponents.carousel')
 
-@php 
-    $step = 0
-@endphp
+
 
 <section id="new-products" class="product-show">
     <h3 class="title"><span>Sản phẩm theo danh mục</span></h3>
-    
     <div id="myCarouselOne" class="carousel slide">
-        <!-- Dot Indicators -->
-       
-      
-        <div class="carousel-inner">
+    <div class="item active"> 
+            <div class="item"><div class="row">
             @foreach($products as $product)
-
-            @if($step == 0) 
-            {!!  Helper::product_group_active()  !!}
-            @elseif ($step != 0 && $step % 4 == 0) 
-            {!!  Helper::product_group_notactive()  !!}
-            @endif
             <div class="span3 product-box">
                 <div class="well well-small">
                     <div class="displayStyle">
                         <div class="cptn18">
                             <a class="" href="{{ route('product.index', $product->id)}}">
-
                                 <img id="product-img-{{$product->id}}" src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/270x270' }}">
                                 <h5>{{ $product->name }}</h5>
                                 <div class="price-area">
@@ -49,23 +37,18 @@
                     </div>
                 </div>
             </div>
-
-            @if ($step % 4 == 3 || $step == $products->count()-1) 
-            {!!  Helper::product_group_end() !!}
-            @endif
             @endforeach
-            
         </div>
-        <a class="left carousel-control" href="#myCarouselOne" data-slide="prev">‹</a>
-        <a class="right carousel-control" href="#myCarouselOne" data-slide="next">›</a>
+                <div class="pagination pagination-centered">
+                    {{$products-> appends (Request :: except ('page')) -> render()}}
+    </div>
+            </div>
+        </div>
     </div>
         
 </section>
-
 @include('ui.sticky_cart')
-
 @include('ui.notify_modal')
 @include('ui.error_modal')
-
 @endsection
 

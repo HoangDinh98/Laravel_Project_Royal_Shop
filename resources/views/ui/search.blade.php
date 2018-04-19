@@ -4,18 +4,18 @@
     <!-- Dot Indicators -->
     <h3 class="title"><span>Kết quả tìm kiếm cho "{{$keyword}}"</span></h3>
     @if(count($products) ==0)
-    <p> Có <b>{{count($products)}}</b> kết quả cho từ khóa "{{$keyword}}"</p>
+    <p> Có <b>{{ $products->total() }}</b> kết quả cho từ khóa "{{$keyword}}"</p>
     @else
-    <p> Có <b>{{count($products)}}</b> kết quả cho từ khóa "{{$keyword}}"</p>
-    <div class="item active"> <div class="row">
-            <div class="item"><div class="row">
+    <p> Có <b>{{ $products->total() }}</b> kết quả cho từ khóa "{{$keyword}}"</p>
+    <div class="item active"> 
+            <div class="item">
+                <div class="row">
                     @foreach($products as $product)
                     <div class="span3 product-box">
                         <div class="well well-small">
                             <div class="displayStyle">
                                 <div class="cptn18">
                                     <a class="" href="{{ route('product.index', $product->id)}}">
-
                                         <img id="product-img-{{$product->id}}" src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/270x270' }}">
                                         <h5>{{ $product->name }}</h5>
                                         <div class="price-area">
@@ -40,16 +40,12 @@
                 </div>
             </div>
         </div>
-    </div>
     <div class="pagination pagination-centered">
         {{$products-> appends (Request :: except ('page')) -> render()}}
     </div>
-
-
     @endif
-
 </section>
-
 @include('ui.sticky_cart')
-
+@include('ui.notify_modal')
+@include('ui.error_modal')
 @endsection
