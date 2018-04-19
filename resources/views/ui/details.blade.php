@@ -133,11 +133,8 @@
                 <span style="float: right">Bình luận của bạn đang chờ duyệt</span>
             </p>
             <p class="content_comment" >{{$comment->content}}</p>
-
-            <div>
-                <form action="{{ route('product.deletecomment', $comment->id) }}" method="GET">
-                    <button type="submit" class="btn btn-danger pull-right">Delete</button>
-                </form>
+                
+                <p class="content_comment"><span class="glyphicon glyphicon-time"></span>{{$comment->created_at}} {{$comment->update_at }}</p>
             </div>
         </div>
         @endif
@@ -155,11 +152,7 @@
             </p>
             <p class="content_comment" >{{$comment->content}}</p>
             @if($comment->user_id == Auth::user()->id)
-            <div>
-                <form action="{{ route('product.deletecomment', $comment->id) }}" method="GET">
-                    <button type="submit" class="btn btn-danger pull-right">Delete</button>
-                </form>
-            </div>
+            <a class="content_comment" href="product.deletecomment  {{ $comment->id}}">Xóa</a>
             @endif
         </div>
         @endif
