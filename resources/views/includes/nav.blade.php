@@ -7,7 +7,9 @@
                 @if ( count($category->children))
                 <ul class="dropdown-menu">
                     @foreach($category->children AS $cate_child)
-                    <li class=""><a href="{{ route('home.getProByCate', $cate_child->id) }}">{{$cate_child->name}}</a></li>
+                        @if($cate_child->is_active == 1)
+                            <li class=""><a href="{{ route('home.getProByCate', $cate_child->id) }}">{{$cate_child->name}}</a></li>
+                        @endif
                     @endforeach
                 </ul>
                 @endif

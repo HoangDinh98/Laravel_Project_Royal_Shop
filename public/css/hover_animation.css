@@ -181,7 +181,7 @@ and open the template in the editor.
     /*88888888888888888888888888888888*/
     /*88888888888888888888888888888888*/
     /*88888888888888888888888888888888*/
-    
+
     .cptn18 {
         width: 100%;
         position: relative;
@@ -190,23 +190,24 @@ and open the template in the editor.
         -moz-box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.3);
         box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.3);
     }
-/*    .cptn18 img {
-        width: 100%;
-        left: 0;
-        bottom: 0;
-        position: relative;
-        -webkit-transition: all 0.3s;
-        -moz-transition: all 0.3s;
-        -o-transition: all 0.3s;
-        transition: all 0.3s;
-    }*/
+    /*    .cptn18 img {
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            position: relative;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+        }*/
     .cptn18 .cptn {
         box-sizing: border-box;
         text-align: center;
         background: rgba(255,255,255, 0.4);
         width: 100%;
         height: auto;
-        bottom: -30%;
+        /*bottom: -30%;*/
+        bottom: 0;
         position: absolute;
         left: 0;
         overflow: auto;

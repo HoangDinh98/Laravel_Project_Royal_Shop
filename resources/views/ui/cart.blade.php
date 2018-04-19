@@ -3,7 +3,7 @@
 @section('content')
 
 @php
-$session_timeout = 30*60;
+$session_timeout = 2*60*60;
 
 if (!Session::has('last_visit')) {
 Session::put('last_visit', time());

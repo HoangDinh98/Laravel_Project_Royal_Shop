@@ -115,54 +115,50 @@ $step = 0;
 
 <section id="orther-products">
     <h3 class="title"><span>Sản phẩm khác</span></h3>
+    @php 
+    $step = 0
+    @endphp
 
-    <div id="orther-products-Carousel" class="carousel slide">
-        @php 
-        $step = 0
-        @endphp
-        <div class="carousel-inner">
-            @foreach($cate_products as $product)
+    @foreach($other_products as $product)
+    @if ($step == 0 || $step % 4 == 0) 
+    {!! '<div class="row-fluid">' !!}
+        @endif
 
-            @if($step == 0) 
-            {!!  Helper::product_group_active()  !!}
-            @elseif ($step != 0 && $step % 4 == 0) 
-            {!!  Helper::product_group_notactive()  !!}
-            @endif
-            <div class="span3">
-                <div class="well well-small">
-                    <span class="newTag"></span>
-                    <span class="priceTag">
-                        <small class="oldPrice">{{ Helper::vn_currencyunit($product->price) }}</small>
-                        <span class="newPrice">{{ Helper::vn_currencyunit($product->price) }}</span>
-                    </span>
-                    <a class="displayStyle" href="{{ route('product.index', $product->id)}}"><img id="product-img-{{$product->id}}" src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/250x250' }}"></a>
-                    <h5>{{ $product->name }}</h5>
-                    <p>
-                        @php
-                        $current_price = $product->price*(1 - 0.01*$product->promotion->value)
-                        @endphp
-                        <span class="price" style="font-size: 16px">{{ Helper::vn_currencyunit($current_price) }}</span><br>
-                        <span><del>{{ Helper::vn_currencyunit($product->price) }}</del></span>&nbsp;&nbsp;
-                        <span>{{'- '.$product->promotion->value.' %'}}</span>
-                    </p>
-                    <div class="addcart-box">
-                        <a class="btn btn-warning addcart" data-id="{{$product->id}}">Thêm vào giỏ hàng <i class="icon-shopping-cart"></i></a> 
+        <div class="span3 product-box">
+            <div class="well well-small">
+                <div class="displayStyle">
+                    <div class="cptn18">
+                        <a class="" href="{{ route('product.index', $product->id)}}">
+                            <img id="product-img-{{$product->id}}" src="{{ $product->thumbnail() ? asset($product->thumbnail()->path): 'http://placehold.it/270x270' }}">
+                            <h5>{{ $product->name }}</h5>
+                            <div class="price-area">
+                                @php
+                                $current_price = $product->price*(1 - 0.01*$product->promotion->value)
+                                @endphp
+
+                                <span class="price">{{ Helper::vn_currencyunit($current_price) }}</span>
+                                @if($product->promotion->value > 0)
+                                <span><del>{{ Helper::vn_currencyunit($product->price) }}</del></span>
+                                <div class="corner-ribbon"><span>{{ '- '.$product->promotion->value.' %' }}</span></div>
+                                @endif
+                            </div>
+                        </a>
+                        <div class="cptn">
+                            <span class="btn btn-warning addcart" data-id="{{$product->id}}">Thêm vào <i class="icon-shopping-cart"></i></span>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            @if ($step % 4 == 3 || $step == $products->count()-1) 
-            {!!  Helper::product_group_end() !!}
-            @endif
-
-            @php
-            $step++
-            @endphp
-
-            @endforeach
-
         </div>
-    </div>
+        @if ($step % 4 == 3 || $step == $products->count()-2) 
+        {!!  '</div>' !!}
+    @endif
+
+    @php
+    $step++
+    @endphp
+
+    @endforeach
 </section>
 
 @include('ui.sticky_cart')

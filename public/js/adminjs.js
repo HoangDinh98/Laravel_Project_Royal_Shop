@@ -2,6 +2,13 @@ $(document).ready(function () {
     $('#notify').delay(10000).fadeOut();
 });
 
+$(document).ready(function () {
+    //Use this inside your document ready jQuery 
+    $(window).on('popstate', function () {
+        location.reload(true);
+    });
+});
+
 function deleteA(para) {
     $('#' + para).submit();
 }
@@ -57,7 +64,7 @@ $('.order-update-modal').on('click', function (e) {
     $('input[name="status"]').prop('checked', false);
     var order_status = $('#order-status-' + order_id).attr('data-id');
     console.log('Form name = ' + form_name + '| status = ' + order_status);
-    
+
     switch ($('#order-status-' + order_id).attr('data-id')) {
         case '0':
             $(form_name + ' .order-inprocess').prop('checked', true);
@@ -81,9 +88,9 @@ $('.order-update-modal').on('click', function (e) {
 //    }).addClass('disabled');
 
     $(form_name + ' .form label').has('input:disabled').addClass('disabled');
-    
+
     $('#order-status-mess-' + order_id).text($('#order-status-' + order_id).text());
-    
+
     $(form_name).modal('show');
 });
 

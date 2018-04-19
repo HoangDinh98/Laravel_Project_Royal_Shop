@@ -63,10 +63,6 @@
                     <div class="span12" style="text-align: right">
                         <button type="submit" class="btn btn-primary" style="margin-right: 60px" disabled>Lưu thay đổi</button>
                     </div>
-                    <div class="span12" style="text-align: right">
-                        <!--                        <button type="button" id="request-email" class="btn btn-primary">Gửi email cho tôi</button>-->
-                        <a href="{{ route('user.sendmail', $user->id)}}">Gửi mail cho tôi</a>
-                    </div>
                 </form>
             </div>
         </div>

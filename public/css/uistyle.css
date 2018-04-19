@@ -146,6 +146,7 @@ a:hover {
     line-height: 38px;
     font-weight: normal;
     text-shadow: 0 0 1px #666;
+    margin-top: 20px;
 }
 
 .nav-custom {
@@ -648,6 +649,28 @@ section.header_text.sub {
     border-radius: 5px;
 }
 
+/*---------------------------------------------*/
+/*---------------------------------------------*/
+/*---------- PRODUCTS DETALS PAGE -------------*/
+.comment-content {
+    color: #333;
+    line-height: 24px;
+    background: #f8f8f8;
+    border-bottom: 1px solid #dfdfdf;
+    margin-bottom: 20px;
+}
+
+.comment-content img {
+   display: inline-block;
+   float: left;
+   margin-right: 15px;
+}
+
+
+/*---------- END PRODUCTS DETALS -------------*/
+/*---------------------------------------------*/
+/*---------------------------------------------*/
+
 /* ----------- STYLE FOR ACCOUNT MANAGEMENT -----*/
 .not-underline, .not-underline:hover, .not-underline:focus, .not-underline:active {
     text-decoration: none
@@ -725,7 +748,7 @@ section.header_text.sub {
     float: right;
 }
 .content_comment{
-    margin-left: 4%;
+    margin-left: 65px;
 
 }
 

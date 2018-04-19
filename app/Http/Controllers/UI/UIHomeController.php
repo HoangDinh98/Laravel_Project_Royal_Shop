@@ -22,15 +22,20 @@ class UIHomeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $products = Product::orderBy('created_at', 'desc')->where('is_delete', 0)->paginate(5);
+        $products = Product::orderBy('created_at', 'desc')->where('is_delete', 0)->limit(8)->get();
         $hot_products_id = OrderDetail::select(DB::raw('count(product_id) AS SL'), 'product_id', DB::raw('sum(quantity) as Tong'))
                 ->groupBy('product_id')
                 ->orderBy('SL', 'desc')
                 ->orderBy('Tong', 'desc')
                 ->limit(4)
                 ->get();
-        $cate_products = Product::whereIn('category_id', array(1, 2, 3))->get();
-        return view('ui.index', compact('products', 'hot_products_id', 'cate_products'));
+        $other_products = Product::select(DB::raw('a.*'))
+                ->from(DB::raw('products AS a JOIN (SELECT category_id, MIN(id) AS id FROM products GROUP BY category_id) AS b ON a.category_id = b.category_id AND a.id = b.id'))
+                ->orderByRaw('RAND()')->limit(8)->get();
+        
+//        $other_products = Product::all();
+        
+        return view('ui.index', compact('products', 'hot_products_id', 'other_products'));
     }
 
     public function getProByCate($id) {
