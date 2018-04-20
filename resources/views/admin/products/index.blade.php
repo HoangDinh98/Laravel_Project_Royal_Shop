@@ -56,7 +56,7 @@
                         <td>{{$product->quantity}}</td>
                         <td>{{$product->weight}}</td>
                         <td>{{$product->price}}</td>
-                    <td style="width: 100px;">{!! strip_tags($product->description) !!}</a></td>
+                        <td style="width: 100px;">{!! strip_tags($product->description) !!}</a></td>
                         <td>
                             <div style="display: block; width: max-content"> 
                                 <a class="button-a edit-button " href="{{ route('admin.products.edit', $product->id) }}" 

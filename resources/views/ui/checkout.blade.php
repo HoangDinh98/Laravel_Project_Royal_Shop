@@ -82,7 +82,7 @@
                                     </label>
                                     <div class="controls {{$errors->has('firstname')?'has-error':''}}">
                                         <input type="text" id="firstname" name="firstname" class="input-xlarge"
-                                               value="{{ old('firstname') ? old('firstname') : $user->firstname }}">
+                                               value="{{ old('firstname') ? old('firstname') : ( session('order') ? session('order')->firstname : $user->firstname ) }}">
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -93,7 +93,7 @@
                                     </label>
                                     <div class="controls {{$errors->has('lastname')?'has-error':''}}">
                                         <input type="text" id="lastname" name="lastname" class="input-xlarge"
-                                               value="{{ old('lastname') ? old('lastname') : $user->lastname }}">
+                                               value="{{ old('lastname') ? old('lastname') : ( session('order') ? session('order')->lastname: $user->lastname) }}">
                                     </div>
                                 </div>					  
                                 <div class="control-group">
@@ -104,7 +104,7 @@
                                     </label>
                                     <div class="controls {{$errors->has('phone')?'has-error':''}}">
                                         <input type="text" id="phone" name="phone" class="input-xlarge"
-                                               value="{{ old('phone') }}">
+                                               value="{{ old('phone') ? old('phone') : ( session('order') ? session('order')->phone : '') }}">
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -115,7 +115,7 @@
                                     </label>
                                     <div class="controls {{$errors->has('email')?'has-error':''}}">
                                         <input type="email" id="email-checkout" name="email" class="input-xlarge"
-                                               value="{{ old('email') ? old('email') : $user->email }}">
+                                               value="{{ old('email') ? old('email') : (session('order') ? session('order')->email :$user->email) }}">
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +132,9 @@
                                     </label>
                                     <div class="controls {{$errors->has('city')?'has-error':''}}">
                                         <input type="text" id="city" name="city" class="input-xlarge"
-                                               value="{{ old('city') ? old('city'): ($user->hasadd ? $user->city : '') }}">
+                                               value="{{ old('city') ? old('city'):
+                                               (session('order') ? session('order')->city: ($user->hasadd ? $user->city : ''))
+                                               }}">
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -143,7 +145,9 @@
                                     </label>
                                     <div class="controls {{$errors->has('district')?'has-error':''}}">
                                         <input type="text" id="district" name="district" class="input-xlarge"
-                                               value="{{ old('district') ? old('district') : ($user->hasadd ? $user->district : '') }}">
+                                               value="{{ old('district') ? old('district') : 
+                                               (session('order') ? session('order')->district: ($user->hasadd ? $user->district : ''))
+                                               }}">
                                     </div>
                                 </div>					  
                                 <div class="control-group">
@@ -154,7 +158,9 @@
                                     </label>
                                     <div class="controls {{$errors->has('town')?'has-error':''}}">
                                         <input type="text" id="town" name="town" class="input-xlarge"
-                                               value="{{ old('town') ? old('town'): ($user->hasadd ? $user->town : '') }}">
+                                               value="{{ old('town') ? old('town'): 
+                                               (session('order') ? session('order')->town: ($user->hasadd ? $user->town : ''))
+                                               }}">
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -165,7 +171,9 @@
                                     </label>
                                     <div class="controls {{$errors->has('village')?'has-error':''}}">
                                         <input type="text" id="village" name="village" class="input-xlarge"
-                                               value="{{ old('village') ? old('village'): ($user->hasadd ? $user->village : '') }}">
+                                               value="{{ old('village') ? old('village'):
+                                               (session('order') ? session('order')->village: ($user->hasadd ? $user->village : ''))
+                                               }}">
                                     </div>
                                 </div>
                             </div>

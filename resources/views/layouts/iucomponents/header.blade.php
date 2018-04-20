@@ -76,7 +76,7 @@
         </div>
         <div class="navbar">
             <div class="navbar-inner">
-                <a class="brand" href="index.php"><img src="{{ asset('UI/themes/images/new_logo.png') }}" alt="Bootsshop"></a>
+                <a class="brand" href="{{ route('home.index') }}"><img class="logo" src="{{ asset('UI/themes/images/Logo.png') }}" alt="Royal Shop"></a>
                 <div class="search-box">
                     <form action="{{ route('home.search') }}" class="search-form " method="GET"style="padding-top:5px;">
                         <input class="" type="text" name="keyword" placeholder="Nhập từ khóa" style="padding:11px 4px;"value="{{ old('keyword') }}">

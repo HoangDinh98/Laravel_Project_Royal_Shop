@@ -27,6 +27,10 @@ a:hover {
     cursor: pointer !important;
 }
 
+img.logo {
+    max-width: 400px;
+}
+
 /*CSS FOR PRODUCT BOX*/
 /*888888888888888888888*/
 
@@ -150,8 +154,12 @@ a:hover {
 }
 
 .nav-custom {
-    width: 100%;
-    background-color: #000000;
+    width: 1170px;
+    background-color: #a2040d;
+    margin: 0 auto !important;
+    height: max-content;
+    display: inline-table !important;
+    float: none !important;
 }
 
 .dropdown-submenu > .dropdown-menu {
@@ -191,7 +199,8 @@ a:hover {
 .dropdown-menu {
     padding: 0 5px;
     border-radius: 0;
-    background-color: #000000;
+    background-color: #a2040d;
+    border-radius: 0 !important;
 }
 
 .navbar .nav ul li {
@@ -269,6 +278,9 @@ a:hover {
     left:0;
     width: 100%;
     z-index: 10000;
+    text-align: center;
+    background-color: #a2040d;
+    max-height: 40px;
 }
 #nav-wrapper { margin-bottom:20px; }
 
@@ -661,9 +673,9 @@ section.header_text.sub {
 }
 
 .comment-content img {
-   display: inline-block;
-   float: left;
-   margin-right: 15px;
+    display: inline-block;
+    float: left;
+    margin-right: 15px;
 }
 
 
@@ -811,7 +823,7 @@ section.header_text.sub {
     .register-form input {
         width: 65%;
     }
-    
+
     .register-form div.required {
         width: 68%;
         float: right;

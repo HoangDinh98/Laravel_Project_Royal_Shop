@@ -44,20 +44,22 @@
                             <td>{{$provider->created_at}}</td>
                             <td>{{$provider->updated_at}}</td>
                             <td>
-                                <a class="button-a edit-button" href="{{ route('admin.providers.edit', $provider->id)}}"
-                                   title="Chỉnh sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;
+                                <div style="display: block; width: max-content">
+                                    <a class="button-a edit-button" href="{{ route('admin.providers.edit', $provider->id)}}"
+                                       title="Chỉnh sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;
 
-                                <a class="button-a delete-button delete-fnt" data-type="3" data-id="{{$provider->id }}"
-                                   title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;
-                           
-                    <form id="fnt_{{$provider->id}}" action="{{ route('admin.providers.destroy', $provider->id) }}" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                    </form> 
-                    </td>
-                    </tr>
-                    @endforeach
-                    @endif
+                                    <a class="button-a delete-button delete-fnt" data-type="3" data-id="{{$provider->id }}"
+                                       title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;
+
+                                    <form id="fnt_{{$provider->id}}" action="{{ route('admin.providers.destroy', $provider->id) }}" method="POST">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                                    </form> 
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>

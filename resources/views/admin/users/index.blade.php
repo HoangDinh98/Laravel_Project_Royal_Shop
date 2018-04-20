@@ -61,14 +61,16 @@
                             <td>{{ $user->created_at }}</td>
                             <td>{{ $user->updated_at }}</td>
                             <td>
-                                <a class="button-a edit-button" href="{{ route('admin.users.edit', $user->id) }}" 
-                                   title="Chỉnh sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;
-                                <a class="button-a delete-button delete-fnt" data-type="5" data-id="{{$user->id }}"
-                                   title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;
-                                <form id="fnt_{{$user->id}}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                                    <input type="hidden" name="_method" value="DELETE">
-                                </form>
+                                <div style="display: block; width: max-content">
+                                    <a class="button-a edit-button" href="{{ route('admin.users.edit', $user->id) }}" 
+                                       title="Chỉnh sửa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;
+                                    <a class="button-a delete-button delete-fnt" data-type="5" data-id="{{$user->id }}"
+                                       title="Xóa"><i class="fa fa-trash-o" aria-hidden="true"></i></a>&nbsp;
+                                    <form id="fnt_{{$user->id}}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                                        <input type="hidden" name="_method" value="DELETE">
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach

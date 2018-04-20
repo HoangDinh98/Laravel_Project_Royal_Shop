@@ -24,7 +24,7 @@ class AdminProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $products = Product::orderBy('created_at', 'desc')->where('is_delete',0)->paginate(5);
+        $products = Product::orderBy('created_at', 'desc')->where('is_delete',0)->paginate(10);
         $providers = Provider::all();
         $categories = Category::all();
         $promotions = Promotion::all();

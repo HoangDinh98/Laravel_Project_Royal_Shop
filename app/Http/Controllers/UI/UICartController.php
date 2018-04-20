@@ -219,7 +219,8 @@ class UICartController extends Controller {
             }
             $oldCart = Session::get('cart');
             $cart = new Cart($oldCart);
-
+            
+//            Session::forget('order');
             return view('ui.checkout', ['user' => $user, 'products' => $cart->items]);
         } else {
             return redirect()->route('home.index');
@@ -300,9 +301,15 @@ class UICartController extends Controller {
         //        $order = App::make();
         $order = app()->make('App');
         $order->customer_name = $name;
+        $order->firstname = Standard::standardize_data($request->firstname, 1);
+        $order->lastname = Standard::standardize_data($request->lastname, 1);
         $order->phone = $request->phone;
         $order->email = $email;
         $order->address = $address;
+        $order->city = $city;
+        $order->district = $district;
+        $order->town = $town;
+        $order->village = $village;
         $order->description = $description;
 
 //        Push data into session
@@ -321,7 +328,7 @@ class UICartController extends Controller {
         if (Auth::check()) {
             $user = User::findOrFail(Auth::user()->id);
             $user_id = $user->id;
-            
+
             if (empty($user->default_add_received)) {
                 $user->default_add_received = Session::get('order')->address;
                 $user->save();

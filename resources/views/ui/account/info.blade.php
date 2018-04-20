@@ -45,12 +45,21 @@
                 </div>
             </div>
         </div>
-        
+
+        @if($user->orders->count() == 0)
         <div class="span12" style="margin-top: 20px">
-            <a>
-                <b>Xem tất cả đơn hàng ({{ $user->orders->count() }})</b>
-            </a>
+            <p>
+                Bạn chưa có đơn hàng nào
+            </p>
         </div>
+        @endif
+
+        @if($user->orders->count() > 0)
+        <!--        <div class="span12" style="margin-top: 20px">
+                    <a>
+                        <b>Xem tất cả đơn hàng ({{ $user->orders->count() }})</b>
+                    </a>
+                </div>-->
 
         <div class="span12" style="margin-top: 10px">
             <div class="accordion-group">
@@ -111,8 +120,12 @@
                 </div>
             </div>
         </div>
+        @endif
+
     </div>
 </section>
+
+@include('ui.sticky_cart')
 
 @endsection
 

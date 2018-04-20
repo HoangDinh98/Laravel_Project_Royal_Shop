@@ -13,7 +13,8 @@
         <script src="{{ asset('UI/themes/js/less/less.js') }}" type="text/javascript"></script>
 
         <!-- favicon-icons -->
-        <link rel="shortcut icon" href="{{ asset('UI/themes/images/favicon.ico') }}">
+        <!--<link rel="shortcut icon" href="{{ asset('UI/themes/images/favicon.ico') }}">-->
+        <link rel="shortcut icon" href="{{ asset('UI/themes/images/SubLogo.png') }}">
         <link rel="stylesheet" href="{{asset('Admin/bower_components/font-awesome/css/font-awesome.min.css')}}">
     </head>
     <body>
@@ -22,8 +23,6 @@
             <link rel="stylesheet" href="{{asset('css/uistyle.css')}}">
             <link rel="stylesheet" href="{{asset('css/hover_animation.css')}}">
             <link rel="stylesheet" href="{{asset('css/cssxuyen.css')}}">
-            <link rel="stylesheet" href="{{asset('css/cssanh.css')}}">
-            <link rel="stylesheet" href="{{asset('css/csssinh.css')}}">
         </div>
         @include('layouts.iucomponents.header')
         <!-- ======================================================================================================================== -->
@@ -93,7 +92,7 @@
                                     <a href="about_us.php"> ABOUT US</a> | 
                                     <a  href="topology.php" >TOPOLOGY</a> | 
                                     <a href="contact_us.php">CONTACT </a>-->
-                <p class="pull-right"><a href="#">Terms and condition.php</a> &copy; Copyright 2013 Sell Anything. </p>
+                <p class="pull-right"> &copy; 2013 Bản quyền thuộc về Royal Shop. </p>
             </div>
         </div>
     </footer>
