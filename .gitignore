@@ -13,4 +13,6 @@ yarn-error.log
 
 vendor
 nbproject
-/public/images
+/public/images/2018
+/public/images/products
+/public/images/users
