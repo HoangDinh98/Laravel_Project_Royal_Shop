@@ -11,14 +11,14 @@ This README would normally document whatever steps are necessary to get your app
     php artisan db:seed 
 ```
     or run 
-    ```
-    composer install __
+```
+    composer install
     php artisan migrate --seed
-    ```
+```
 * Run
-    ```
+```
     php artisan serve --port=8000
-    ```
+```
 * Access this address to discover: http://localhost:8000
 
 ### What is this repository for? ###
