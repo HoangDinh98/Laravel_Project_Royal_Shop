@@ -6,14 +6,14 @@ This README would normally document whatever steps are necessary to get your app
 * Download this project
 * Run
     ```
-        composer install
-        php artisan migrate
-        php artisan db:seed
+    composer install
+    php artisan migrate
+    php artisan db:seed
     ```
     or run 
     ```
-        composer install
-        php artisan migrate --seed
+    composer install
+    php artisan migrate --seed
     ```
 * Run
     ```
