@@ -5,14 +5,14 @@ This README would normally document whatever steps are necessary to get your app
 ### Guide to install ###
 * Download this project
 * Run
-    ```
+```
     composer install
     php artisan migrate
-    php artisan db:seed
-    ```
+    php artisan db:seed 
+```
     or run 
     ```
-    composer install
+    composer install __
     php artisan migrate --seed
     ```
 * Run
